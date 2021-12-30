@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "658624640581",
+    "project_id": "goodneighbors-b9d7e",
+    "storage_bucket": "goodneighbors-b9d7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658624640581:android:7f53ac27eb8a4b09f4d52c",
+        "android_client_info": {
+          "package_name": "com.goodneighobrs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658624640581-fvgmel5t0e1tsmiimse2k04ss3eq1gng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD041r1L0ujQLrDEEN6LQm09QHcMZ5QVPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658624640581-fvgmel5t0e1tsmiimse2k04ss3eq1gng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
