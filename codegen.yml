@@ -1,0 +1,7 @@
+schema: http://backend04-team.codebootcamp.co.kr/team03
+generates:
+  ./src/commons/types/generated/types.d.ts:
+    plugins:
+      - typescript
+   
+   
