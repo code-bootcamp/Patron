@@ -2,12 +2,23 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import styled from '@emotion/native';
 
+interface IPropsContainer {
+  width?: string;
+  height?: string;
+}
+
+const Container = styled.View`
+  width: ${(props: IPropsContainer) => props.width};
+  height: ${(props: IPropsContainer) => props.height};
+`;
+
 const Wrapper = styled.View`
   flex-direction: row;
+  align-items: center;
 `;
 const IconWrapper = styled.View`
-  width: 5%;
   justify-content: center;
+  width: 5%;
 `;
 const Icon = styled.Image``;
 
@@ -27,16 +38,18 @@ export default function InputBasic(props) {
   }
 
   return (
-    <View style={isFocus ? styles.textInputFocused : styles.textInput}>
-      <Wrapper>
-        <Input placeholder={props.placeholder} onFocus={onFocusInput} onBlur={onBlurInput} />
-        {isFocus && (
-          <IconWrapper>
-            <Icon source={require('../../../../../public/images/icon_del-txt.png')} />
-          </IconWrapper>
-        )}
-      </Wrapper>
-    </View>
+    <Container width={props.width} height={props.height}>
+      <View style={isFocus ? styles.textInputFocused : styles.textInput}>
+        <Wrapper>
+          <Input placeholder={props.placeholder} onFocus={onFocusInput} onBlur={onBlurInput} />
+          {isFocus && (
+            <IconWrapper>
+              <Icon source={require('../../../../../public/images/icon_del-txt.png')} />
+            </IconWrapper>
+          )}
+        </Wrapper>
+      </View>
+    </Container>
   );
 }
 
