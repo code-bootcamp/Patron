@@ -31,7 +31,6 @@ export default function SearchInput(props) {
 
       <Input onChange={props.onChange} />
 
-
       <IconWrapper>
         <Icon source={require('../../../../../public/images/icon_union.png')} />
       </IconWrapper>
