@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
 import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import CommunityScreen from '../screens/community';
 
 const DefaultScreen = () => {
   return (
@@ -21,7 +22,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={{
+        screenOptions={() => ({
           headerShown: false,
           tabBarActiveTintColor: '#448800',
           tabBarStyle: {
@@ -31,7 +32,7 @@ const Navigation = () => {
             paddingLeft: 30,
             paddingRight: 30,
           },
-        }}
+        })}
       >
         <Tab.Screen
           name="Home"
@@ -47,9 +48,9 @@ const Navigation = () => {
           }}
         ></Tab.Screen>
         <Tab.Screen
-          name="Community"
-          component={DefaultScreen}
-          options={{
+          name="community"
+          component={CommunityScreen}
+          options={() => ({
             tabBarLabel: '커뮤니티',
             tabBarIcon: ({ focused }) =>
               focused ? (
@@ -57,7 +58,8 @@ const Navigation = () => {
               ) : (
                 <Icon name="chatbubble-ellipses-outline" size={20} />
               ),
-          }}
+          })}
+
         ></Tab.Screen>
         <Tab.Screen
           name="News"
