@@ -44,6 +44,7 @@ export default function InputComment(props) {
         style={styles.textInput}
         onFocus={onFocusInput}
         onBlur={onBlurInput}
+        onChange={props.onChange}
       />
       <SubmitBtn>{isFocus && <SubmitTxt>등록</SubmitTxt>}</SubmitBtn>
     </Wrapper>

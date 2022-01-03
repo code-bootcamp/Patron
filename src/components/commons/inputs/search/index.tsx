@@ -18,10 +18,10 @@ const IconWrapper = styled.View`
 `;
 const Icon = styled.Image``;
 
-export default function SearchInput() {
+export default function SearchInput(props) {
   return (
     <Wrapper>
-      <Input />
+      <Input onChange={props.onChange} />
       <IconWrapper>
         <Icon source={require('../../../../../public/images/icon_union.png')} />
       </IconWrapper>
