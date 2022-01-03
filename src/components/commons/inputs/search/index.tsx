@@ -27,8 +27,8 @@ const Icon = styled.Image``;
 
 export default function SearchInput(props) {
   return (
-    <Wrapper width={props.width} height={props.height}>
 
+    <Wrapper>
       <Input onChange={props.onChange} />
 
       <IconWrapper>
