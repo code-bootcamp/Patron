@@ -16,6 +16,7 @@ const Wrapper = styled.View`
   flex-direction: row;
   align-items: center;
 `;
+
 const IconWrapper = styled.View`
   justify-content: center;
   width: 5%;
@@ -41,7 +42,12 @@ export default function InputBasic(props) {
     <Container width={props.width} height={props.height}>
       <View style={isFocus ? styles.textInputFocused : styles.textInput}>
         <Wrapper>
-          <Input placeholder={props.placeholder} onFocus={onFocusInput} onBlur={onBlurInput} />
+          <Input
+            placeholder={props.placeholder}
+            onFocus={onFocusInput}
+            onBlur={onBlurInput}
+            onChange={props.onChange}
+          />
           {isFocus && (
             <IconWrapper>
               <Icon source={require('../../../../../public/images/icon_del-txt.png')} />
