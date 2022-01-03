@@ -36,7 +36,7 @@ const Navigation = () => {
       >
         <Tab.Screen
           name="Home"
-          component={DefaultScreen}
+          component={Home}
           options={{
             tabBarIcon: ({ focused }) =>
               focused ? (
@@ -59,6 +59,7 @@ const Navigation = () => {
                 <Icon name="chatbubble-ellipses-outline" size={20} />
               ),
           })}
+
         ></Tab.Screen>
         <Tab.Screen
           name="News"
