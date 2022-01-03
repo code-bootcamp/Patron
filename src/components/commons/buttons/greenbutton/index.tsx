@@ -15,9 +15,9 @@ const SubmitBtn = styled.Pressable`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${(props: IGreenButton) => props.width}
-  height: ${(props: IGreenButton) => props.height}
-  border-radius:${(props: IGreenButton) => props.borderRadius}
+  width: ${(props: IGreenButton) => props.width};
+  height: ${(props: IGreenButton) => props.height};
+  border-radius: ${(props: IGreenButton) => props.borderRadius};
   background-color: #448800;
 `;
 
