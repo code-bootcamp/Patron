@@ -6,6 +6,7 @@ interface IGreenButton {
   height?: string;
   borderRadius?: number;
   fontSize?: string;
+  fontWeight?: number;
   onPressBtn?: () => void;
   text?: string;
 }
@@ -23,6 +24,7 @@ const SubmitBtn = styled.Pressable`
 const SubmitText = styled.Text`
   color: #ffffff;
   font-size: ${(props: IGreenButton) => props.fontSize};
+  font-weight: ${(props: IGreenButton) => props.fontWeight};
 `;
 
 const GreenButton = (props: IGreenButton) => {
