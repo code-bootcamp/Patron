@@ -1,0 +1,37 @@
+import React from 'react';
+import styled from '@emotion/native';
+
+interface IPropsSearchWrapper {
+  width?: string;
+  height?: string;
+}
+
+const Wrapper = styled.View`
+  border-radius: 8px;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  width: ${(props: IPropsSearchWrapper) => props.width};
+  height: ${(props: IPropsSearchWrapper) => props.height};
+`;
+
+const Input = styled.TextInput`
+  width: 90%;
+`;
+
+const IconWrapper = styled.View`
+  width: 10%;
+  align-items: center;
+`;
+const Icon = styled.Image``;
+
+export default function SearchInput(props) {
+  return (
+    <Wrapper width={props.width} height={props.height}>
+      <Input />
+      <IconWrapper>
+        <Icon source={require('../../../../../public/images/icon_union.png')} />
+      </IconWrapper>
+    </Wrapper>
+  );
+}

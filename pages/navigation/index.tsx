@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
 import { View, Text } from 'react-native';
+import Home from '../home/index';
 
 const DefaultScreen = () => {
   return (
@@ -34,7 +35,7 @@ const Navigation = () => {
       >
         <Tab.Screen
           name="Home"
-          component={DefaultScreen}
+          component={Home}
           options={{
             tabBarLabel: '홈',
           }}
