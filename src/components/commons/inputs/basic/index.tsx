@@ -16,6 +16,7 @@ const Wrapper = styled.View`
   flex-direction: row;
   align-items: center;
 `;
+
 const IconWrapper = styled.View`
   justify-content: center;
   width: 5%;
