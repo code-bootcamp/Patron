@@ -35,7 +35,7 @@ const Navigation = () => {
       >
         <Tab.Screen
           name="Home"
-          component={DefaultScreen}
+          component={Home}
           options={{
             tabBarIcon: ({ focused }) =>
               focused ? (
