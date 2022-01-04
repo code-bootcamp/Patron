@@ -4,6 +4,8 @@ import * as S from './communityList.styles';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import 'react-native-gesture-handler';
 import ColoredTag from '../../../commons/tags/coloredtag';
+import Icon from 'react-native-vector-icons/Ionicons';
+import GreenButton from '../../../commons/buttons/greenbutton';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -40,7 +42,7 @@ const CommunityListUI = () => {
     <>
       <S.Wrap>
         <S.ListHeader>
-          <ColoredTag text="정기후원" />
+          <ColoredTag text="정기후원" fontSize="10px" padding="4px 8px" />
           <S.HeaderInner>
             <S.HeaderTitle>오늘, 당신의 천원은 어떻게 쓰였나요?</S.HeaderTitle>
             <S.HeaderDday>D-3</S.HeaderDday>
@@ -60,7 +62,21 @@ const CommunityListUI = () => {
             <Tab.Screen name="최근" component={SettingsScreen} />
           </Tab.Navigator>
         </S.ListBody>
-        <S.ListFooter></S.ListFooter>
+        <S.ListFooter>
+          <Icon name="heart-outline" size={20} />
+          <S.FooterInner>
+            <R.Text>
+              <R.Text style={{ color: 'black' }}>+999</R.Text>명 참여중
+            </R.Text>
+            <GreenButton
+              text="나도 참여하기"
+              width="50%"
+              height={38}
+              fontSize="16px"
+              borderRadius={8}
+            />
+          </S.FooterInner>
+        </S.ListFooter>
       </S.Wrap>
     </>
   );

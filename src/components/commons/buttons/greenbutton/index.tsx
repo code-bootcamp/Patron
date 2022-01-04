@@ -2,8 +2,8 @@ import React from 'react';
 import styled from '@emotion/native';
 
 interface IGreenButton {
-  width?: string;
-  height?: string;
+  width?: number | string;
+  height?: number | string;
   borderRadius?: number;
   fontSize?: string;
   fontWeight?: number;

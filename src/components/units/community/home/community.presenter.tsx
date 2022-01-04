@@ -16,26 +16,20 @@ const CommunityUI = (props: IPropsCommunityUI) => {
         <R.ScrollView>
           <S.Wrap>
             <S.CommunityHeader>
-              <S.HeaderTop>
-                <S.Title>커뮤니티</S.Title>
-                <Icon name="search" size={20} />
-              </S.HeaderTop>
-              <S.HeaderBottom>
-                <S.SubTitle>김이웃님!</S.SubTitle>
-                <S.SubTitle>이런 활동은 어떠세요?</S.SubTitle>
-                <S.CardContainer horizontal={true} showsHorizontalScrollIndicator={false}>
-                  {new Array(5).fill(1).map((_, idx) => (
-                    <S.Card
-                      key={idx}
-                      onPress={() => props.navigation.navigate('community', { screen: 'list' })}
-                    >
-                      <ColoredTag text="정기후원" />
-                      <S.CardTitle>오늘, 당신의 천원은 어떻게 쓰였나요?</S.CardTitle>
-                      <S.DDay>D-3</S.DDay>
-                    </S.Card>
-                  ))}
-                </S.CardContainer>
-              </S.HeaderBottom>
+              <S.SubTitle>김이웃님!</S.SubTitle>
+              <S.SubTitle>이런 활동은 어떠세요?</S.SubTitle>
+              <S.CardContainer horizontal={true} showsHorizontalScrollIndicator={false}>
+                {new Array(5).fill(1).map((_, idx) => (
+                  <S.Card
+                    key={idx}
+                    onPress={() => props.navigation.navigate('community', { screen: 'list' })}
+                  >
+                    <ColoredTag text="정기후원" padding="4px 8px" fontSize="10px" />
+                    <S.CardTitle>오늘, 당신의 천원은 어떻게 쓰였나요?</S.CardTitle>
+                    <S.DDay>D-3</S.DDay>
+                  </S.Card>
+                ))}
+              </S.CardContainer>
             </S.CommunityHeader>
             <S.HashSection>
               <R.Pressable onPress={() => setModalVisible(true)}>
@@ -50,7 +44,10 @@ const CommunityUI = (props: IPropsCommunityUI) => {
             </S.HashSection>
             <S.BoardContainer>
               {new Array(5).fill(1).map((_, idx) => (
-                <S.Board key={idx}>
+                <S.Board
+                  key={idx}
+                  onPress={() => props.navigation.navigate('community', { screen: 'detail' })}
+                >
                   <S.BoardHeader>
                     <S.BoardWrap>
                       <S.BoardImg />
