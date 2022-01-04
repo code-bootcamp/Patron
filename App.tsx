@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Navigation from './pages/navigation';
 import 'react-native-gesture-handler';
-import Register from './src/components/units/signup/register/register.container';
+// import Register from './src/components/units/signup/register/register.container';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
     <>
       <ApolloProvider client={client}>
         <SafeAreaView />
-        <Register />
+        {/* <Register /> */}
         <Navigation />
       </ApolloProvider>
     </>

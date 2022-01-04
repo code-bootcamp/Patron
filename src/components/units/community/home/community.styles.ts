@@ -10,34 +10,12 @@ export const Wrap = styled.View`
 export const CommunityHeader = styled.View`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 275px;
-  margin-bottom: 8px;
-  padding-top: 12px;
-  background-color: #ffffff;
-`;
-
-export const HeaderTop = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 50px;
-  padding: 11px 24px;
-  border-bottom-color: #f0f0f0;
-  border-bottom-width: 1px;
-`;
-export const Title = styled.Text`
-  font-size: 20px;
-  font-weight: 700;
-  color: black;
-`;
-export const HeaderBottom = styled.View`
   width: 100%;
   height: 231px;
+  margin-bottom: 8px;
   padding: 20px 24px;
+
+  background-color: #ffffff;
 `;
 
 export const SubTitle = styled.Text`
@@ -117,7 +95,7 @@ export const BoardContainer = styled.ScrollView`
   width: 100%;
 `;
 
-export const Board = styled.View`
+export const Board = styled.Pressable`
   width: 100%;
   height: 178px;
   margin-bottom: 8px;
