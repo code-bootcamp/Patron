@@ -47,6 +47,7 @@ export default function InputBasic(props) {
             onFocus={onFocusInput}
             onBlur={onBlurInput}
             onChange={props.onChange}
+            secureTextEntry={props.secureTextEntry}
           />
           {isFocus && (
             <IconWrapper>
