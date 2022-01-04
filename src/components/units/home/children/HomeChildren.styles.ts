@@ -31,18 +31,27 @@ export const Card = styled.View`
   padding-right: 20px;
   width: 170px;
   /* background-color: lightpink; */
+  align-items: center;
 `;
 
 export const ImgWrapper = styled.View``;
 
-export const CardTag = styled.View``;
+export const CardTag = styled.View`
+  padding: 10px;
+  position: absolute;
+`;
 
 export const CardDetails = styled.View`
   /* background-color: blue; */
+  flex-direction: row;
+  justify-content: space-between;
   padding: 10px;
 `;
 
-export const DetailsContent = styled.View``;
+export const DetailsContent = styled.View`
+  /* background-color: lightskyblue; */
+  width: 100%;
+`;
 
 export const ContentTitle = styled.Text`
   font-weight: 700;
@@ -53,10 +62,13 @@ export const ContentRemark = styled.Text`
   color: #000;
 `;
 
-export const DetailsBookmark = styled.View``;
+export const DetailsBookmark = styled.View`
+  /* background-color: lightseagreen; */
+`;
 
 export const RecommendWrapper = styled.View`
   flex: 1;
+  width: 100%;
   background-color: #fff;
   margin-top: 20px;
   padding: 30px 20px 30px 20px;
@@ -77,22 +89,32 @@ export const UserName = styled.Text`
 
 export const ChildrenList = styled.View`
   flex-direction: row;
-  /* background-color: lightseagreen; */
+  width: 100%;
+  /* background-color: yellow; */
   padding: 25px 0px 25px 0px;
   border-bottom-width: 1px;
   border-color: #f0f0f0;
+  justify-content: space-between;
 `;
 
-export const ChildImgWrapper = styled.View``;
+export const ChildImgWrapper = styled.View`
+  justify-content: center;
+  align-items: center;
+`;
 
 export const ChildDetails = styled.View`
-  width: 65%;
-  /* background-color: lightgreen; */
+  /* background-color: lightcoral; */
   flex-direction: row;
-  padding: 0px 15px 0px 15px;
+  padding: 0px 0px 0px 15px;
+  /* justify-content: space-between; */
+  align-items: stretch;
 `;
 
-export const ChildAbout = styled.View``;
+export const ChildAbout = styled.View`
+  width: 80%;
+  /* background-color: lightyellow; */
+  justify-content: space-between;
+`;
 
 export const ChildName = styled.Text`
   color: #000;
@@ -104,7 +126,10 @@ export const ChildBio = styled.Text`
   color: #000;
 `;
 
-export const ChildrenTags = styled.View``;
+export const ChildrenTags = styled.View`
+  flex-direction: row;
+  /* background-color: lightskyblue; */
+`;
 
 export const ChildBookmark = styled.View`
   /* background-color: lightpink; */

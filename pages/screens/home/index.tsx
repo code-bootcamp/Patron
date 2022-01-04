@@ -1,7 +1,6 @@
 import * as React from 'react';
-
-import HomeDetails from '../../../src/components/units/home/details/HomeDetails.container';
+import HomeMain from '../../../src/components/units/home/main/HomeMain.container';
 
 export default function Home() {
-  return <HomeDetails />;
+  return <HomeMain />;
 }
