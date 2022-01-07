@@ -28,10 +28,7 @@ const Icon = styled.Image``;
 export default function SearchInput(props) {
   return (
     <Wrapper width={props.width} height={props.height}>
-
       <Input onChange={props.onChange} />
-
-
       <IconWrapper>
         <Icon source={require('../../../../../public/images/icon_union.png')} />
       </IconWrapper>
