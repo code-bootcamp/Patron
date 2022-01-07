@@ -19,18 +19,23 @@ export const ContentsInput = styled.TextInput`
   padding: 20px 0;
 `;
 
-export const TagInput = styled.TextInput`
-  flex: 1;
+export const HashWrap = styled.View`
+  flex: 2;
+  flex-direction: row;
+  align-items: center;
   border-bottom-width: 1px;
   border-bottom-color: #f0f0f0;
 `;
 
+export const TagInput = styled.TextInput``;
+
 export const photoWrap = styled.View`
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
   flex: 3;
 `;
 
-export const PhotoUpload = styled.View`
+export const PhotoUpload = styled.Pressable`
   align-items: center;
   justify-content: center;
   width: 60px;

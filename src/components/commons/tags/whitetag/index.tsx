@@ -4,6 +4,7 @@ import styled from '@emotion/native';
 interface IPropsWhiteTag {
   text?: string;
   fontSize?: string;
+  onPress?: () => void;
 }
 
 const Tag = styled.Text`
@@ -24,7 +25,7 @@ const TagText = styled.Text`
 
 const WhiteTag = (props: IPropsWhiteTag) => {
   return (
-    <Tag fontSize={props.fontSize}>
+    <Tag fontSize={props.fontSize} onPress={props.onPress}>
       # <TagText fontSize={props.fontSize}>{props.text}</TagText>
     </Tag>
   );

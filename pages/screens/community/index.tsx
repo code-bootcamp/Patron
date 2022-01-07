@@ -49,6 +49,7 @@ const CommunityScreen = () => {
       <Stack.Screen
         name="detail"
         component={CommunityDetail}
+        initialParams={{ boardId: undefined }}
         options={() => ({
           headerTitle: '',
           headerShadowVisible: false,

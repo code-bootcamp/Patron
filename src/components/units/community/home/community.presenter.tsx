@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React, { useState } from 'react';
 import * as R from 'react-native';
 import * as S from './community.styles';
@@ -5,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ColoredTag from '../../../commons/tags/coloredtag';
 import WhiteTag from '../../../commons/tags/whitetag';
 import { IPropsCommunityUI } from './community.types';
+import { displayedAt } from '../../../../commons/libraries/utils';
 
 const CommunityUI = (props: IPropsCommunityUI) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -43,32 +45,24 @@ const CommunityUI = (props: IPropsCommunityUI) => {
               </S.TBD>
             </S.HashSection>
             <S.BoardContainer>
-              {new Array(5).fill(1).map((_, idx) => (
-                <S.Board
-                  key={idx}
-                  onPress={() => props.navigation.navigate('community', { screen: 'detail' })}
-                >
+              {props.data?.fetchBoards.map((el: any, idx: number) => (
+                <S.Board key={idx} onPress={props.getDetail(el._id)}>
                   <S.BoardHeader>
                     <S.BoardWrap>
-                      <S.BoardImg />
+                      <S.BoardImg source={{ uri: el.images[0] }} />
                       <S.ContentWrap>
-                        <S.BoardTitle numberOfLines={1}>
-                          저와 함께 여행중인 데르가 어느덧...
-                        </S.BoardTitle>
-                        <S.BoardContent numberOfLines={2}>
-                          데르와 함께 여행중인 20대 여자입니다. 굿네이버스에서 정기후원한지 어느덧
-                          4년이 되...
-                        </S.BoardContent>
+                        <S.BoardTitle numberOfLines={1}>{el.title}</S.BoardTitle>
+                        <S.BoardContent numberOfLines={2}>{el.contents}</S.BoardContent>
                         <S.TagContainer>
-                          {new Array(3).fill(1).map((_, idx) => (
-                            <S.Tag key={idx}>#태그</S.Tag>
+                          {props.firedata?.tags?.map((el: string, idx: number) => (
+                            <S.Tag key={idx}># {el}</S.Tag>
                           ))}
                         </S.TagContainer>
                       </S.ContentWrap>
                     </S.BoardWrap>
                     <S.UserWrap>
-                      <S.UserText>김이웃7783</S.UserText>
-                      <S.UserText>31분 전</S.UserText>
+                      <S.UserText>{el.writer}</S.UserText>
+                      <S.UserText>{displayedAt(el.createdAt)}</S.UserText>
                     </S.UserWrap>
                   </S.BoardHeader>
                   <S.BoardFooter>

@@ -117,7 +117,7 @@ export const BoardWrap = styled.View`
   flex-direction: row;
 `;
 
-export const BoardImg = styled.View`
+export const BoardImg = styled.Image`
   width: 80px;
   height: 80px;
   margin-right: 16px;
