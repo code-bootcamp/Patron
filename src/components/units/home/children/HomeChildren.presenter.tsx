@@ -46,7 +46,11 @@ export default function HomeChildrenUI() {
                         source={require('../../../../../public/images/home/child_card01.png')}
                       />
                       <E.CardTag>
-                        <ColoredTag text={`#${el.from}`} />
+                        <ColoredTag
+                          text={`#${el.from}`}
+                          fontSize={'9px'}
+                          padding={'2px 4px 2px 4px'}
+                        />
                       </E.CardTag>
                     </E.ImgWrapper>
                     <E.CardDetails>
@@ -65,7 +69,6 @@ export default function HomeChildrenUI() {
               </E.SelectionList>
             </ScrollView>
           </E.SelectionWrapper>
-
           <E.RecommendWrapper>
             <E.RecommendTitle>
               <E.RecommendTitleText>
@@ -83,7 +86,12 @@ export default function HomeChildrenUI() {
                     <E.ChildBio>{el.bio}</E.ChildBio>
                     <E.ChildrenTags key={index}>
                       {el.tags?.map((el, index) => (
-                        <ColoredTag key={index} text={`#${el}`} />
+                        <ColoredTag
+                          key={index}
+                          text={`#${el}`}
+                          fontSize={'9px'}
+                          padding={'2px 4px 2px 4px'}
+                        />
                       ))}
                     </E.ChildrenTags>
                   </E.ChildAbout>
