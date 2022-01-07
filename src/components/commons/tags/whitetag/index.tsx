@@ -32,3 +32,4 @@ const WhiteTag = (props: IPropsWhiteTag) => {
 };
 
 export default WhiteTag;
+
