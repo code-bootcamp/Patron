@@ -35,14 +35,21 @@ export const Card = styled.View`
 
 export const ImgWrapper = styled.View``;
 
-export const CardTag = styled.View``;
-
-export const CardDetails = styled.View`
-  /* background-color: blue; */
+export const CardTag = styled.View`
+  position: absolute;
   padding: 10px;
 `;
 
-export const DetailsContent = styled.View``;
+export const CardDetails = styled.View`
+  /* background-color: blue; */
+  padding: 10px 5px 10px 0px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const DetailsContent = styled.View`
+  width: 90%;
+`;
 
 export const ContentTitle = styled.Text`
   font-weight: 700;
@@ -79,17 +86,16 @@ export const RecommendList = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  /* background-color: darkcyan; */
 `;
 
-export const RecommendCard = styled.View`
-  /* background-color: coral; */
-`;
+export const RecommendCard = styled.View``;
 
 export const RImageWrpper = styled.View``;
 
 export const RecommendCardDetails = styled.View`
   padding: 10px 0px 15px 0px;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const RecommendCardTitle = styled.Text`

@@ -3,20 +3,27 @@ import styled from '@emotion/native';
 
 interface IPropsColoredTag {
   text?: string;
+  fontSize?: string;
+  padding?: string;
 }
 
 const Tag = styled.Text`
-  padding: 4px 8px;
+  padding: ${(props: IPropsColoredTag) => props.padding};
+  margin-right: 5px;
   border-radius: 40px;
   text-align: center;
-  color: #ffffff;
-  font-size: 10px;
   background-color: #448800;
   align-self: flex-start;
+  color: #ffffff;
+  font-size: ${(props: IPropsColoredTag) => props.fontSize};
 `;
 
 const ColoredTag = (props: IPropsColoredTag) => {
-  return <Tag>{props.text}</Tag>;
+  return (
+    <Tag padding={props.padding} fontSize={props.fontSize}>
+      {props.text}
+    </Tag>
+  );
 };
 
 export default ColoredTag;

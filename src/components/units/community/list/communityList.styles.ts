@@ -45,7 +45,19 @@ export const BodyContent = styled.View`
 `;
 
 export const ListFooter = styled.View`
-  flex: 0.5;
-  padding: 24px;
-  background-color: black;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0.6;
+  padding: 16px 24px;
+  background-color: #ffffff;
+`;
+
+export const FooterInner = styled.View`
+  width: 85%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  border-left: 1px solid #f0f0f0;
 `;

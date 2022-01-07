@@ -1,22 +1,39 @@
 import CommunityUI from './community.presenter';
-import React from 'react';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import firestore from '@react-native-firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { FECTH_BOARDS } from './community.queries';
+import { IPropsNavigation } from './community.types';
 
-type RootStackParamList = {
-  home: undefined;
-  community: { screen: string };
-  news: undefined;
-  mypage: undefined;
-};
+const Community = ({ navigation }: IPropsNavigation) => {
+  const { data } = useQuery(FECTH_BOARDS);
+  const commuCollection = firestore().collection('community');
+  const [firedata, setFiredata] = useState({});
 
-type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'community'>;
+  useEffect(() => {
+    commuCollection.get().then((ducumentSnapshot) =>
+      ducumentSnapshot.docs.map((doc) => {
+        setFiredata({ ...doc.data() });
+      }),
+    );
+  }, []);
 
-type Props = {
-  navigation: ProfileScreenNavigationProp;
-};
+  const getDetail = (id: string) => () => {
+    navigation.navigate('community', {
+      screen: 'detail',
+      params: { boardId: id },
+    });
+    // firedata.views = firedata.views + 1;
+    // setFiredata({ ...firedata });
+    // commuCollection.doc(id).update({
+    //   ...firedata,
+    // });
+    // console.log(firedata);
+  };
 
-const Community = ({ navigation }: Props) => {
-  return <CommunityUI navigation={navigation} />;
+  return (
+    <CommunityUI navigation={navigation} data={data} firedata={firedata} getDetail={getDetail} />
+  );
 };
 
 export default Community;
