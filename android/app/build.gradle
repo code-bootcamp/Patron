@@ -119,7 +119,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  * on project.ext.react, JavaScript will not be compiled to Hermes Bytecode
  * and the benefits of using Hermes will therefore be sharply reduced.
  */
-def enableHermes = project.ext.react.get("enableHermes", false);
+def enableHermes = project.ext.react.get("enableHermes", false)
 
 /**
  * Architectures to build native code for in debug.
@@ -196,8 +196,16 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
+    ///////////testing portion /////////
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+    implementation 'com.google.firebase:firebase-core:17.2.3'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    /////// testing portion ///////////
+
     implementation platform('com.google.firebase:firebase-bom:29.0.1')
     implementation project(':react-native-vector-icons')
+    implementation 'com.google.firebase:firebase-firestore:24.0.0'
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
     }
@@ -212,7 +220,7 @@ dependencies {
     }
 
     if (enableHermes) {
-        def hermesPath = "../../node_modules/hermes-engine/android/";
+        def hermesPath = "../../node_modules/hermes-engine/android/"
         debugImplementation files(hermesPath + "hermes-debug.aar")
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
@@ -232,5 +240,4 @@ apply from: file("../../node_modules/@react-native-community/cli-platform-androi
 project.ext.vectoricons= [
     iconFontNames: ['Ionicons.ttf']
 ]
-
 apply from: '../../node_modules/react-native-vector-icons/fonts.gradle'

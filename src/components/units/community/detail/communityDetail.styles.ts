@@ -5,12 +5,11 @@ export const Wrap = styled.ScrollView`
   background-color: #f6f6f7;
 `;
 
-export const DetailHeader = styled.View`
+export const DetailHeader = styled.ImageBackground`
   justify-content: flex-end;
   width: 100%;
   height: 260px;
   padding: 23px;
-  background-color: #9f9f9f;
 `;
 
 export const HeaderTitle = styled.Text`
@@ -48,7 +47,7 @@ export const DetailTitle = styled.Text`
   margin-bottom: 20px;
 `;
 
-export const DetailImg = styled.View`
+export const DetailImg = styled.Image`
   width: 100%;
   height: 140px;
   margin-bottom: 16px;

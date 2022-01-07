@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "658624640581-edb62mgvbdvdjsam68qhcac35tad4e07.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.goodneighobrs",
+            "certificate_hash": "ef249fca1b6529bbddafddc705d863bdb2f97aad"
+          }
+        },
+        {
           "client_id": "658624640581-fvgmel5t0e1tsmiimse2k04ss3eq1gng.apps.googleusercontent.com",
           "client_type": 3
         }
