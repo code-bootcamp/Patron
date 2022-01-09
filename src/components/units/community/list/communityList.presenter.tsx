@@ -6,6 +6,7 @@ import 'react-native-gesture-handler';
 import ColoredTag from '../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
 import GreenButton from '../../../commons/buttons/greenbutton';
+import { IPropsCommunityListUI } from './communityList.types';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -37,14 +38,22 @@ function SettingsScreen() {
   );
 }
 
-const CommunityListUI = () => {
+const CommunityListUI = (props: IPropsCommunityListUI) => {
   return (
     <>
       <S.Wrap>
-        <S.ListHeader>
-          <ColoredTag text="정기후원" fontSize="10px" padding="4px 8px" />
+        <S.ListHeader
+          source={{
+            uri: `https://storage.googleapis.com/${props.data?.fetchUseditem.images?.[0]}`,
+          }}
+        >
+          <ColoredTag
+            text={props.data?.fetchUseditem.name.split('/')[0]}
+            fontSize="10px"
+            padding="4px 8px"
+          />
           <S.HeaderInner>
-            <S.HeaderTitle>오늘, 당신의 천원은 어떻게 쓰였나요?</S.HeaderTitle>
+            <S.HeaderTitle>{props.data?.fetchUseditem.name.split('/')[1]}</S.HeaderTitle>
             <S.HeaderDday>D-3</S.HeaderDday>
           </S.HeaderInner>
         </S.ListHeader>

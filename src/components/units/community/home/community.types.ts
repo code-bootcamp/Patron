@@ -3,7 +3,7 @@ import { Query } from '../../../../commons/types/generated/types';
 
 type RootStackParamList = {
   home: undefined;
-  community: { screen: string; params?: { boardId: string } };
+  community: { screen: string; params?: { boardId?: string; useditemId?: string } };
   news: undefined;
   mypage: undefined;
 };
@@ -17,5 +17,5 @@ export type IPropsNavigation = {
 export interface IPropsCommunityUI {
   [x: string]: any;
   navigation: ProfileScreenNavigationProp;
-  data: Pick<Query, 'fetchBoards'>;
+  data?: Pick<Query, 'fetchBoards'>;
 }

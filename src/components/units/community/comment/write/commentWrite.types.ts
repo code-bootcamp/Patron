@@ -1,5 +1,11 @@
-import { Query } from '../../../../commons/types/generated/types';
+/* eslint-disable no-unused-vars */
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
+
+export interface IPropsCommentWriteUI {
+  onChangeContents: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  onSubmitComment: () => void;
+}
 
 type RootStackParamList = {
   home: undefined;
@@ -10,14 +16,6 @@ type RootStackParamList = {
 
 type CommunityListScreenRouteProp = RouteProp<RootStackParamList, 'community'>;
 
-export type IPropsRoute = {
+export interface IPropsCommentWrite {
   route: CommunityListScreenRouteProp;
-};
-
-export interface IPropsCommunityDetailUI {
-  data?: Pick<Query, 'fetchBoard'>;
-  firedata?: any;
-  onPressLike: () => void;
-  route: CommunityListScreenRouteProp;
-  commentData?: Pick<Query, 'fetchBoardComments'>;
 }

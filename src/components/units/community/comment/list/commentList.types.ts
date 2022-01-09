@@ -1,5 +1,5 @@
-import { Query } from '../../../../commons/types/generated/types';
 import { RouteProp } from '@react-navigation/native';
+import { Query } from '../../../../../commons/types/generated/types';
 
 type RootStackParamList = {
   home: undefined;
@@ -10,14 +10,10 @@ type RootStackParamList = {
 
 type CommunityListScreenRouteProp = RouteProp<RootStackParamList, 'community'>;
 
-export type IPropsRoute = {
+export interface IPropsCommentList {
   route: CommunityListScreenRouteProp;
-};
+}
 
-export interface IPropsCommunityDetailUI {
-  data?: Pick<Query, 'fetchBoard'>;
-  firedata?: any;
-  onPressLike: () => void;
-  route: CommunityListScreenRouteProp;
-  commentData?: Pick<Query, 'fetchBoardComments'>;
+export interface IPropsCommentListUI {
+  data?: Pick<Query, 'fetchBoardComments'>;
 }

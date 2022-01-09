@@ -28,4 +28,3 @@ export default function HomeCampaign() {
   };
   return <HomeCampaignUI isPicked={isPicked} setIsPicked={setIsPicked} onPressPick={onPressPick} />;
 }
-
