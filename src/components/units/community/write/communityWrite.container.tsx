@@ -1,32 +1,168 @@
-// import { useMutation } from '@apollo/client';
-// import React, { useState } from 'react';
-// import CommunityWriteUI from './communityWrite.presenter';
-// import { CREATE_BOARD } from './communityWrite.queries';
+import { useMutation, useQuery } from '@apollo/client';
+import React, { useEffect, useRef, useState } from 'react';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import {
+  Mutation,
+  MutationCreateBoardArgs,
+  MutationUpdateBoardArgs,
+  Query,
+  QueryFetchBoardArgs,
+} from '../../../../commons/types/generated/types';
+import CommunityWriteUI from './communityWrite.presenter';
+import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from './communityWrite.queries';
+import { launchImageLibrary } from 'react-native-image-picker';
+import firestore from '@react-native-firebase/firestore';
+import { IPropsNavigation } from './communityWrite.types';
 
-// const CommunityWrite = () => {
-//   const [createBoard] = useMutation(CREATE_BOARD);
-//   const [name, setName] = useState('');
-//   const [contents, setContents] = useState('');
+const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
+  const boardId = route.params?.boardId || undefined;
+  const { data } = useQuery<Pick<Query, 'fetchBoard'>, QueryFetchBoardArgs>(FETCH_BOARD, {
+    variables: { boardId },
+  });
+  const [createBoard] = useMutation<Pick<Mutation, 'createBoard'>, MutationCreateBoardArgs>(
+    CREATE_BOARD,
+  );
+  const [updateBoard] = useMutation<Pick<Mutation, 'updateBoard'>, MutationUpdateBoardArgs>(
+    UPDATE_BOARD,
+  );
+  const tagInput = useRef();
+  const [title, setTitle] = useState<string>('');
+  const [contents, setContents] = useState<string>('');
+  const [address] = useState<string>('');
+  const [images] = useState<string[] | [] | any>([]);
+  const [hashArr, setHashArr] = useState<string[] | []>([]);
+  const [isEdit] = useState(route.params?.isEdit);
+  const commuCollection = firestore().collection('community');
+  const [firedata, setFiredata] = useState({});
 
-//   const onChangeTitle = (event) => {
-//     setName(event.nativeEvent.text);
-//   };
+  useEffect(() => {
+    commuCollection
+      .doc(boardId)
+      .get()
+      .then((doc) => setFiredata({ ...doc.data() }));
+    firedata.tags && setHashArr([...firedata.tags]);
+  }, []);
 
-//   const onChangeContents = (event) => {
-//     setContents(event.nativeEvent.text);
-//   };
+  const onChangeTitle = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
+    setTitle(event.nativeEvent.text);
+  };
 
-//   const onPressSubmit = () => {
-//     try {
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
-//   return <CommunityWriteUI onChangeTitle={onChangeTitle} onChangeContents={onChangeContents}/>;
-// };
+  const onChangeContents = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
+    setContents(event.nativeEvent.text);
+  };
 
-export const CommunityWrite = () => {
-  return <></>;
+  const addImage = async () => {
+    try {
+      const result = await launchImageLibrary({
+        mediaType: 'photo',
+        selectionLimit: 5,
+        includeBase64: true,
+      });
+      result.assets?.forEach((el) => images.push(el.uri));
+      console.log(images);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
+
+  const onKeyUp = (event: any) => {
+    const textArr = event.nativeEvent.text.split('');
+    // console.log(textArr[textArr.length - 1]);
+    if (textArr[textArr.length - 1] === ' ' && event.nativeEvent.text !== ' ') {
+      setHashArr([...hashArr, event.nativeEvent.text]);
+    }
+  };
+  useEffect(() => {
+    (tagInput.current as any).clear();
+  }, [hashArr]);
+
+  const deleteHash = (idx: number) => () => {
+    hashArr.splice(idx, 1);
+    setHashArr([...hashArr]);
+  };
+
+  const onPressSubmit = async () => {
+    try {
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer: '김이웃7783',
+            password: '123',
+            title,
+            contents,
+            boardAddress: {
+              address,
+            },
+            images,
+          },
+        },
+      });
+      navigation.navigate('community', { screen: 'home' });
+      const community = firestore().collection('community');
+      community.doc(result.data?.createBoard._id).set({
+        boardId: result.data?.createBoard._id,
+        tags: hashArr,
+        views: 0,
+      });
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
+
+  const updateBoardInput = {
+    title,
+    contents,
+    boardAddress: {
+      address: data?.fetchBoard.boardAddress?.address,
+    },
+    images,
+  };
+
+  if (title) {
+    updateBoardInput.title = title;
+  } else {
+    updateBoardInput.title = data?.fetchBoard.title;
+  }
+
+  if (contents) {
+    updateBoardInput.contents = contents;
+  } else {
+    updateBoardInput.contents = data?.fetchBoard.contents;
+  }
+
+  const onPressUpdate = async () => {
+    try {
+      const result = await updateBoard({
+        variables: {
+          updateBoardInput,
+          password: '123',
+          boardId,
+        },
+      });
+      navigation.navigate('community', { screen: 'home' });
+      console.log(result);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
+
+  return (
+    <CommunityWriteUI
+      onChangeTitle={onChangeTitle}
+      onChangeContents={onChangeContents}
+      addImage={addImage}
+      images={images}
+      onKeyUp={onKeyUp}
+      deleteHash={deleteHash}
+      hashArr={hashArr}
+      tagInput={tagInput}
+      onPressSubmit={onPressSubmit}
+      isEdit={isEdit}
+      data={data}
+      firedata={firedata}
+      onPressUpdate={onPressUpdate}
+    />
+  );
 };
 
 export default CommunityWrite;

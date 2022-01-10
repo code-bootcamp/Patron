@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React, { useState } from 'react';
 import * as R from 'react-native';
 import * as S from './community.styles';
@@ -5,6 +6,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ColoredTag from '../../../commons/tags/coloredtag';
 import WhiteTag from '../../../commons/tags/whitetag';
 import { IPropsCommunityUI } from './community.types';
+import { displayedAt } from '../../../../commons/libraries/utils';
+import { CommentsCount } from '../../../../commons/libraries/commentsCount';
 
 const CommunityUI = (props: IPropsCommunityUI) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -19,14 +22,16 @@ const CommunityUI = (props: IPropsCommunityUI) => {
               <S.SubTitle>김이웃님!</S.SubTitle>
               <S.SubTitle>이런 활동은 어떠세요?</S.SubTitle>
               <S.CardContainer horizontal={true} showsHorizontalScrollIndicator={false}>
-                {new Array(5).fill(1).map((_, idx) => (
-                  <S.Card
-                    key={idx}
-                    onPress={() => props.navigation.navigate('community', { screen: 'list' })}
-                  >
-                    <ColoredTag text="정기후원" padding="4px 8px" fontSize="10px" />
-                    <S.CardTitle>오늘, 당신의 천원은 어떻게 쓰였나요?</S.CardTitle>
-                    <S.DDay>D-3</S.DDay>
+                {props.bestData?.fetchUseditemsOfTheBest.map((el: any, idx: number) => (
+                  <S.Card key={idx} onPress={props.getList(el._id)}>
+                    <S.CardBackground
+                      style={{ width: 100, height: 100 }}
+                      source={{ uri: `https://${el.images[0]}` }}
+                    >
+                      <ColoredTag text={el.name.split('/')[0]} padding="4px 8px" fontSize="10px" />
+                      <S.CardTitle>{el.name.split('/')[1]}</S.CardTitle>
+                      <S.DDay>D-3</S.DDay>
+                    </S.CardBackground>
                   </S.Card>
                 ))}
               </S.CardContainer>
@@ -43,43 +48,37 @@ const CommunityUI = (props: IPropsCommunityUI) => {
               </S.TBD>
             </S.HashSection>
             <S.BoardContainer>
-              {new Array(5).fill(1).map((_, idx) => (
-                <S.Board
-                  key={idx}
-                  onPress={() => props.navigation.navigate('community', { screen: 'detail' })}
-                >
+              {props.data?.fetchBoards.map((el: any, idx: number) => (
+                <S.Board key={idx} onPress={props.getDetail(el._id)}>
                   <S.BoardHeader>
                     <S.BoardWrap>
-                      <S.BoardImg />
+                      <S.BoardImg source={{ uri: el.images[0] }} />
                       <S.ContentWrap>
-                        <S.BoardTitle numberOfLines={1}>
-                          저와 함께 여행중인 데르가 어느덧...
-                        </S.BoardTitle>
-                        <S.BoardContent numberOfLines={2}>
-                          데르와 함께 여행중인 20대 여자입니다. 굿네이버스에서 정기후원한지 어느덧
-                          4년이 되...
-                        </S.BoardContent>
+                        <S.BoardTitle numberOfLines={1}>{el.title}</S.BoardTitle>
+                        <S.BoardContent numberOfLines={2}>{el.contents}</S.BoardContent>
                         <S.TagContainer>
-                          {new Array(3).fill(1).map((_, idx) => (
-                            <S.Tag key={idx}>#태그</S.Tag>
+                          {props.firedata?.tags?.map((el: string, idx: number) => (
+                            <S.Tag key={idx}># {el}</S.Tag>
                           ))}
                         </S.TagContainer>
                       </S.ContentWrap>
                     </S.BoardWrap>
                     <S.UserWrap>
-                      <S.UserText>김이웃7783</S.UserText>
-                      <S.UserText>31분 전</S.UserText>
+                      <S.UserText>{el.writer}</S.UserText>
+                      <S.UserText>{displayedAt(el.createdAt)}</S.UserText>
                     </S.UserWrap>
                   </S.BoardHeader>
                   <S.BoardFooter>
                     <S.FooterLeft>
                       <S.LeftInnerWrap>
                         <Icon name="heart-outline" size={24} />
-                        <S.FooterText>1234</S.FooterText>
+                        <S.FooterText>{el.likeCount}</S.FooterText>
                       </S.LeftInnerWrap>
                       <S.LeftInnerWrap>
                         <Icon name="chatbubble-outline" size={20} />
-                        <S.FooterText>1234</S.FooterText>
+                        <S.FooterText>
+                          <CommentsCount boardId={el._id} />
+                        </S.FooterText>
                       </S.LeftInnerWrap>
                     </S.FooterLeft>
                     <Icon name="bookmark-outline" size={20} color="white" />

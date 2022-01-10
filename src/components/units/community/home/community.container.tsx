@@ -1,22 +1,60 @@
 import CommunityUI from './community.presenter';
-import React from 'react';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import firestore from '@react-native-firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { FECTH_BOARDS, FETCH_BEST_ITEMS } from './community.queries';
+import { IPropsNavigation } from './community.types';
+import { Query } from '../../../../commons/types/generated/types';
 
-type RootStackParamList = {
-  home: undefined;
-  community: { screen: string };
-  news: undefined;
-  mypage: undefined;
-};
+const Community = ({ navigation }: IPropsNavigation) => {
+  const { data } = useQuery<Pick<Query, 'fetchBoards'>>(FECTH_BOARDS);
+  const { data: bestData } = useQuery<Pick<Query, 'fetchUseditemsOfTheBest'>>(FETCH_BEST_ITEMS);
+  const commuCollection = firestore().collection('community');
+  const [firedata, setFiredata] = useState({});
+  const [viewCount, setViewCount] = useState<number>(0);
 
-type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'community'>;
+  useEffect(() => {
+    commuCollection.get().then((ducumentSnapshot) =>
+      ducumentSnapshot.docs.map((doc) => {
+        setFiredata({ ...doc.data() });
+      }),
+    );
+  }, []);
 
-type Props = {
-  navigation: ProfileScreenNavigationProp;
-};
+  const getDetail = (id: string) => () => {
+    navigation.navigate('community', {
+      screen: 'detail',
+      params: { boardId: id },
+    });
+    const docRef = commuCollection.doc(id);
+    docRef.get().then((doc) => setViewCount(doc.data()?.views));
+    setViewCount((prev) => prev + 1);
+    docRef.update({ views: viewCount });
+    console.log(viewCount);
+  };
 
-const Community = ({ navigation }: Props) => {
-  return <CommunityUI navigation={navigation} />;
+  const getList = (id: string) => () => {
+    navigation.navigate('community', {
+      screen: 'list',
+      params: { useditemId: id },
+    });
+    const docRef = commuCollection.doc(id);
+    docRef.get().then((doc) => setViewCount(doc.data()?.views));
+    setViewCount((prev) => prev + 1);
+    docRef.update({ views: viewCount });
+    console.log(viewCount);
+  };
+
+  return (
+    <CommunityUI
+      navigation={navigation}
+      data={data}
+      firedata={firedata}
+      getDetail={getDetail}
+      bestData={bestData}
+      getList={getList}
+    />
+  );
 };
 
 export default Community;

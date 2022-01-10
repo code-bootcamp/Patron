@@ -1,5 +1,4 @@
 import styled from '@emotion/native';
-// import img from './images/ellipse.png';
 
 export const Wrapper = styled.View`
   flex: 1;
@@ -11,8 +10,27 @@ export const Wrapper = styled.View`
 `;
 
 export const BackImage = styled.ImageBackground`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 110px;
   height: 110px;
+`;
+
+export const Profile_Image = styled.Image`
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+`;
+
+export const Profile_Camera = styled.Image`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 75px 0px 0px 65px;
 `;
 
 export const Email_Wrapper = styled.View`
