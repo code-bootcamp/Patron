@@ -9,13 +9,6 @@ const Donation = [{ name: '첫 기부' }];
 const StampUI = () => {
   return (
     <S.Wrapper>
-      <S.Header>
-        <S.Title>내정보</S.Title>
-        <S.IconWrapper>
-          <Icon name="search-outline" size={25} style={{ paddingRight: 15 }}></Icon>
-          <Icon name="settings-outline" size={25}></Icon>
-        </S.IconWrapper>
-      </S.Header>
       <S.StampProfile>
         <Icon name="person-circle-outline" size={80}></Icon>
         <S.Level>레벨 3</S.Level>

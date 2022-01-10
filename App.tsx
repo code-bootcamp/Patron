@@ -11,26 +11,26 @@ import { onError } from '@apollo/client/link/error';
 // import { NavigationContainer } from '@react-navigation/native';
 import LoginScreen from './pages/screens/signup';
 import { firebase } from '@react-native-firebase/firestore';
+import Navigation from './pages/navigation';
 
 interface IGlobalContext {
   setAccessToken?: Dispatch<SetStateAction<string>>;
 }
 
 export const GlobalContext = createContext<IGlobalContext>({});
-  
+
 const firebaseConfig = {
- appId: '1:658624640581:android:7f53ac27eb8a4b09f4d52c',
- apiKey: 'AIzaSyD041r1L0ujQLrDEEN6LQm09QHcMZ5QVPM',
- projectId: 'goodneighbors-b9d7e',
- storageBucket: 'goodneighbors-b9d7e.appspot.com',
- messagingSenderId: '658624640581',
- databaseURL: 'goodneighbors-b9d7e.firebaseapp.com',
+  appId: '1:658624640581:android:7f53ac27eb8a4b09f4d52c',
+  apiKey: 'AIzaSyD041r1L0ujQLrDEEN6LQm09QHcMZ5QVPM',
+  projectId: 'goodneighbors-b9d7e',
+  storageBucket: 'goodneighbors-b9d7e.appspot.com',
+  messagingSenderId: '658624640581',
+  databaseURL: 'goodneighbors-b9d7e.firebaseapp.com',
 };
 
 export const firebaseStorage = !firebase.apps.length
   ? firebase.initializeApp(firebaseConfig)
   : firebase.app();
-
 
 const App = () => {
   const [accessToken, setMyAccessToken] = useState('');
@@ -76,15 +76,13 @@ const App = () => {
   });
 
   return (
-
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
         {/* <SafeAreaView /> */}
         <LoginScreen />
-        {/* <Navigation /> */}
+        <Navigation />
       </ApolloProvider>
     </GlobalContext.Provider>
-
   );
 };
 

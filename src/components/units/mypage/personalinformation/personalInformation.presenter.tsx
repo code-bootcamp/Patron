@@ -1,6 +1,6 @@
 import * as C from './personalInformation.styles';
+import * as R from 'react-native';
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import GreenButton from '../../../commons/buttons/greenbutton';
 import WhiteButton from '../../../commons/buttons/whitebutton';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -25,13 +25,12 @@ const PersonalInformationUI = (props: IPropsPersonalinformationUI) => {
         </C.HeaderWrapper>
         <C.ProfileWrapper>
           <Icon name="person-circle" size={100} />
-          <C.EditIcon
-            onPress={() => props.navigation.navigate('mypage', { screen: 'editprofile' })}
-          >
+          <C.EditIcon>
             <Icon
               name="create-outline"
               size={25}
               style={{ position: 'absolute', top: 6, right: 6, color: '#ffffff' }}
+              onPress={() => props.navigation.navigate('mypage', { screen: 'editprofile' })}
             />
           </C.EditIcon>
           <C.Name>김이웃</C.Name>
@@ -39,33 +38,39 @@ const PersonalInformationUI = (props: IPropsPersonalinformationUI) => {
         <C.TabWrapper></C.TabWrapper>
         <C.ActivityWrapper>
           <C.ActivityTitle>나의 활동 내역</C.ActivityTitle>
-          <View style={{ borderBottomWidth: 2 }} />
+          <R.View style={{ borderBottomWidth: 2 }} />
           <C.ActivityCommunity
             onPress={() => props.navigation.navigate('mypage', { screen: 'post' })}
           >
             커뮤니티 글 목록
           </C.ActivityCommunity>
-          <View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
+          <R.View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
           <C.ActivityPatron>후원이력</C.ActivityPatron>
-          <View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
+          <R.View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
           <C.ActivityCategories>관심카테고리 설정</C.ActivityCategories>
-          <View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
+          <R.View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
+          <C.ActivityCategories
+            onPress={() => props.navigation.navigate('mypage', { screen: 'stamp' })}
+          >
+            스탬프
+          </C.ActivityCategories>
+          <R.View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
         </C.ActivityWrapper>
         <C.AboutWrapper>
           <C.AboutTitle>About 굿네이버스</C.AboutTitle>
-          <View style={{ borderBottomWidth: 2 }} />
+          <R.View style={{ borderBottomWidth: 2 }} />
           <C.AboutCompany>회사소개</C.AboutCompany>
-          <View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
+          <R.View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
           <C.AboutNotice onPress={() => props.navigation.navigate('mypage', { screen: 'notice' })}>
             공지사항
           </C.AboutNotice>
-          <View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
+          <R.View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
         </C.AboutWrapper>
         <C.InfoWrapper>
-          <View style={{ borderBottomWidth: 2 }} />
+          <R.View style={{ borderBottomWidth: 2 }} />
           <C.InfoPhoneNumber>02-6717-4000</C.InfoPhoneNumber>
           <C.InfoSite>www.Goodneighbors</C.InfoSite>
-          <Text>AM 10:00 ~ PM 17:00(점심시간 12:00 ~ 14:00)</Text>
+          <R.Text>AM 10:00 ~ PM 17:00(점심시간 12:00 ~ 14:00)</R.Text>
         </C.InfoWrapper>
         <C.ButtonWrapper>
           <C.TopButtons>

@@ -6,6 +6,7 @@ import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Home from '../screens/home';
 import CommunityScreen from '../screens/community';
+import MypageScreen from '../screens/mypage';
 
 const DefaultScreen = () => {
   return (
@@ -75,8 +76,8 @@ const Navigation = () => {
           }}
         ></Tab.Screen>
         <Tab.Screen
-          name="Mypage"
-          component={DefaultScreen}
+          name="mypage"
+          component={MypageScreen}
           options={{
             tabBarLabel: '내정보',
             tabBarIcon: ({ focused }) =>

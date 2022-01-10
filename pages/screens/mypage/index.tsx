@@ -5,7 +5,8 @@ import Notice from '../../../src/components/units/mypage/notice/notice.container
 import PersonalInformation from '../../../src/components/units/mypage/personalinformation/personalInformation.container';
 import MypagePost from '../../../src/components/units/mypage/post/post.container';
 import Setting from '../../../src/components/units/mypage/setting/setting.container';
-import { Icon } from 'react-native-vector-icons/Icon';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Stamp from '../../../src/components/units/mypage/stamp/stamp.container';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,13 @@ const MypageScreen = () => {
       <Stack.Screen
         name="post"
         component={MypagePost}
+        options={() => ({
+          headerRight: () => <Icon name="ellipsis-vertical" color="#898989" size={20} />,
+        })}
+      />
+      <Stack.Screen
+        name="stamp"
+        component={Stamp}
         options={() => ({
           headerRight: () => <Icon name="ellipsis-vertical" color="#898989" size={20} />,
         })}

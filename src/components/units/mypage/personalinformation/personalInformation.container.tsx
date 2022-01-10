@@ -1,8 +1,8 @@
 import PersonalInformationUI from './personalInformation.presenter';
 import React from 'react';
-import { IPropsPersonalinformationUI } from './personalinformation.types';
+import { IPropsPersonalinformation } from './personalinformation.types';
 
-const PersonalInformation = ({ navigation }: IPropsPersonalinformationUI) => {
+const PersonalInformation = ({ navigation }: IPropsPersonalinformation) => {
   return <PersonalInformationUI navigation={navigation} />;
 };
 

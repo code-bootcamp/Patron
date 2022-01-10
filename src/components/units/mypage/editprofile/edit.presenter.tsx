@@ -24,7 +24,7 @@ const EditUI = (props: IPropsEditUI) => {
       <GreenButton
         height="8%"
         text="수정완료"
-        onPress={() => props.navigation.navigate('mypage', { screen: 'personalinformation' })}
+        onPressBtn={() => props.navigation.navigate('mypage', { screen: 'personalinformation' })}
       />
     </E.WholeWrapper>
   );
