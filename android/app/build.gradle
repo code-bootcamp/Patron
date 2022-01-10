@@ -200,6 +200,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.2.3'
     implementation 'com.google.firebase:firebase-database:19.2.1'
 
+    ///testing///
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+    implementation 'com.google.firebase:firebase-core:17.2.3'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    ///testing///
+
     implementation platform('com.google.firebase:firebase-bom:29.0.1')
     implementation project(':react-native-vector-icons')
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
