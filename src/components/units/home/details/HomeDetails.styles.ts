@@ -6,7 +6,7 @@ export const Wrapper = styled.View`
 `;
 
 export const Top = styled.View`
-  flex: 1;
+  flex: 1.5;
   /* width: 100%;
   height: 100%; */
 `;
@@ -40,6 +40,7 @@ export const Info = styled.View`
 
 export const InfoDetails = styled.View`
   /* background-color: green; */
+  width: 70%;
 `;
 
 export const InfoDetailTitle = styled.Text`
@@ -67,10 +68,12 @@ export const Bottom = styled.View`
 
 export const BottomSummaryWrapper = styled.View`
   padding: 30px 20px 30px 20px;
+  background-color: white;
 `;
 
 export const SummaryContent = styled.Text`
   color: #000;
+  padding-bottom: 10px;
 `;
 
 export const Tags = styled.View`
@@ -83,10 +86,14 @@ export const BottomDetailsWrapper = styled.View`
   flex: 1;
   margin-top: 20px;
   padding: 30px 20px 30px 20px;
+  background-color: white;
 `;
 
 export const DetailTitle = styled.Text`
   color: #000;
+  font-weight: 700;
+  font-size: 16px;
+  padding-bottom: 20px;
 `;
 
 export const DetailContent = styled.Text`
@@ -97,10 +104,12 @@ export const BottomSupporters = styled.View`
   width: 100%;
   /* background-color: mediumpurple; */
   flex: 0.5;
+  margin-top: 20px;
   padding: 15px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
 `;
 
 export const SupportersTxt = styled.Text`

@@ -15,6 +15,9 @@ export const SelectionWrapper = styled.View`
 
 export const SelectionTitle = styled.View`
   padding-bottom: 15px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const SelectionTitleText = styled.Text`
@@ -34,7 +37,7 @@ export const Card = styled.View`
   align-items: center;
 `;
 
-export const ImgWrapper = styled.View``;
+export const ImgWrapper = styled.Pressable``;
 
 export const CardTag = styled.View`
   padding: 10px;
@@ -97,7 +100,7 @@ export const ChildrenList = styled.View`
   justify-content: space-between;
 `;
 
-export const ChildImgWrapper = styled.View`
+export const ChildImgWrapper = styled.Pressable`
   justify-content: center;
   align-items: center;
 `;
@@ -110,7 +113,7 @@ export const ChildDetails = styled.View`
   align-items: stretch;
 `;
 
-export const ChildAbout = styled.View`
+export const ChildAbout = styled.Pressable`
   width: 80%;
   /* background-color: lightyellow; */
   justify-content: space-between;

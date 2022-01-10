@@ -1,20 +1,12 @@
 import * as React from 'react';
 import { Image, ScrollView } from 'react-native';
 import * as E from './HomePatron.styles';
+import ColoredTag from '../../../commons/tags/coloredtag';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
+import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
 
-export default function HomePatronUI() {
-  const SelectionListItems = [
-    { title: '반짝이는 소녀에게, 소녀별', remark: '국내 여아 후원하기' },
-    { title: '생명을 지키는 깨끗한 변화', remark: '식수위생 지원 사업' },
-    { title: '미래를 꿈꾸는 힘', remark: '배움은 미래를 꿈꾸는 유일한 힘이에요!' },
-  ];
-  const recommendListItems = [
-    { name: '미래를 꿈꾸는 힘' },
-    { name: '따스한 울타리' },
-    { name: '건강한 삶' },
-    { name: '재난 구호 지원' },
-  ];
-
+export default function HomePatronUI(props) {
   return (
     <>
       <ScrollView>
@@ -22,24 +14,58 @@ export default function HomePatronUI() {
           <E.SelectionWrapper>
             <E.SelectionTitle>
               <E.SelectionTitleText>정기 후원</E.SelectionTitleText>
+              <ViewMoreButton onPressBtn={() => props.navigation.navigate('patronList')} />
             </E.SelectionTitle>
             <E.SelectionList>
               <ScrollView horizontal={true}>
-                {SelectionListItems.map((el, index) => (
-                  <E.Card key={index}>
-                    <E.ImgWrapper>
-                      <Image source={require('../../../../../public/images/home/card01.png')} />
-                      <E.CardTag></E.CardTag>
-                    </E.ImgWrapper>
-                    <E.CardDetails>
-                      <E.DetailsContent>
-                        <E.ContentTitle>{el.title}</E.ContentTitle>
-                        <E.ContentRemark>{el.remark}</E.ContentRemark>
-                      </E.DetailsContent>
-                      <E.DetailsBookmark></E.DetailsBookmark>
-                    </E.CardDetails>
-                  </E.Card>
-                ))}
+                {props.data?.fetchUseditems
+                  .map((el) => (
+                    <E.Card key={el._id}>
+                      <E.ImgWrapper
+                        onPress={() =>
+                          props.navigation.navigate('homeDetails', { useditemId: el._id })
+                        }
+                      >
+                        <Image
+                          style={{ width: 277, height: 150, borderRadius: 8 }}
+                          source={{
+                            uri: `https://${el.images[0]}`,
+                          }}
+                        />
+                        <LinearGradient
+                          colors={['rgba(0, 0, 0, 0.42)', 'rgba(255,255,255,0)']}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            position: 'absolute',
+                            borderRadius: 8,
+                          }}
+                          start={{ x: 0, y: 1 }}
+                          end={{ x: 0, y: 0 }}
+                        ></LinearGradient>
+                        <E.CardTag>
+                          <ColoredTag
+                            key={el._id}
+                            text={`#${el.tags[0]}`}
+                            fontSize={'9px'}
+                            padding={'2px 4px 2px 4px'}
+                          />
+                        </E.CardTag>
+                      </E.ImgWrapper>
+                      <E.CardDetails>
+                        <E.DetailsContent>
+                          <E.ContentTitle>{el.name.split('/')[1]}</E.ContentTitle>
+                          <E.ContentRemark numberOfLines={1} ellipsizeMode="tail">
+                            {el.remarks}
+                          </E.ContentRemark>
+                        </E.DetailsContent>
+                        <E.DetailsBookmark>
+                          <Icon name="bookmark-outline" size={20} color={'rgba(0, 0, 0, 0.4)'} />
+                        </E.DetailsBookmark>
+                      </E.CardDetails>
+                    </E.Card>
+                  ))
+                  .slice(0, 3)}
               </ScrollView>
             </E.SelectionList>
           </E.SelectionWrapper>
@@ -55,22 +81,38 @@ export default function HomePatronUI() {
               {/* <FlatList
               data={recommendListItems}
               renderItem={(items) => ( */}
-              {recommendListItems.map((el, index) => (
-                <E.RecommendCard key={index}>
-                  <E.RImageWrpper>
-                    <Image
-                      source={require('../../../../../public/images/home/recommend_card01.png')}
-                    />
-                  </E.RImageWrpper>
-                  <E.RecommendCardDetails>
-                    <E.RecommendCardTitle>{el.name}</E.RecommendCardTitle>
-                    <E.RecommendBookmark></E.RecommendBookmark>
-                  </E.RecommendCardDetails>
-                </E.RecommendCard>
-              ))}
-
-              {/* )}
-            /> */}
+              {props.data?.fetchUseditems
+                .map((el) => (
+                  <E.RecommendCard key={el._id}>
+                    <E.RImageWrpper
+                      onPress={() =>
+                        props.navigation.navigate('homeDetails', { useditemId: el._id })
+                      }
+                    >
+                      <Image
+                        style={{ width: 160, height: 160, borderRadius: 8 }}
+                        source={{
+                          uri: `https://${el.images[0]}`,
+                        }}
+                      />
+                      <E.CardTag>
+                        <ColoredTag
+                          key={el._id}
+                          text={`#${el.tags[0]}`}
+                          fontSize={'9px'}
+                          padding={'2px 4px 2px 4px'}
+                        />
+                      </E.CardTag>
+                    </E.RImageWrpper>
+                    <E.RecommendCardDetails>
+                      <E.RecommendCardTitle>{el.name.split('/')[1]}</E.RecommendCardTitle>
+                      <E.RecommendBookmark>
+                        <Icon name="bookmark-outline" size={20} color={'rgba(0, 0, 0, 0.4)'} />
+                      </E.RecommendBookmark>
+                    </E.RecommendCardDetails>
+                  </E.RecommendCard>
+                ))
+                .slice(0, 4)}
             </E.RecommendList>
           </E.RecommendWrapper>
         </E.Wrapper>
