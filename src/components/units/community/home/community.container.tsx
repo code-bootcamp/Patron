@@ -38,6 +38,11 @@ const Community = ({ navigation }: IPropsNavigation) => {
       screen: 'list',
       params: { useditemId: id },
     });
+    const docRef = commuCollection.doc(id);
+    docRef.get().then((doc) => setViewCount(doc.data()?.views));
+    setViewCount((prev) => prev + 1);
+    docRef.update({ views: viewCount });
+    console.log(viewCount);
   };
 
   return (

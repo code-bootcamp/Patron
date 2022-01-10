@@ -26,7 +26,7 @@ const CommunityUI = (props: IPropsCommunityUI) => {
                   <S.Card key={idx} onPress={props.getList(el._id)}>
                     <S.CardBackground
                       style={{ width: 100, height: 100 }}
-                      source={{ uri: `https://storage.googleapis.com/${el.images[0]}` }}
+                      source={{ uri: `https://${el.images[0]}` }}
                     >
                       <ColoredTag text={el.name.split('/')[0]} padding="4px 8px" fontSize="10px" />
                       <S.CardTitle>{el.name.split('/')[1]}</S.CardTitle>

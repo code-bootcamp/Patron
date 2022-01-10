@@ -1,16 +1,29 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React, { useEffect, useRef, useState } from 'react';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
-import { Mutation, MutationCreateBoardArgs } from '../../../../commons/types/generated/types';
+import {
+  Mutation,
+  MutationCreateBoardArgs,
+  MutationUpdateBoardArgs,
+  Query,
+  QueryFetchBoardArgs,
+} from '../../../../commons/types/generated/types';
 import CommunityWriteUI from './communityWrite.presenter';
-import { CREATE_BOARD } from './communityWrite.queries';
+import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from './communityWrite.queries';
 import { launchImageLibrary } from 'react-native-image-picker';
 import firestore from '@react-native-firebase/firestore';
 import { IPropsNavigation } from './communityWrite.types';
 
-const CommunityWrite = ({ navigation }: IPropsNavigation) => {
+const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
+  const boardId = route.params?.boardId || undefined;
+  const { data } = useQuery<Pick<Query, 'fetchBoard'>, QueryFetchBoardArgs>(FETCH_BOARD, {
+    variables: { boardId },
+  });
   const [createBoard] = useMutation<Pick<Mutation, 'createBoard'>, MutationCreateBoardArgs>(
     CREATE_BOARD,
+  );
+  const [updateBoard] = useMutation<Pick<Mutation, 'updateBoard'>, MutationUpdateBoardArgs>(
+    UPDATE_BOARD,
   );
   const tagInput = useRef();
   const [title, setTitle] = useState<string>('');
@@ -18,6 +31,17 @@ const CommunityWrite = ({ navigation }: IPropsNavigation) => {
   const [address] = useState<string>('');
   const [images] = useState<string[] | [] | any>([]);
   const [hashArr, setHashArr] = useState<string[] | []>([]);
+  const [isEdit] = useState(route.params?.isEdit);
+  const commuCollection = firestore().collection('community');
+  const [firedata, setFiredata] = useState({});
+
+  useEffect(() => {
+    commuCollection
+      .doc(boardId)
+      .get()
+      .then((doc) => setFiredata({ ...doc.data() }));
+    firedata.tags && setHashArr([...firedata.tags]);
+  }, []);
 
   const onChangeTitle = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setTitle(event.nativeEvent.text);
@@ -74,7 +98,6 @@ const CommunityWrite = ({ navigation }: IPropsNavigation) => {
         },
       });
       navigation.navigate('community', { screen: 'home' });
-      console.log(result);
       const community = firestore().collection('community');
       community.doc(result.data?.createBoard._id).set({
         boardId: result.data?.createBoard._id,
@@ -85,6 +108,44 @@ const CommunityWrite = ({ navigation }: IPropsNavigation) => {
       if (error instanceof Error) console.log(error.message);
     }
   };
+
+  const updateBoardInput = {
+    title,
+    contents,
+    boardAddress: {
+      address: data?.fetchBoard.boardAddress?.address,
+    },
+    images,
+  };
+
+  if (title) {
+    updateBoardInput.title = title;
+  } else {
+    updateBoardInput.title = data?.fetchBoard.title;
+  }
+
+  if (contents) {
+    updateBoardInput.contents = contents;
+  } else {
+    updateBoardInput.contents = data?.fetchBoard.contents;
+  }
+
+  const onPressUpdate = async () => {
+    try {
+      const result = await updateBoard({
+        variables: {
+          updateBoardInput,
+          password: '123',
+          boardId,
+        },
+      });
+      navigation.navigate('community', { screen: 'home' });
+      console.log(result);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
+
   return (
     <CommunityWriteUI
       onChangeTitle={onChangeTitle}
@@ -96,6 +157,10 @@ const CommunityWrite = ({ navigation }: IPropsNavigation) => {
       hashArr={hashArr}
       tagInput={tagInput}
       onPressSubmit={onPressSubmit}
+      isEdit={isEdit}
+      data={data}
+      firedata={firedata}
+      onPressUpdate={onPressUpdate}
     />
   );
 };

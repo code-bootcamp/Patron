@@ -1,16 +1,14 @@
 import React, { createContext, useEffect, useState, Dispatch, SetStateAction } from 'react';
-// import { SafeAreaView } from 'react-native-safe-area-context';
-// import Navigation from './pages/navigation';
 import 'react-native-gesture-handler';
 import { ApolloProvider, ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createUploadLink } from 'apollo-upload-client';
 import { getAccessToken } from './src/components/commons/library/getAccessToken';
 import { onError } from '@apollo/client/link/error';
-// import { createStackNavigator } from '@react-navigation/stack';
-// import { NavigationContainer } from '@react-navigation/native';
-import LoginScreen from './pages/screens/signup';
 import { firebase } from '@react-native-firebase/firestore';
+import { MenuProvider } from 'react-native-popup-menu';
+import Navigation from './pages/navigation';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface IGlobalContext {
   setAccessToken?: Dispatch<SetStateAction<string>>;
@@ -77,9 +75,10 @@ const App = () => {
   return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
-        {/* <SafeAreaView /> */}
-        <LoginScreen />
-        {/* <Navigation /> */}
+        <MenuProvider>
+          <SafeAreaView />
+          <Navigation />
+        </MenuProvider>
       </ApolloProvider>
     </GlobalContext.Provider>
   );

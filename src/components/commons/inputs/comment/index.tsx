@@ -6,10 +6,8 @@ const Wrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  // edit //
   background-color: #ffffff;
   padding: 0 20px;
-  //////////
 `;
 
 const SubmitBtn = styled.Pressable`
@@ -20,35 +18,14 @@ const SubmitTxt = styled.Text`
   color: #448800;
 `;
 
-// const IconWrapper = styled.View`
-//   width: 10%;
-//   align-items: center;
-// `;
-
-// const Icon = styled.Image``;
-
 export default function InputComment(props) {
-  // const [isFocus, setIsFocus] = useState(false);
-
-  // function onFocusInput() {
-  //   setIsFocus(true);
-  // }
-
-  // function onBlurInput() {
-  //   setIsFocus(false);
-  // }
-
   return (
     <Wrapper>
-      {/* <IconWrapper>
-        <Icon source={require('../../../../../public/images/icon_image.png')} />
-      </IconWrapper> */}
       <TextInput
         placeholder={props.placeholder}
         style={styles.textInput}
-        // onFocus={onFocusInput}
-        // onBlur={onBlurInput}
         onChange={props.onChange}
+        defaultValue={props.defaultValue}
       />
       <SubmitBtn onPress={props.onPress}>
         <SubmitTxt>등록</SubmitTxt>
