@@ -9,6 +9,11 @@ type RootStackParamList = {
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'mypage'>;
 
-export type IPropsPersonalinformationUI = {
+export type IPropsPersonalinformation = {
   navigation: ProfileScreenNavigationProp;
 };
+
+export interface IPropsPersonalinformationUI {
+  navigation: ProfileScreenNavigationProp;
+  onPress: () => void;
+}

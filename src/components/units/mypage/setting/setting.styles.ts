@@ -83,3 +83,15 @@ export const Version = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
+
+export const NonSwitch = styled.Switch``;
+
+export const TermsModal = styled.View`
+  margin: 0;
+  padding: 20px;
+  background-color: white;
+`;
+
+export const Terms = styled.Text`
+  font-size: 17px;
+`;
