@@ -3,7 +3,7 @@ import { Query } from '../../../../commons/types/generated/types';
 
 type RootStackParamList = {
   home: undefined;
-  community: { screen: string; params: { boardId: string } };
+  community: { screen: string; boardId: string; useditemId: string };
   news: undefined;
   mypage: undefined;
 };

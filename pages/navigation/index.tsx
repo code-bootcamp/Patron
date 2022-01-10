@@ -6,7 +6,8 @@ import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Home from '../screens/home';
 import CommunityScreen from '../screens/community';
-import MypageScreen from '../screens/mypage';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginScreen from '../screens/signup';
 
 const DefaultScreen = () => {
   return (
@@ -18,77 +19,93 @@ const DefaultScreen = () => {
   );
 };
 
+const MainScreen = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={() => ({
+        headerShown: false,
+        tabBarActiveTintColor: '#448800',
+        tabBarStyle: {
+          height: 64,
+          paddingTop: 10,
+          paddingBottom: 10,
+          paddingLeft: 30,
+          paddingRight: 30,
+        },
+      })}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Icon name="home" size={20} color="#448800" />
+            ) : (
+              <Icon name="home-outline" size={20} />
+            ),
+          tabBarLabel: '홈',
+        }}
+      ></Tab.Screen>
+      <Tab.Screen
+        name="community"
+        component={CommunityScreen}
+        options={() => ({
+          tabBarLabel: '커뮤니티',
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Icon name="chatbubble-ellipses" size={20} color="#448800" />
+            ) : (
+              <Icon name="chatbubble-ellipses-outline" size={20} />
+            ),
+        })}
+      ></Tab.Screen>
+      <Tab.Screen
+        name="News"
+        component={DefaultScreen}
+        options={{
+          tabBarLabel: '소식',
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Icon name="mail" size={20} color="#448800" />
+            ) : (
+              <Icon name="mail-outline" size={20} />
+            ),
+        }}
+      ></Tab.Screen>
+      <Tab.Screen
+        name="Mypage"
+        component={DefaultScreen}
+        options={{
+          tabBarLabel: '내정보',
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Icon name="person" size={20} color="#448800" />
+            ) : (
+              <Icon name="person-outline" size={20} />
+            ),
+        }}
+      ></Tab.Screen>
+    </Tab.Navigator>
+  );
+};
+
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={() => ({
-          headerShown: false,
-          tabBarActiveTintColor: '#448800',
-          tabBarStyle: {
-            height: 64,
-            paddingTop: 10,
-            paddingBottom: 10,
-            paddingLeft: 30,
-            paddingRight: 30,
-          },
-        })}
-      >
-        <Tab.Screen
-          name="Home"
-          component={Home}
-          options={{
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                <Icon name="home" size={20} color="#448800" />
-              ) : (
-                <Icon name="home-outline" size={20} />
-              ),
-            tabBarLabel: '홈',
-          }}
-        ></Tab.Screen>
-        <Tab.Screen
-          name="community"
-          component={CommunityScreen}
+      <Stack.Navigator>
+        <Stack.Screen name="signup" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen
+          name="mainScreen"
+          component={MainScreen}
           options={() => ({
-            tabBarLabel: '커뮤니티',
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                <Icon name="chatbubble-ellipses" size={20} color="#448800" />
-              ) : (
-                <Icon name="chatbubble-ellipses-outline" size={20} />
-              ),
+            headerShown: false,
           })}
-        ></Tab.Screen>
-        <Tab.Screen
-          name="News"
-          component={DefaultScreen}
-          options={{
-            tabBarLabel: '소식',
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                <Icon name="mail" size={20} color="#448800" />
-              ) : (
-                <Icon name="mail-outline" size={20} />
-              ),
-          }}
-        ></Tab.Screen>
-        <Tab.Screen
-          name="mypage"
-          component={MypageScreen}
-          options={{
-            tabBarLabel: '내정보',
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                <Icon name="person" size={20} color="#448800" />
-              ) : (
-                <Icon name="person-outline" size={20} />
-              ),
-          }}
-        ></Tab.Screen>
-      </Tab.Navigator>
+        ></Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

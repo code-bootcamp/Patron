@@ -10,12 +10,17 @@ const CommunityWriteUI = (props: IPropsCommunityWriteUI) => {
   return (
     <>
       <S.Wrap>
-        <S.TitleInput placeholder="제목을 입력해 주세요." onChange={props.onChangeTitle} />
+        <S.TitleInput
+          placeholder="제목을 입력해 주세요."
+          onChange={props.onChangeTitle}
+          defaultValue={props.data?.fetchBoard.title || ''}
+        />
         <S.ContentsInput
           placeholder="내용을 입력해 주세요."
           multiline
           textAlignVertical="top"
           onChange={props.onChangeContents}
+          defaultValue={props.data?.fetchBoard.contents || ''}
         />
         <S.HashWrap>
           <R.View>
@@ -40,13 +45,23 @@ const CommunityWriteUI = (props: IPropsCommunityWriteUI) => {
           </S.PhotoUpload>
         </S.photoWrap>
       </S.Wrap>
-      <GreenButton
-        text="등록하기"
-        height="10%"
-        fontSize="16px"
-        fontWeight={500}
-        onPressBtn={props.onPressSubmit}
-      />
+      {!props.isEdit ? (
+        <GreenButton
+          text="등록하기"
+          height="10%"
+          fontSize="16px"
+          fontWeight={500}
+          onPressBtn={props.onPressSubmit}
+        />
+      ) : (
+        <GreenButton
+          text="수정하기"
+          height="10%"
+          fontSize="16px"
+          fontWeight={500}
+          onPressBtn={props.onPressUpdate}
+        />
+      )}
     </>
   );
 };
