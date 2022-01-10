@@ -17,20 +17,19 @@ interface IGlobalContext {
 }
 
 export const GlobalContext = createContext<IGlobalContext>({});
-  
+
 const firebaseConfig = {
- appId: '1:658624640581:android:7f53ac27eb8a4b09f4d52c',
- apiKey: 'AIzaSyD041r1L0ujQLrDEEN6LQm09QHcMZ5QVPM',
- projectId: 'goodneighbors-b9d7e',
- storageBucket: 'goodneighbors-b9d7e.appspot.com',
- messagingSenderId: '658624640581',
- databaseURL: 'goodneighbors-b9d7e.firebaseapp.com',
+  appId: '1:658624640581:android:7f53ac27eb8a4b09f4d52c',
+  apiKey: 'AIzaSyD041r1L0ujQLrDEEN6LQm09QHcMZ5QVPM',
+  projectId: 'goodneighbors-b9d7e',
+  storageBucket: 'goodneighbors-b9d7e.appspot.com',
+  messagingSenderId: '658624640581',
+  databaseURL: 'goodneighbors-b9d7e.firebaseapp.com',
 };
 
 export const firebaseStorage = !firebase.apps.length
   ? firebase.initializeApp(firebaseConfig)
   : firebase.app();
-
 
 const App = () => {
   const [accessToken, setMyAccessToken] = useState('');
@@ -39,19 +38,10 @@ const App = () => {
     setAccessToken: setMyAccessToken,
   };
 
-  useEffect(() => {
-    AsyncStorage.getItem('refreshToken', (_, result) => {
-      console.log('refreshToken', result);
-      if (result) {
-        setMyAccessToken(result);
-      }
-    });
-  }, []);
-
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        if (err.extensions?.code === 'UNAUTHENTICATED') {
+        if (err.extensions.code === 'UNAUTHENTICATED') {
           operation.setContext({
             headers: {
               ...operation.getContext().headers,
@@ -75,8 +65,16 @@ const App = () => {
     cache: new InMemoryCache(),
   });
 
-  return (
+  useEffect(() => {
+    AsyncStorage.getItem('refreshToken', (_, result) => {
+      console.log('refreshToken', result);
+      if (result) {
+        setMyAccessToken(result);
+      }
+    });
+  }, []);
 
+  return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
         {/* <SafeAreaView /> */}
@@ -84,7 +82,6 @@ const App = () => {
         {/* <Navigation /> */}
       </ApolloProvider>
     </GlobalContext.Provider>
-
   );
 };
 
