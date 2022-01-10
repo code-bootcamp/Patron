@@ -1,0 +1,19 @@
+import { RouteProp } from '@react-navigation/native';
+import { Query } from '../../../../../commons/types/generated/types';
+
+type RootStackParamList = {
+  home: undefined;
+  community: { screen: string; params: { boardId: string } };
+  news: undefined;
+  mypage: undefined;
+};
+
+type CommunityListScreenRouteProp = RouteProp<RootStackParamList, 'community'>;
+
+export interface IPropsCommentList {
+  route: CommunityListScreenRouteProp;
+}
+
+export interface IPropsCommentListUI {
+  data?: Pick<Query, 'fetchBoardComments'>;
+}

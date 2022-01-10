@@ -76,7 +76,7 @@ const CommunityWrite = ({ navigation }: IPropsNavigation) => {
       navigation.navigate('community', { screen: 'home' });
       console.log(result);
       const community = firestore().collection('community');
-      community.add({
+      community.doc(result.data?.createBoard._id).set({
         boardId: result.data?.createBoard._id,
         tags: hashArr,
         views: 0,

@@ -28,14 +28,19 @@ export const CardContainer = styled.ScrollView`
 `;
 
 export const Card = styled.Pressable`
-  display: flex;
-  justify-content: flex-end;
   width: 120px;
   height: 132px;
   margin-right: 8px;
   padding: 12px;
   border-radius: 8px;
   background-color: #9f9f9f;
+`;
+
+export const CardBackground = styled.ImageBackground`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
 `;
 
 export const CardTitle = styled.Text`

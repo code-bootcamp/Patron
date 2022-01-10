@@ -7,6 +7,7 @@ import ColoredTag from '../../../commons/tags/coloredtag';
 import WhiteTag from '../../../commons/tags/whitetag';
 import { IPropsCommunityUI } from './community.types';
 import { displayedAt } from '../../../../commons/libraries/utils';
+import { CommentsCount } from '../../../../commons/libraries/commentsCount';
 
 const CommunityUI = (props: IPropsCommunityUI) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,14 +22,16 @@ const CommunityUI = (props: IPropsCommunityUI) => {
               <S.SubTitle>김이웃님!</S.SubTitle>
               <S.SubTitle>이런 활동은 어떠세요?</S.SubTitle>
               <S.CardContainer horizontal={true} showsHorizontalScrollIndicator={false}>
-                {new Array(5).fill(1).map((_, idx) => (
-                  <S.Card
-                    key={idx}
-                    onPress={() => props.navigation.navigate('community', { screen: 'list' })}
-                  >
-                    <ColoredTag text="정기후원" padding="4px 8px" fontSize="10px" />
-                    <S.CardTitle>오늘, 당신의 천원은 어떻게 쓰였나요?</S.CardTitle>
-                    <S.DDay>D-3</S.DDay>
+                {props.bestData?.fetchUseditemsOfTheBest.map((el: any, idx: number) => (
+                  <S.Card key={idx} onPress={props.getList(el._id)}>
+                    <S.CardBackground
+                      style={{ width: 100, height: 100 }}
+                      source={{ uri: `https://storage.googleapis.com/${el.images[0]}` }}
+                    >
+                      <ColoredTag text={el.name.split('/')[0]} padding="4px 8px" fontSize="10px" />
+                      <S.CardTitle>{el.name.split('/')[1]}</S.CardTitle>
+                      <S.DDay>D-3</S.DDay>
+                    </S.CardBackground>
                   </S.Card>
                 ))}
               </S.CardContainer>
@@ -69,11 +72,13 @@ const CommunityUI = (props: IPropsCommunityUI) => {
                     <S.FooterLeft>
                       <S.LeftInnerWrap>
                         <Icon name="heart-outline" size={24} />
-                        <S.FooterText>1234</S.FooterText>
+                        <S.FooterText>{el.likeCount}</S.FooterText>
                       </S.LeftInnerWrap>
                       <S.LeftInnerWrap>
                         <Icon name="chatbubble-outline" size={20} />
-                        <S.FooterText>1234</S.FooterText>
+                        <S.FooterText>
+                          <CommentsCount boardId={el._id} />
+                        </S.FooterText>
                       </S.LeftInnerWrap>
                     </S.FooterLeft>
                     <Icon name="bookmark-outline" size={20} color="white" />

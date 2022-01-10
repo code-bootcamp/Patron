@@ -9,6 +9,17 @@ export const FECTH_BOARDS = gql`
       images
       writer
       createdAt
+      likeCount
+    }
+  }
+`;
+
+export const FETCH_BEST_ITEMS = gql`
+  query fetchUseditemsOfTheBest {
+    fetchUseditemsOfTheBest {
+      _id
+      name
+      images
     }
   }
 `;

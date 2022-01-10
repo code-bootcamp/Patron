@@ -5,12 +5,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import WhiteTag from '../../../commons/tags/whitetag';
 import { displayedAt } from '../../../../commons/libraries/utils';
 import { IPropsCommunityDetailUI } from './communityDetail.types';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import CommentWrite from '../comment/write/commentWrite.container';
+import CommentList from '../comment/list/commentList.container';
 
 const CommunityDetailUI = (props: IPropsCommunityDetailUI) => {
   return (
     <>
       <S.Wrap>
-        <S.DetailHeader source={{ uri: props.data?.fetchBoard.images?.[2] }}>
+        <S.DetailHeader source={{ uri: props.data?.fetchBoard.images?.[3] }}>
           <R.View>
             <S.HeaderTitle>{props.data?.fetchBoard.title}</S.HeaderTitle>
             <S.HeaderFooter>
@@ -20,7 +23,7 @@ const CommunityDetailUI = (props: IPropsCommunityDetailUI) => {
                   {displayedAt(props.data?.fetchBoard.createdAt)}
                 </S.HeaderFooterText>
                 <Icon name="ellipse" color="white" size={2} style={{ padding: 5 }} />
-                <S.HeaderFooterText>조회 99</S.HeaderFooterText>
+                <S.HeaderFooterText>조회 {props.firedata?.views}</S.HeaderFooterText>
               </S.FooterInner>
             </S.HeaderFooter>
           </R.View>
@@ -29,24 +32,61 @@ const CommunityDetailUI = (props: IPropsCommunityDetailUI) => {
           <S.DetailImg source={{ uri: props.data?.fetchBoard.images?.[1] }} />
           <S.DetailContents>{props.data?.fetchBoard.contents}</S.DetailContents>
           <S.HashWrap>
-            <WhiteTag text="결연 아동 후원" fontSize="10px" />
-            <WhiteTag text="정기후원" fontSize="10px" />
-            <WhiteTag text="같이여행" fontSize="10px" />
+            {props.firedata?.tags?.map((el: any, idx: number) => (
+              <WhiteTag text={el} fontSize="10px" key={idx} />
+            ))}
           </S.HashWrap>
           <R.View>
             <S.PicTitle>사진</S.PicTitle>
             <S.PicWrap>
-              <S.BigPic></S.BigPic>
+              <S.BigPic source={{ uri: props.data?.fetchBoard.images?.[0] }} />
               <S.SmaillPicWrap>
-                <S.SmallPic></S.SmallPic>
-                <S.SmallPic></S.SmallPic>
-                <S.SmallPic></S.SmallPic>
-                <S.SmallPic></S.SmallPic>
+                {props.data?.fetchBoard.images?.map(
+                  (el, idx) => idx > 0 && <S.SmallPic source={{ uri: el }} key={idx} />,
+                )}
               </S.SmaillPicWrap>
             </S.PicWrap>
           </R.View>
         </S.DetailBody>
-        <S.DetailFooter></S.DetailFooter>
+        <S.MapWrap>
+          <S.MapHeader>
+            <R.Text style={{ fontWeight: '700' }}>+999</R.Text> 명의 사람들이 이 지역에 함께 후원
+            중입니다.
+          </S.MapHeader>
+          <MapView
+            style={{ width: '100%', height: 140 }}
+            provider={PROVIDER_GOOGLE}
+            showsUserLocation={true}
+            showsMyLocationButton={true}
+            initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          />
+          <S.MapFooter>
+            <S.MapFooterLeft>
+              <R.Image source={require('../../../../../public/images/community/googleMap.png')} />
+              <S.MapFooterText>이 지역을 구글지도로 확인하기</S.MapFooterText>
+            </S.MapFooterLeft>
+            <Icon name="chevron-forward-outline" size={12} />
+          </S.MapFooter>
+        </S.MapWrap>
+        <S.DetailFooter>
+          <S.FooterHeader>
+            <S.IconWrap onPress={props.onPressLike}>
+              <Icon name="heart-outline" size={24} />
+              <R.Text>{props.data?.fetchBoard.likeCount}</R.Text>
+            </S.IconWrap>
+            <S.IconWrap>
+              <Icon name="chatbubble-outline" size={20} />
+              <R.Text>{props.commentData?.fetchBoardComments.length}</R.Text>
+            </S.IconWrap>
+          </S.FooterHeader>
+        </S.DetailFooter>
+        <CommentList route={props.route} />
+        <CommentWrite route={props.route} />
       </S.Wrap>
     </>
   );

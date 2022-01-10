@@ -5,7 +5,7 @@ export const Wrap = styled.View`
   height: 100%;
 `;
 
-export const ListHeader = styled.View`
+export const ListHeader = styled.ImageBackground`
   flex: 4;
   justify-content: flex-end;
   padding: 24px;

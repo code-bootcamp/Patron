@@ -11,7 +11,6 @@ import { onError } from '@apollo/client/link/error';
 // import { NavigationContainer } from '@react-navigation/native';
 import LoginScreen from './pages/screens/signup';
 import { firebase } from '@react-native-firebase/firestore';
-import Navigation from './pages/navigation';
 
 interface IGlobalContext {
   setAccessToken?: Dispatch<SetStateAction<string>>;
@@ -39,19 +38,10 @@ const App = () => {
     setAccessToken: setMyAccessToken,
   };
 
-  useEffect(() => {
-    AsyncStorage.getItem('refreshToken', (_, result) => {
-      console.log('refreshToken', result);
-      if (result) {
-        setMyAccessToken(result);
-      }
-    });
-  }, []);
-
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        if (err.extensions?.code === 'UNAUTHENTICATED') {
+        if (err.extensions.code === 'UNAUTHENTICATED') {
           operation.setContext({
             headers: {
               ...operation.getContext().headers,
@@ -75,15 +65,25 @@ const App = () => {
     cache: new InMemoryCache(),
   });
 
+  useEffect(() => {
+    AsyncStorage.getItem('refreshToken', (_, result) => {
+      console.log('refreshToken', result);
+      if (result) {
+        setMyAccessToken(result);
+      }
+    });
+  }, []);
+
   return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
         {/* <SafeAreaView /> */}
         <LoginScreen />
-        <Navigation />
+        {/* <Navigation /> */}
       </ApolloProvider>
     </GlobalContext.Provider>
   );
 };
 
 export default App;
+
