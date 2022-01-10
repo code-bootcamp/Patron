@@ -14,36 +14,39 @@ const RegisterUI = (props) => {
             source={require('../../../../../public/images/ellipse.png')}
             resizeMode="cover"
           >
-            <R.Image source={require('GoodNeighobrs/public/images/profile.png')} />
-            <R.Image source={require('../../../../../public/images/camera.png')} />
+            <S.Profile_Image source={require('GoodNeighobrs/public/images/profile.png')} />
+            <S.Profile_Camera source={require('../../../../../public/images/camera.png')} />
           </S.BackImage>
           <S.Email_Wrapper>
-            <S.Email>이메일: </S.Email>
+            <S.Email>이메일 :</S.Email>
             <InputBasic onChange={props.onChangeEmail} value={props.email} />
-            {/* <R.TextInput onChange={props.onChangeEmail} value={props.email} /> */}
           </S.Email_Wrapper>
-          <R.Text>Error Message</R.Text>
+          <R.Text>{props.emailError}</R.Text>
           <S.Password_Wrapper>
-            <S.Password>비밀번호: </S.Password>
-            <InputBasic onChange={props.onChangePassword} value={props.password} />
+            <S.Password>비밀번호 :</S.Password>
+            <InputBasic
+              onChange={props.onChangePassword}
+              value={props.password}
+              secureTextEntry={true}
+            />
           </S.Password_Wrapper>
-          <R.Text>Error Message</R.Text>
+          <R.Text>{props.passwordError}</R.Text>
           <S.PasswordConfirm_Wrapper>
-            <S.Password_Confirm>비밀번호 재확인: </S.Password_Confirm>
-            <InputBasic />
+            <S.Password_Confirm>비밀번호 재확인 :</S.Password_Confirm>
+            <InputBasic onChange={props.onChangePassConfirm} secureTextEntry={true} />
           </S.PasswordConfirm_Wrapper>
-          <R.Text>Error Message</R.Text>
+          <R.Text>{props.passwordConfirmError}</R.Text>
           <S.Name_Wrapper>
-            <R.Text>닉네임: </R.Text>
+            <R.Text>닉네임 :</R.Text>
             <InputBasic onChange={props.onChangeName} value={props.name} />
           </S.Name_Wrapper>
-          <R.Text>Error Message</R.Text>
+          <R.Text>{props.nameError}</R.Text>
           <S.Submit_Wrapper>
             <GreenButton
               text="회원가입"
               fontSize="20px;"
               width="100%"
-              onPressBtn={props.onClickSubmit}
+              onPressBtn={props.onPressSubmit}
             />
           </S.Submit_Wrapper>
         </S.Wrapper>

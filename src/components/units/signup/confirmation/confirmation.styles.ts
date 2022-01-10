@@ -6,7 +6,15 @@ export const Wrapper = styled.View`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 45px;
+`;
+
+export const Image_Wrapper = styled.View`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
 `;
 
 export const BackImage = styled.ImageBackground`
@@ -22,7 +30,6 @@ export const Profile_Image = styled.Image`
   position: absolute;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
 `;
 
 export const Profile_Camera = styled.Image`
@@ -33,49 +40,20 @@ export const Profile_Camera = styled.Image`
   margin: 75px 0px 0px 65px;
 `;
 
-export const Email_Wrapper = styled.View`
+export const Welcome_Wrapper = styled.View`
   flex: 1;
+  display: flex;
+  align-items: center;
   width: 100%;
 `;
 
-export const Email = styled.Text`
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 10px;
-`;
-
-export const Password_Wrapper = styled.View`
-  flex: 1;
-  width: 100%;
-`;
-
-export const Password = styled.Text`
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 10px;
-`;
-
-export const PasswordConfirm_Wrapper = styled.View`
-  flex: 1;
-  width: 100%;
-`;
-
-export const Password_Confirm = styled.Text`
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 10px;
-`;
-
-export const Name_Wrapper = styled.View`
-  flex: 1;
-  width: 100%;
+export const Welcome_Letter = styled.Text`
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
 `;
 
 export const Submit_Wrapper = styled.View`
-  flex: 1;
+  flex: 0.2;
   width: 100%;
-`;
-
-export const GreenButton = styled.TextInput`
-  text-align: center;
 `;

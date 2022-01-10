@@ -6,11 +6,10 @@ export const Wrapper = styled.View`
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 35px;
 `;
 
 export const Title_Wrapper = styled.View`
-  flex: 5;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,22 +20,26 @@ export const Title = styled.Text`
   font-weight: 700;
 `;
 
-export const Email_Wrapper = styled.View`
-  flex: 1;
-  weight: 100%;
-  margin: 10px;
+export const Kakao_Wrapper = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 328px;
+  height: 48px;
+  padding: 10px;
 `;
 
-export const Password_Wrapper = styled.View`
-  flex: 1;
-  weight: 100%;
-  margin: 10px;
+export const Google_Wrapper = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 328px;
+  height: 48px;
+  padding: 10px;
 `;
 
-export const Button_Wrapper = styled.View`
-  flex: 1;
-  weight: 100%;
-  margin: 10px;
+export const Icon = styled.Image`
+  margin-right: 15px;
 `;
 
 export const Bottom_Wrapper = styled.View`
@@ -47,10 +50,10 @@ export const Bottom_Wrapper = styled.View`
   align-items: center;
 `;
 
-export const Search_Email = styled.Text`
+export const Login = styled.Text`
   margin-right: 10px;
 `;
 
-export const Search_Password = styled.Text`
+export const Register = styled.Text`
   margin-left: 10px;
 `;
