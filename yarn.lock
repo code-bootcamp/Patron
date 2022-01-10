@@ -2517,6 +2517,13 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
+"@types/react-native-read-more-text@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-native-read-more-text/-/react-native-read-more-text-1.0.1.tgz#a488109bc78c34de7ccc15e4452d0d88552a38fb"
+  integrity sha512-DYdEJ9xWgqPIacn5aSfMpRxXW1Z7r+/qY6V+vr+t3+5hqZRUv61xFwIj2QBbUQrzJKyq+niTBckVYIM9aLNJ2w==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-native-vector-icons@6.4.10":
   version "6.4.10"
   resolved "https://registry.yarnpkg.com/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.10.tgz#9bfd6e64dd37b8119425496b5e53ff91d034efa9"
@@ -2525,10 +2532,17 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native@*", "@types/react-native@^0.66.10":
+"@types/react-native@*":
   version "0.66.10"
   resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.66.10.tgz"
   integrity sha512-3AyXa3YB918I0Mk6kyebnVJSe3JsVETestSPPzU5YFmIMnri2yS1KRIxMIpoVm2hu/as0PkIfsbjVvoEMKNT8A==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-native@^0.66.11":
+  version "0.66.11"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.66.11.tgz#3d138275fe9cca3b8efad990b1bee08078c3ff4d"
+  integrity sha512-DFuNMhRuyKMbJrI/s3rIuM5io+tIOK4Iq9oMzatWX5bIgfjZM86X1aA/epE0ipw1aFaoHKermK3fLG1bqFzzDQ==
   dependencies:
     "@types/react" "*"
 
@@ -10368,6 +10382,12 @@ react-native-pager-view@5.4.9:
   version "5.4.9"
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.9.tgz#c0d40847cfeda5a4e729b53271b0ee0fedff3eb5"
   integrity sha512-D6tzxpwMGdl6CXgtskGWhKRc5cJakCazESRGt7PkqnpyiH3N35ft1KmR82pCSQetAFlytFiToeu3a/dG5CELvA==
+
+
+react-native-read-more-text@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-read-more-text/-/react-native-read-more-text-1.1.2.tgz#3f64aee61ec4d3109437f4125f10e49eccdee65a"
+  integrity sha512-FIQhOpvikUanwPRl9QVBYmx6Wx7IXxXH/jlzElOLcP+NSgFLw2fRzSekQUq0yicymZsi7cAWW5TtIj8FHWtNDw==
 
 react-native-paper@^4.11.1:
   version "4.11.1"

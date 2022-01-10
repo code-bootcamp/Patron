@@ -1,6 +1,5 @@
-import * as React from 'react';
+import HomeCampaignListUI from './HomeCampaignList.presenter';
 import { gql, useQuery } from '@apollo/client';
-import HomeCampaignUI from './HomeCampaign.presenter';
 
 const FETCH_USEDITEMS = gql`
   query fetchUseditems($isSoldout: Boolean, $search: String, $page: Int) {
@@ -11,22 +10,20 @@ const FETCH_USEDITEMS = gql`
       contents
       tags
       pickedCount
+      images
     }
   }
 `;
 
-export default function HomeCampaignUIItem() {
+export default function HomeCampaignList() {
   const { data } = useQuery(FETCH_USEDITEMS, {
     variables: {
       search: '캠페인',
     },
   });
-
   return (
     <>
-      {data?.fetchUseditems.map((el) => (
-        <HomeCampaignUI key={el._id} el={el} />
-      ))}
+      <HomeCampaignListUI data={data} />
     </>
   );
 }

@@ -15,6 +15,9 @@ export const SelectionWrapper = styled.View`
 
 export const SelectionTitle = styled.View`
   padding-bottom: 15px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const SelectionTitleText = styled.Text`
@@ -33,7 +36,10 @@ export const Card = styled.View`
   /* background-color: lightpink; */
 `;
 
-export const ImgWrapper = styled.View``;
+export const ImgWrapper = styled.Pressable`
+  width: 277px;
+  height: 150px;
+`;
 
 export const CardTag = styled.View`
   position: absolute;
@@ -90,7 +96,10 @@ export const RecommendList = styled.View`
 
 export const RecommendCard = styled.View``;
 
-export const RImageWrpper = styled.View``;
+export const RImageWrpper = styled.Pressable`
+  width: 160px;
+  height: 160px;
+`;
 
 export const RecommendCardDetails = styled.View`
   padding: 10px 0px 15px 0px;

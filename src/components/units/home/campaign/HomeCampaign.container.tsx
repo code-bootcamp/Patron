@@ -1,8 +1,23 @@
 import * as React from 'react';
 import HomeCampaignUI from './HomeCampaign.presenter';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type RootStackParamList = {
+  home: { screen: string };
+  community: { screen: string };
+  news: undefined;
+  mypage: undefined;
+};
+
+type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'home'>;
+
+type Props = {
+  navigation: ProfileScreenNavigationProp;
+};
+
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function HomeCampaign() {
+export default function HomeCampaign({ navigation }: Props) {
   const [isPicked, setIsPicked] = React.useState(false);
 
   const onPressPick = (el) => async () => {
@@ -25,6 +40,32 @@ export default function HomeCampaign() {
     // bookmarks.push(newEl);
 
     // await AsyncStorage.setItem('picked', JSON.stringify(name));
+
+    // type RootStackParamList = {
+    //   home: undefined;
+    //   community: { screen: string };
+    //   news: undefined;
+    //   mypage: undefined;
+    // };
+
+    // type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'community'>;
+
+    // type Props = {
+    //   navigation: ProfileScreenNavigationProp;
+    // };
   };
-  return <HomeCampaignUI isPicked={isPicked} setIsPicked={setIsPicked} onPressPick={onPressPick} />;
+
+  const onPressGetId = (el) => () => {
+    console.log(el._id);
+  };
+
+  return (
+    <HomeCampaignUI
+      isPicked={isPicked}
+      setIsPicked={setIsPicked}
+      onPressPick={onPressPick}
+      navigation={navigation}
+      onPressGetId={onPressGetId}
+    />
+  );
 }

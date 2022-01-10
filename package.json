@@ -36,6 +36,7 @@
     "react-native-gesture-handler": "2.1.0",
     "react-native-image-picker": "4.6.1",
     "react-native-linear-gradient": "^2.5.6",
+
     "react-native-modal": "^13.0.0",
     "react-native-maps": "0.30.1",
     "react-native-pager-view": "5.4.9",
@@ -53,7 +54,8 @@
     "@graphql-codegen/typescript": "^2.4.1",
     "@react-native-community/eslint-config": "^3.0.1",
     "@types/react": "^17.0.38",
-    "@types/react-native": "^0.66.10",
+    "@types/react-native": "^0.66.11",
+    "@types/react-native-read-more-text": "^1.0.1",
     "@types/react-native-vector-icons": "6.4.10",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",

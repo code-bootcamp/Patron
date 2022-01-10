@@ -4,6 +4,8 @@ import * as E from './HomeCampaign.styles';
 import { gql, useQuery } from '@apollo/client';
 import ColoredTag from '../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
+import LinearGradient from 'react-native-linear-gradient';
+import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
 
 const FETCH_USEDITEMS = gql`
   query fetchUseditems($isSoldout: Boolean, $search: String, $page: Int) {
@@ -15,6 +17,14 @@ const FETCH_USEDITEMS = gql`
       tags
       pickedCount
       images
+    }
+  }
+`;
+
+const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      name
     }
   }
 `;
@@ -36,18 +46,13 @@ export default function HomeCampaignUI(props) {
     },
   });
 
+  const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
+
   // const { data: dataForIPicked } = useQuery(FETCH_USEDITEMS_I_PICKED, {
   //   variables: {
   //     search: '캠페인',
   //   },
   // });
-
-  const recommendListItems = [
-    { name: '우리 산 살리기' },
-    { name: '쓰담 달리기' },
-    { name: '따뜻한 한 끼를 건네요' },
-    { name: '치료가 필요해요' },
-  ];
 
   return (
     <>
@@ -56,24 +61,37 @@ export default function HomeCampaignUI(props) {
           <E.SelectionWrapper>
             <E.SelectionTitle>
               <E.SelectionTitleText>캠페인</E.SelectionTitleText>
+              <ViewMoreButton onPressBtn={() => props.navigation.navigate('homelist')} />
             </E.SelectionTitle>
             <E.SelectionList>
               <ScrollView horizontal={true}>
                 {data?.fetchUseditems
                   .map((el) => (
                     <E.Card key={el._id}>
-                      <E.ImgWrapper>
-                        {el.images ? (
+                      <E.ImgWrapper
+                        onPress={() =>
+                          props.navigation.navigate('homeDetails', { useditemId: el._id })
+                        }
+                      >
+                        {el.images && (
                           <Image
-                            style={{ width: 277, height: 150 }}
+                            style={{ width: 277, height: 150, borderRadius: 8 }}
                             source={{
                               uri: `https://${el.images[0]}`,
                             }}
                           />
-                        ) : (
-                          <Image source={require('../../../../../public/images/home/card01.png')} />
                         )}
-                        {/* <Image source={require('../../../../../public/images/home/card01.png')} /> */}
+                        <LinearGradient
+                          colors={['rgba(0, 0, 0, 0.42)', 'rgba(255,255,255,0)']}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            position: 'absolute',
+                            borderRadius: 8,
+                          }}
+                          start={{ x: 0, y: 1 }}
+                          end={{ x: 0, y: 0 }}
+                        ></LinearGradient>
                         <E.CardTag>
                           <ColoredTag
                             key={el._id}
@@ -117,40 +135,69 @@ export default function HomeCampaignUI(props) {
           <E.RecommendWrapper>
             <E.RecommendTitle>
               <E.RecommendTitleText>
-                <E.UserName>김이웃</E.UserName>님과 어울리는 캠페인이에요!
+                <E.UserName>{dataForUser?.fetchUserLoggedIn.name || '김이웃'}</E.UserName>님과
+                어울리는 캠페인이에요!
               </E.RecommendTitleText>
             </E.RecommendTitle>
 
             <E.RecommendList>
-              {recommendListItems.map((el, index) => (
-                <E.RecommendCard key={index}>
-                  <E.RImageWrpper>
-                    <Image
-                      source={require('../../../../../public/images/home/recommend_card01.png')}
-                    />
-                  </E.RImageWrpper>
-                  <E.RecommendCardDetails>
-                    <E.RecommendCardTitle>{el.name}</E.RecommendCardTitle>
-                    <E.RecommendBookmark>
-                      {!props.isPicked ? (
-                        <Icon
-                          name="bookmark-outline"
-                          size={20}
-                          color={'rgba(0, 0, 0, 0.4)'}
-                          // onPress={props.onPressPick}
+              {data?.fetchUseditems
+                .map((el) => (
+                  <E.RecommendCard key={el._id}>
+                    <E.RImageWrpper
+                      onPress={() =>
+                        props.navigation.navigate('homeDetails', { useditemId: el._id })
+                      }
+                    >
+                      <Image
+                        style={{ width: 160, height: 160, borderRadius: 8 }}
+                        source={{
+                          uri: `https://${el.images[0]}`,
+                        }}
+                      />
+                      <LinearGradient
+                        colors={['rgba(0, 0, 0, 0.42)', 'rgba(255,255,255,0)']}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          position: 'absolute',
+                          borderRadius: 8,
+                        }}
+                        start={{ x: 0, y: 1 }}
+                        end={{ x: 0, y: 0 }}
+                      ></LinearGradient>
+                      <E.CardTag>
+                        <ColoredTag
+                          key={el._id}
+                          text={`#${el.tags[0]}`}
+                          fontSize={'9px'}
+                          padding={'2px 4px 2px 4px'}
                         />
-                      ) : (
-                        <Icon
-                          name="bookmark"
-                          size={20}
-                          color={'#448800'}
-                          // onPress={props.onPressPick}
-                        />
-                      )}
-                    </E.RecommendBookmark>
-                  </E.RecommendCardDetails>
-                </E.RecommendCard>
-              ))}
+                      </E.CardTag>
+                    </E.RImageWrpper>
+                    <E.RecommendCardDetails>
+                      <E.RecommendCardTitle>{el.name.split('/')[1]}</E.RecommendCardTitle>
+                      <E.RecommendBookmark>
+                        {!props.isPicked ? (
+                          <Icon
+                            name="bookmark-outline"
+                            size={20}
+                            color={'rgba(0, 0, 0, 0.4)'}
+                            // onPress={props.onPressPick}
+                          />
+                        ) : (
+                          <Icon
+                            name="bookmark"
+                            size={20}
+                            color={'#448800'}
+                            // onPress={props.onPressPick}
+                          />
+                        )}
+                      </E.RecommendBookmark>
+                    </E.RecommendCardDetails>
+                  </E.RecommendCard>
+                ))
+                .splice(0, 4)}
             </E.RecommendList>
           </E.RecommendWrapper>
         </E.Wrapper>

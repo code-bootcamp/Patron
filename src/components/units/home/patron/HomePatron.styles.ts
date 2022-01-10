@@ -15,6 +15,9 @@ export const SelectionWrapper = styled.View`
 
 export const SelectionTitle = styled.View`
   padding-bottom: 15px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const SelectionTitleText = styled.Text`
@@ -31,16 +34,28 @@ export const Card = styled.View`
   padding-right: 20px;
 `;
 
-export const ImgWrapper = styled.View``;
-
-export const CardTag = styled.View``;
-
-export const CardDetails = styled.View`
-  /* background-color: blue; */
-  padding: 10px;
+export const ImgWrapper = styled.Pressable`
+  width: 277px;
+  height: 150px;
 `;
 
-export const DetailsContent = styled.View``;
+export const CardTag = styled.View`
+  padding: 10px;
+  position: absolute;
+`;
+
+export const CardDetails = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  /* background-color: aqua; */
+  width: 277px;
+  padding: 10px 10px 10px 0px;
+`;
+
+export const DetailsContent = styled.View`
+  /* background-color: beige; */
+  width: 95%;
+`;
 
 export const ContentTitle = styled.Text`
   font-weight: 700;
@@ -84,10 +99,12 @@ export const RecommendCard = styled.View`
   /* background-color: coral; */
 `;
 
-export const RImageWrpper = styled.View``;
+export const RImageWrpper = styled.Pressable``;
 
 export const RecommendCardDetails = styled.View`
   padding: 10px 0px 15px 0px;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const RecommendCardTitle = styled.Text`

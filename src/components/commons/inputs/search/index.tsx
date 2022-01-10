@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 interface IPropsSearchWrapper {
   width?: string;
@@ -16,21 +17,20 @@ const Wrapper = styled.View`
 `;
 
 const Input = styled.TextInput`
-  width: 90%;
+  width: 95%;
 `;
 
 const IconWrapper = styled.View`
   width: 10%;
   align-items: center;
 `;
-const Icon = styled.Image``;
 
 export default function SearchInput(props) {
   return (
     <Wrapper width={props.width} height={props.height}>
       <Input onChange={props.onChange} />
       <IconWrapper>
-        <Icon source={require('../../../../../public/images/icon_union.png')} />
+        <Icon name="search" size={20} color="rgba(143, 148, 156, 1)" />
       </IconWrapper>
     </Wrapper>
   );
