@@ -22,14 +22,20 @@ const CommunityDetail = ({ route }: IPropsRoute) => {
   >(FETCH_BOARD_COMMENTS, { variables: { boardId: route.params?.boardId } });
   const [likeBoard] = useMutation<Pick<Mutation, 'likeBoard'>, MutationLikeBoardArgs>(LIKE_BOARD);
   const commuCollection = firestore().collection('community');
+  const docRef = commuCollection.doc(route.params?.boardId);
   const [firedata, setFiredata] = useState({});
-
   useEffect(() => {
     commuCollection
       .doc(route.params?.boardId)
       .get()
       .then((doc) => setFiredata({ ...doc.data() }));
   }, []);
+
+  useEffect(() => {
+    docRef.update({ views: firedata?.views + 1 });
+  }, [firedata]);
+
+  console.log(firedata);
 
   const onPressLike = async () => {
     await likeBoard({ variables: { boardId: route.params?.boardId } });

@@ -9,7 +9,12 @@ import {
   QueryFetchBoardArgs,
 } from '../../../../commons/types/generated/types';
 import CommunityWriteUI from './communityWrite.presenter';
-import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from './communityWrite.queries';
+import {
+  CREATE_BOARD,
+  FETCH_BOARD,
+  FETCH_USER_LOGGED_IN,
+  UPDATE_BOARD,
+} from './communityWrite.queries';
 import { launchImageLibrary } from 'react-native-image-picker';
 import firestore from '@react-native-firebase/firestore';
 import { IPropsNavigation } from './communityWrite.types';
@@ -19,6 +24,7 @@ const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
   const { data } = useQuery<Pick<Query, 'fetchBoard'>, QueryFetchBoardArgs>(FETCH_BOARD, {
     variables: { boardId },
   });
+  const { data: userdata } = useQuery<Pick<Query, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN);
   const [createBoard] = useMutation<Pick<Mutation, 'createBoard'>, MutationCreateBoardArgs>(
     CREATE_BOARD,
   );
@@ -86,7 +92,7 @@ const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
       const result = await createBoard({
         variables: {
           createBoardInput: {
-            writer: '김이웃7783',
+            writer: userdata?.fetchUserLoggedIn.name,
             password: '123',
             title,
             contents,

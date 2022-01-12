@@ -7,10 +7,25 @@ import ColoredTag from '../../../commons/tags/coloredtag';
 import WhiteTag from '../../../commons/tags/whitetag';
 import { IPropsCommunityUI } from './community.types';
 import { displayedAt } from '../../../../commons/libraries/utils';
-import { CommentsCount } from '../../../../commons/libraries/commentsCount';
+import CommentsCount from '../../../../commons/libraries/commentsCount';
+import GetHashs from '../../../../commons/libraries/getHashs';
 
 const CommunityUI = (props: IPropsCommunityUI) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const hashArr = [
+    '정기후원',
+    '단체후원',
+    '소액후원',
+    '기부',
+    '캠페인',
+    '챌린지',
+    '1:1후원',
+    '국내주거위기아동후원',
+    '국내위기가정후원',
+    '해외아동결연',
+    '자원봉사',
+    '재능기부',
+  ];
 
   return (
     <>
@@ -19,13 +34,13 @@ const CommunityUI = (props: IPropsCommunityUI) => {
         <R.ScrollView>
           <S.Wrap>
             <S.CommunityHeader>
-              <S.SubTitle>김이웃님!</S.SubTitle>
+              <S.SubTitle>{props.loginData?.fetchUserLoggedIn.name}님!</S.SubTitle>
               <S.SubTitle>이런 활동은 어떠세요?</S.SubTitle>
               <S.CardContainer horizontal={true} showsHorizontalScrollIndicator={false}>
                 {props.bestData?.fetchUseditemsOfTheBest.map((el: any, idx: number) => (
                   <S.Card key={idx} onPress={props.getList(el._id)}>
                     <S.CardBackground
-                      style={{ width: 100, height: 100 }}
+                      style={{ width: '100%', height: '100%', padding: 12 }}
                       source={{ uri: `https://${el.images[0]}` }}
                     >
                       <ColoredTag text={el.name.split('/')[0]} padding="4px 8px" fontSize="10px" />
@@ -48,18 +63,16 @@ const CommunityUI = (props: IPropsCommunityUI) => {
               </S.TBD>
             </S.HashSection>
             <S.BoardContainer>
-              {props.data?.fetchBoards.map((el: any, idx: number) => (
+              {props.data?.fetchBoardsOfTheBest.map((el: any, idx: number) => (
                 <S.Board key={idx} onPress={props.getDetail(el._id)}>
                   <S.BoardHeader>
                     <S.BoardWrap>
                       <S.BoardImg source={{ uri: el.images[0] }} />
                       <S.ContentWrap>
-                        <S.BoardTitle numberOfLines={1}>{el.title}</S.BoardTitle>
+                        <S.BoardTitle numberOfLines={1}>{el.title.split('/')[1]}</S.BoardTitle>
                         <S.BoardContent numberOfLines={2}>{el.contents}</S.BoardContent>
                         <S.TagContainer>
-                          {props.firedata?.tags?.map((el: string, idx: number) => (
-                            <S.Tag key={idx}># {el}</S.Tag>
-                          ))}
+                          <GetHashs id={el._id} />
                         </S.TagContainer>
                       </S.ContentWrap>
                     </S.BoardWrap>
@@ -113,8 +126,8 @@ const CommunityUI = (props: IPropsCommunityUI) => {
                   </S.ModalHeader>
                   <S.ModalBody>
                     <S.ModalTagWrap>
-                      {new Array(6).fill(1).map((_, idx) => (
-                        <WhiteTag key={idx} text="태그" />
+                      {hashArr.map((el, idx) => (
+                        <WhiteTag key={idx} text={el} padding="8px 12px" />
                       ))}
                     </S.ModalTagWrap>
                     <S.SubmitBtn>

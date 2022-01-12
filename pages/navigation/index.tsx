@@ -5,7 +5,6 @@ import 'react-native-gesture-handler';
 import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/home';
-import Home from '../screens/home';
 import CommunityScreen from '../screens/community';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/signup';

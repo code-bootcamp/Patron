@@ -31,7 +31,7 @@ export const Card = styled.Pressable`
   width: 120px;
   height: 132px;
   margin-right: 8px;
-  padding: 12px;
+  overflow: hidden;
   border-radius: 8px;
   background-color: #9f9f9f;
 `;
@@ -155,19 +155,6 @@ export const TagContainer = styled.View`
   height: 20%;
   display: flex;
   flex-direction: row;
-`;
-
-export const Tag = styled.Text`
-  height: 16px;
-  margin-right: 8px;
-  padding: 0 8px;
-  line-height: 16px;
-  text-align: center;
-  color: #000000;
-  font-size: 8px;
-  font-weight: 400;
-  border-radius: 40px;
-  background-color: #f5f5f5;
 `;
 
 export const UserWrap = styled.View`

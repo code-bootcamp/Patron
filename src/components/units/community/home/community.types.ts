@@ -17,5 +17,5 @@ export type IPropsNavigation = {
 export interface IPropsCommunityUI {
   [x: string]: any;
   navigation: ProfileScreenNavigationProp;
-  data?: Pick<Query, 'fetchBoards'>;
+  data?: Pick<Query, 'fetchBoardsOfTheBest'>;
 }

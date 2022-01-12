@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import styled from '@emotion/native';
 
@@ -18,7 +18,7 @@ const SubmitTxt = styled.Text`
   color: #448800;
 `;
 
-export default function InputComment(props) {
+const InputComment = forwardRef((props, ref) => {
   return (
     <Wrapper>
       <TextInput
@@ -26,16 +26,19 @@ export default function InputComment(props) {
         style={styles.textInput}
         onChange={props.onChange}
         defaultValue={props.defaultValue}
+        ref={ref}
       />
       <SubmitBtn onPress={props.onPress}>
-        <SubmitTxt>등록</SubmitTxt>
+        <SubmitTxt>{props.text}</SubmitTxt>
       </SubmitBtn>
     </Wrapper>
   );
-}
+});
 
 const styles = StyleSheet.create({
   textInput: {
     width: '80%',
   },
 });
+
+export default InputComment;
