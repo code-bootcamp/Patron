@@ -59,7 +59,8 @@ export default function HomeChildrenUI(props) {
           <E.RecommendWrapper>
             <E.RecommendTitle>
               <E.RecommendTitleText>
-                <E.UserName>김이웃</E.UserName>님의 가치 여행을 기다려요!
+                <E.UserName>{props.dataForUser?.fetchUserLoggedIn.name || '김이웃'}</E.UserName>님의
+                가치 여행을 기다려요!
               </E.RecommendTitleText>
             </E.RecommendTitle>
             {props.data?.fetchUseditems

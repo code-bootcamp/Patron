@@ -1,6 +1,6 @@
 import * as React from 'react';
 import HomeChildrenUI from './HomeChildren.presenter';
-import { FETCH_USEDITEMS } from './HomeChildren.queries';
+import { FETCH_USEDITEMS, FETCH_USER_LOGGED_IN } from './HomeChildren.queries';
 import { useQuery } from '@apollo/client';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -23,5 +23,9 @@ export default function HomeChildren({ navigation }: Props) {
       search: '결연아동',
     },
   });
-  return <HomeChildrenUI data={data} navigation={navigation} />;
+
+  const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
+
+  return <HomeChildrenUI data={data} dataForUser={dataForUser} navigation={navigation} />;
+
 }

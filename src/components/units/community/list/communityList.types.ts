@@ -16,14 +16,4 @@ export type IPropsRoute = {
 
 export interface IPropsCommunityListUI {
   data?: Pick<Query, 'fetchUseditem'>;
-  getListDetail: () => void;
-  firedata: any;
-}
-
-export interface IPropsPopularScreen {
-  data?: any;
-}
-
-export interface IPropsLatestScreen {
-  data?: any;
 }

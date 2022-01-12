@@ -5,6 +5,7 @@ import ColoredTag from '../../../commons/tags/coloredtag';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
+import ClearProgressBar from '../../../commons/progressbar/clearprogressbar';
 
 export default function HomePatronUI(props) {
   return (
@@ -50,6 +51,12 @@ export default function HomePatronUI(props) {
                             fontSize={'9px'}
                             padding={'2px 4px 2px 4px'}
                           />
+                          <ClearProgressBar
+                            height={'4px'}
+                            current={39}
+                            id={el._id}
+                            createdAt={el.createdAt}
+                          />
                         </E.CardTag>
                       </E.ImgWrapper>
                       <E.CardDetails>
@@ -73,7 +80,8 @@ export default function HomePatronUI(props) {
           <E.RecommendWrapper>
             <E.RecommendTitle>
               <E.RecommendTitleText>
-                <E.UserName>김이웃</E.UserName>님과 어울리는 정기후원이에요!
+                <E.UserName>{props.dataForUser?.fetchUserLoggedIn.name || '김이웃'}</E.UserName>님과
+                어울리는 정기후원이에요!
               </E.RecommendTitleText>
             </E.RecommendTitle>
 
@@ -101,6 +109,12 @@ export default function HomePatronUI(props) {
                           text={`#${el.tags[0]}`}
                           fontSize={'9px'}
                           padding={'2px 4px 2px 4px'}
+                        />
+                        <ClearProgressBar
+                          height={'2px'}
+                          current={39}
+                          id={el._id}
+                          createdAt={el.createdAt}
                         />
                       </E.CardTag>
                     </E.RImageWrpper>
