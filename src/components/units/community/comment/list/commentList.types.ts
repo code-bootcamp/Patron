@@ -3,7 +3,7 @@ import { Query } from '../../../../../commons/types/generated/types';
 
 type RootStackParamList = {
   home: undefined;
-  community: { screen: string; params: { boardId: string } };
+  community: { screen: string; boardId: string };
   news: undefined;
   mypage: undefined;
 };
@@ -16,4 +16,5 @@ export interface IPropsCommentList {
 
 export interface IPropsCommentListUI {
   data?: Pick<Query, 'fetchBoardComments'>;
+  boardId: string;
 }

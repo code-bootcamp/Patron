@@ -14,7 +14,7 @@ export const FECTH_COMMENTS = gql`
   }
 `;
 
-export const CommentsCount = ({ boardId }: { boardId: string }) => {
+const CommentsCount = ({ boardId }: { boardId: string }) => {
   const { data: fetchComments } = useQuery(FECTH_COMMENTS, {
     variables: { boardId },
   });
@@ -24,3 +24,5 @@ export const CommentsCount = ({ boardId }: { boardId: string }) => {
 
   return <Text>{commentsCount}</Text>;
 };
+
+export default CommentsCount;

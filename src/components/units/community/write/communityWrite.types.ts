@@ -25,4 +25,8 @@ export interface IPropsCommunityWriteUI {
   images: string[] | [];
   addImage: () => void;
   onPressSubmit: () => void;
+  isEdit: boolean;
+  data: any;
+  firedata: any;
+  onPressUpdate: () => void;
 }

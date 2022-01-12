@@ -1,7 +1,7 @@
-import React, { createContext, useEffect, useState, Dispatch, SetStateAction } from 'react';
+import React, { createContext, useState, Dispatch, SetStateAction } from 'react';
 import 'react-native-gesture-handler';
 import { ApolloProvider, ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createUploadLink } from 'apollo-upload-client';
 // import { getAccessToken } from './src/components/commons/library/getAccessToken';
 // import { onError } from '@apollo/client/link/error';
@@ -63,14 +63,14 @@ const App = () => {
     cache: new InMemoryCache(),
   });
 
-  useEffect(() => {
-    AsyncStorage.getItem('refreshToken', (_, result) => {
-      console.log('refreshToken', result);
-      if (result) {
-        setMyAccessToken(result);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   AsyncStorage.getItem('refreshToken', (_, result) => {
+  //     console.log('refreshToken', result);
+  //     if (result) {
+  //       setMyAccessToken(result);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <GlobalContext.Provider value={value}>

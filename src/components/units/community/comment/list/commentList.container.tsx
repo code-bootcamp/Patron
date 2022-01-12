@@ -11,7 +11,8 @@ const CommentList = (props: IPropsCommentList) => {
     FETCH_BOARD_COMMENTS,
     { variables: { boardId } },
   );
-  return <CommentListUI data={data} />;
+
+  return <CommentListUI data={data} boardId={boardId} />;
 };
 
 export default CommentList;

@@ -59,7 +59,7 @@ const CommunityScreen = ({ navigation, route }) => {
           headerTransparent: true,
           headerTintColor: 'white',
           headerRight: () => (
-            <Icon name="ellipsis-vertical" color="white" size={20} style={{ padding: 20 }} />
+            <Icon name="ellipsis-vertical" color="white" size={20} style={{ padding: 15 }} />
           ),
         })}
       />

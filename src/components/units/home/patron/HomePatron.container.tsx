@@ -26,4 +26,5 @@ export default function HomePatron({ navigation }: Props) {
 
   const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
   return <HomePatronUI data={data} dataForUser={dataForUser} navigation={navigation} />;
+
 }
