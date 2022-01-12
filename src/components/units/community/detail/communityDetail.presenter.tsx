@@ -13,9 +13,9 @@ const CommunityDetailUI = (props: IPropsCommunityDetailUI) => {
   return (
     <>
       <S.Wrap>
-        <S.DetailHeader source={{ uri: props.data?.fetchBoard.images?.[3] }}>
+        <S.DetailHeader source={{ uri: props.data?.fetchBoard.images?.[0] }}>
           <R.View>
-            <S.HeaderTitle>{props.data?.fetchBoard.title}</S.HeaderTitle>
+            <S.HeaderTitle>{props.data?.fetchBoard.title.split('/')[1]}</S.HeaderTitle>
             <S.HeaderFooter>
               <S.HeaderFooterText>{props.data?.fetchBoard.writer}</S.HeaderFooterText>
               <S.FooterInner>
@@ -33,7 +33,7 @@ const CommunityDetailUI = (props: IPropsCommunityDetailUI) => {
           <S.DetailContents>{props.data?.fetchBoard.contents}</S.DetailContents>
           <S.HashWrap>
             {props.firedata?.tags?.map((el: any, idx: number) => (
-              <WhiteTag text={el} fontSize="10px" key={idx} />
+              <WhiteTag text={el} fontSize="10px" padding="8px 12px" key={idx} />
             ))}
           </S.HashWrap>
           <R.View>

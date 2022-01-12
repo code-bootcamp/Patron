@@ -5,19 +5,46 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { displayedAt } from '../../../../../commons/libraries/utils';
 import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 import CommentWrite from '../write/commentWrite.container';
+import { useMutation, useQuery } from '@apollo/client';
+import {
+  Mutation,
+  MutationDeleteBoardCommentArgs,
+  Query,
+  QueryFetchBoardCommentsArgs,
+} from '../../../../../commons/types/generated/types';
+import { DELETE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from './commentList.queries';
 
 const CommentListUIItem = (props) => {
+  const { refetch } = useQuery<Pick<Query, 'fetchBoardComments'>, QueryFetchBoardCommentsArgs>(
+    FETCH_BOARD_COMMENTS,
+  );
+  const [deleteBoardComment] = useMutation<
+    Pick<Mutation, 'deleteBoardComment'>,
+    MutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
   const [isEdit, setIsEdit] = useState(false);
 
   const onSelectUpdate = () => {
     setIsEdit(true);
   };
 
+  const onDeleteComment = async () => {
+    try {
+      const result = await deleteBoardComment({
+        variables: { password: '123', boardCommentId: props.el._id },
+      });
+      console.log(result);
+      refetch({ boardId: props.boardId });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <>
       {!isEdit && (
         <S.CommentWrap>
-          <S.CommentImg />
+          <S.CommentImg onPress={onDeleteComment} />
           <S.ContentsSection>
             <S.UserWrap>
               <S.UserName>{props.el.writer}</S.UserName>
@@ -31,12 +58,14 @@ const CommentListUIItem = (props) => {
             </MenuTrigger>
             <MenuOptions optionsContainerStyle={{ width: 100 }}>
               <MenuOption onSelect={onSelectUpdate} text="수정" style={{ padding: 10 }} />
-              <MenuOption text="삭제" style={{ padding: 10 }} />
+              <MenuOption onSelect={onDeleteComment} text="삭제" style={{ padding: 10 }} />
             </MenuOptions>
           </Menu>
         </S.CommentWrap>
       )}
-      {isEdit && <CommentWrite isEdit={true} setIsEdit={setIsEdit} el={props.el} />}
+      {isEdit && (
+        <CommentWrite isEdit={true} setIsEdit={setIsEdit} el={props.el} boardId={props.boardId} />
+      )}
     </>
   );
 };

@@ -9,7 +9,7 @@ export const CommentWrap = styled.View`
   padding: 10px 24px;
 `;
 
-export const CommentImg = styled.Image`
+export const CommentImg = styled.Pressable`
   width: 32px;
   height: 32px;
   background-color: #f5f5f5;

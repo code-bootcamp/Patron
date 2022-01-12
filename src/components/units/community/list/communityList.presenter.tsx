@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import React from 'react';
 import * as R from 'react-native';
 import * as S from './communityList.styles';
@@ -6,17 +7,30 @@ import 'react-native-gesture-handler';
 import ColoredTag from '../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
 import GreenButton from '../../../commons/buttons/greenbutton';
-import { IPropsCommunityListUI } from './communityList.types';
+import {
+  IPropsCommunityListUI,
+  IPropsLatestScreen,
+  IPropsPopularScreen,
+} from './communityList.types';
+import { useQuery } from '@apollo/client';
+import { Query, QueryFetchBoardsArgs } from '../../../../commons/types/generated/types';
+import { FETCH_BOARDS } from './communityList.queries';
 
 const Tab = createMaterialTopTabNavigator();
 
-function HomeScreen() {
+function PopularScreen(props: IPropsPopularScreen) {
+  const { data } = useQuery<Pick<Query, 'fetchBoards'>, QueryFetchBoardsArgs>(FETCH_BOARDS, {
+    variables: { search: props.data?.fetchUseditem.name.split('/')[1] },
+  });
+
   return (
     <>
       <R.ScrollView style={{ width: '100%' }}>
         <R.View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-          {new Array(12).fill(1).map((_, idx) => (
-            <S.BodyContent key={idx}></S.BodyContent>
+          {data?.fetchBoards.map((el: any, idx: number) => (
+            <S.BodyContent key={idx}>
+              <R.Image style={{ width: '100%', height: '100%' }} source={{ uri: el.images[0] }} />
+            </S.BodyContent>
           ))}
         </R.View>
       </R.ScrollView>
@@ -24,13 +38,19 @@ function HomeScreen() {
   );
 }
 
-function SettingsScreen() {
+function LatestScreen(props: IPropsLatestScreen) {
+  const { data } = useQuery<Pick<Query, 'fetchBoards'>, QueryFetchBoardsArgs>(FETCH_BOARDS, {
+    variables: { search: props.data?.fetchUseditem.name.split('/')[1] },
+  });
+
   return (
     <>
       <R.ScrollView style={{ width: '100%' }}>
         <R.View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-          {new Array(12).fill(1).map((_, idx) => (
-            <S.BodyContent key={idx}></S.BodyContent>
+          {data?.fetchBoards.map((el: any, idx: number) => (
+            <S.BodyContent key={idx}>
+              <R.Image style={{ width: '100%', height: '100%' }} source={{ uri: el.images[0] }} />
+            </S.BodyContent>
           ))}
         </R.View>
       </R.ScrollView>
@@ -44,7 +64,7 @@ const CommunityListUI = (props: IPropsCommunityListUI) => {
       <S.Wrap>
         <S.ListHeader
           source={{
-            uri: `https://storage.googleapis.com/${props.data?.fetchUseditem.images?.[0]}`,
+            uri: `https://${props.data?.fetchUseditem.images?.[0]}`,
           }}
         >
           <ColoredTag
@@ -67,15 +87,15 @@ const CommunityListUI = (props: IPropsCommunityListUI) => {
               tabBarIndicatorStyle: { backgroundColor: '#448800' },
             }}
           >
-            <Tab.Screen name="인기" component={HomeScreen} />
-            <Tab.Screen name="최근" component={SettingsScreen} />
+            <Tab.Screen name="인기" children={() => <PopularScreen data={props.data} />} />
+            <Tab.Screen name="최근" children={() => <LatestScreen data={props.data} />} />
           </Tab.Navigator>
         </S.ListBody>
         <S.ListFooter>
           <Icon name="heart-outline" size={20} />
           <S.FooterInner>
             <R.Text>
-              <R.Text style={{ color: 'black' }}>+999</R.Text>명 참여중
+              <R.Text style={{ color: 'black' }}>{props.firedata?.suppoters}</R.Text>명 참여중
             </R.Text>
             <GreenButton
               text="나도 참여하기"
@@ -83,6 +103,7 @@ const CommunityListUI = (props: IPropsCommunityListUI) => {
               height={38}
               fontSize="16px"
               borderRadius={8}
+              onPressBtn={props.getListDetail}
             />
           </S.FooterInner>
         </S.ListFooter>

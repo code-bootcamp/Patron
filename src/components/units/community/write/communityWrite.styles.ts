@@ -20,9 +20,11 @@ export const ContentsInput = styled.TextInput`
 `;
 
 export const HashWrap = styled.View`
+  flex-wrap: wrap;
   flex: 2;
   flex-direction: row;
   align-items: center;
+  padding: 10px;
   border-bottom-width: 1px;
   border-bottom-color: #f0f0f0;
 `;

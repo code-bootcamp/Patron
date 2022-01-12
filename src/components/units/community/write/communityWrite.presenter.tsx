@@ -23,9 +23,9 @@ const CommunityWriteUI = (props: IPropsCommunityWriteUI) => {
           defaultValue={props.data?.fetchBoard.contents || ''}
         />
         <S.HashWrap>
-          <R.View>
+          <R.View style={{ flexDirection: 'row' }}>
             {props.hashArr.map((el: string, idx: number) => (
-              <WhiteTag key={idx} text={el} onPress={props.deleteHash(idx)} />
+              <WhiteTag key={idx} text={el} padding="4px 8px" onPress={props.deleteHash(idx)} />
             ))}
           </R.View>
           <S.TagInput
