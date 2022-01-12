@@ -18,6 +18,7 @@ const HomeScreen = () => {
           headerTitle: '',
           headerShadowVisible: false,
           headerTransparent: true,
+          headerTintColor: 'transparent',
           headerTitleStyle: { fontSize: 22, fontWeight: '700' },
         })}
       />

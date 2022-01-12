@@ -7,8 +7,15 @@ import GreenButton from '../../../commons/buttons/greenbutton';
 import LinearGradient from 'react-native-linear-gradient';
 import WhiteTag from '../../../commons/tags/whitetag';
 import ReadMore from 'react-native-read-more-text';
+import ProgressBar from '../../../commons/progressbar/coloredprogressbar';
+import { displayDate, displayDDay } from '../../../../commons/libraries/utils';
+import HomeLetterWrite from '../letter/write/HomeLetterWrite.container';
 
 const HomeDetailsUI = (props) => {
+  const start = props.data?.fetchUseditem.createdAt;
+  const end = props.getDate;
+  const children = props.data?.fetchUseditem.name.split('/')[0] === '결연아동';
+
   return (
     <>
       <E.Wrapper>
@@ -39,7 +46,11 @@ const HomeDetailsUI = (props) => {
                   <E.DetailRemark>{props.data?.fetchUseditem.remarks.split('!')[0]}</E.DetailRemark>
                 </E.InfoDetails>
                 <E.InfoPeriod>
-                  <E.PeriodTxt>기간 12.03 - 12.28</E.PeriodTxt>
+                  <E.PeriodTxt>
+                    {`기간 ${displayDate(props.data?.fetchUseditem.createdAt)} - ${displayDate(
+                      props.getDate,
+                    )}`}
+                  </E.PeriodTxt>
                 </E.InfoPeriod>
               </E.Info>
             </E.TopOverWrapper>
@@ -48,13 +59,24 @@ const HomeDetailsUI = (props) => {
         <E.Bottom>
           <ScrollView>
             <E.BottomSummaryWrapper>
+              {children && (
+                <E.SummaryRemarks>{`"${props.data?.fetchUseditem.remarks}"`}</E.SummaryRemarks>
+              )}
               <E.SummaryContent>{props.data?.fetchUseditem.contents}</E.SummaryContent>
               <E.Tags>
                 {props.data?.fetchUseditem.tags.map((el, index) => (
-                  <WhiteTag key={index} text={el} fontSize={'12px'} />
+                  <WhiteTag key={index} text={el} fontSize={'10px'} padding={'4px 6px 4px 6px'} />
                 ))}
               </E.Tags>
-              <E.Progress></E.Progress>
+              {!children && (
+                <E.Progress>
+                  <ProgressBar
+                    id={props.data?.fetchUseditem._id}
+                    current={45}
+                    dday={displayDDay(start, end)}
+                  />
+                </E.Progress>
+              )}
             </E.BottomSummaryWrapper>
             <E.BottomDetailsWrapper>
               <E.DetailTitle>번역 봉사단 계획</E.DetailTitle>
@@ -79,6 +101,7 @@ const HomeDetailsUI = (props) => {
               </E.SupportersTxt>
               <AvatarGroup />
             </E.BottomSupporters>
+            <HomeLetterWrite route={props.route} />
             <E.BottomRecommendWrapper></E.BottomRecommendWrapper>
           </ScrollView>
         </E.Bottom>

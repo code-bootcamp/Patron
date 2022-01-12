@@ -39,10 +39,14 @@ export const Card = styled.View`
 export const ImgWrapper = styled.Pressable`
   width: 277px;
   height: 150px;
+  justify-content: space-between;
 `;
 
 export const CardTag = styled.View`
   position: absolute;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
   padding: 10px;
 `;
 
@@ -92,9 +96,12 @@ export const RecommendList = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  /* background-color: yellow; */
 `;
 
-export const RecommendCard = styled.View``;
+export const RecommendCard = styled.View`
+  /* background-color: yellowgreen; */
+`;
 
 export const RImageWrpper = styled.Pressable`
   width: 160px;

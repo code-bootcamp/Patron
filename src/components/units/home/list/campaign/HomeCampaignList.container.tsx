@@ -1,3 +1,4 @@
+import * as React from 'react';
 import HomeCampaignListUI from './HomeCampaignList.presenter';
 import { gql, useQuery } from '@apollo/client';
 

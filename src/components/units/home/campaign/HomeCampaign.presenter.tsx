@@ -1,59 +1,13 @@
 import * as React from 'react';
 import { Image, ScrollView } from 'react-native';
 import * as E from './HomeCampaign.styles';
-import { gql, useQuery } from '@apollo/client';
 import ColoredTag from '../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
-
-const FETCH_USEDITEMS = gql`
-  query fetchUseditems($isSoldout: Boolean, $search: String, $page: Int) {
-    fetchUseditems(isSoldout: $isSoldout, search: $search, page: $page) {
-      _id
-      name
-      remarks
-      contents
-      tags
-      pickedCount
-      images
-    }
-  }
-`;
-
-const FETCH_USER_LOGGED_IN = gql`
-  query fetchUserLoggedIn {
-    fetchUserLoggedIn {
-      name
-    }
-  }
-`;
-
-// const FETCH_USEDITEMS_I_PICKED = gql`
-//   query fetchUseditemsIPicked($search: String) {
-//     fetchUseditemsIPicked(search: $search) {
-//       _id
-//       name
-//       pickedCount
-//     }
-//   }
-// `;
+import ClearProgressBar from '../../../commons/progressbar/clearprogressbar';
 
 export default function HomeCampaignUI(props) {
-  const { data } = useQuery(FETCH_USEDITEMS, {
-    variables: {
-      search: '캠페인',
-    },
-  });
-
-  const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
-
-  // const { data: dataForIPicked } = useQuery(FETCH_USEDITEMS_I_PICKED, {
-  //   variables: {
-  //     search: '캠페인',
-  //   },
-  // });
-
   return (
     <>
       <ScrollView>
@@ -65,7 +19,7 @@ export default function HomeCampaignUI(props) {
             </E.SelectionTitle>
             <E.SelectionList>
               <ScrollView horizontal={true}>
-                {data?.fetchUseditems
+                {props.data?.fetchUseditems
                   .map((el) => (
                     <E.Card key={el._id}>
                       <E.ImgWrapper
@@ -75,7 +29,12 @@ export default function HomeCampaignUI(props) {
                       >
                         {el.images && (
                           <Image
-                            style={{ width: 277, height: 150, borderRadius: 8 }}
+                            style={{
+                              width: 277,
+                              height: 150,
+                              borderRadius: 8,
+                              position: 'relative',
+                            }}
                             source={{
                               uri: `https://${el.images[0]}`,
                             }}
@@ -98,6 +57,13 @@ export default function HomeCampaignUI(props) {
                             text={`#${el.tags[0]}`}
                             fontSize={'9px'}
                             padding={'2px 4px 2px 4px'}
+                          />
+                          <ClearProgressBar
+                            current={50}
+                            dday={9}
+                            height={'4px'}
+                            id={el._id}
+                            createdAt={el.createdAt}
                           />
                         </E.CardTag>
                       </E.ImgWrapper>
@@ -135,13 +101,13 @@ export default function HomeCampaignUI(props) {
           <E.RecommendWrapper>
             <E.RecommendTitle>
               <E.RecommendTitleText>
-                <E.UserName>{dataForUser?.fetchUserLoggedIn.name || '김이웃'}</E.UserName>님과
+                <E.UserName>{props.dataForUser?.fetchUserLoggedIn.name || '김이웃'}</E.UserName>님과
                 어울리는 캠페인이에요!
               </E.RecommendTitleText>
             </E.RecommendTitle>
 
             <E.RecommendList>
-              {data?.fetchUseditems
+              {props.data?.fetchUseditems
                 .map((el) => (
                   <E.RecommendCard key={el._id}>
                     <E.RImageWrpper
@@ -172,6 +138,12 @@ export default function HomeCampaignUI(props) {
                           text={`#${el.tags[0]}`}
                           fontSize={'9px'}
                           padding={'2px 4px 2px 4px'}
+                        />
+                        <ClearProgressBar
+                          current={50}
+                          createdAt={el.createdAt}
+                          height={'2px'}
+                          id={el._id}
                         />
                       </E.CardTag>
                     </E.RImageWrpper>

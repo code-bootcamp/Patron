@@ -41,7 +41,10 @@ export const ImgWrapper = styled.Pressable`
 
 export const CardTag = styled.View`
   padding: 10px;
+  justify-content: space-between;
   position: absolute;
+  width: 100%;
+  height: 100%;
 `;
 
 export const CardDetails = styled.View`

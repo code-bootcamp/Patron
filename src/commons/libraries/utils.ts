@@ -16,3 +16,22 @@ export function displayedAt(value: string) {
   }
   return `${Math.floor(betweenTimeDay / 365)}년 전`;
 }
+
+export function displayDate(value: string) {
+  const getDate = new Date(value);
+  const month = getDate.getMonth() + 1;
+  const date = getDate.getDate();
+  return `${month}.${date}`;
+}
+
+export function displayDDay(start: string, end: string) {
+  const endDate = new Date(end);
+
+  const startDate = new Date(start);
+
+  const distance = endDate.getTime() - startDate.getTime();
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+  return days;
+}

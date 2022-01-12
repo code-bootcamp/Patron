@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import * as React from 'react';
 import HomePatronUI from './HomePatron.presenter';
-import { FETCH_USEDITEMS } from './HomePatron.queries';
+import { FETCH_USEDITEMS, FETCH_USER_LOGGED_IN } from './HomePatron.queries';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type RootStackParamList = {
@@ -23,5 +23,7 @@ export default function HomePatron({ navigation }: Props) {
       search: '정기후원',
     },
   });
-  return <HomePatronUI data={data} navigation={navigation} />;
+
+  const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
+  return <HomePatronUI data={data} dataForUser={dataForUser} navigation={navigation} />;
 }

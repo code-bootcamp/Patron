@@ -71,6 +71,14 @@ export const BottomSummaryWrapper = styled.View`
   background-color: white;
 `;
 
+export const SummaryRemarks = styled.Text`
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 10px;
+  color: #000;
+  font-size: 15px;
+`;
+
 export const SummaryContent = styled.Text`
   color: #000;
   padding-bottom: 10px;
@@ -104,7 +112,7 @@ export const BottomSupporters = styled.View`
   width: 100%;
   /* background-color: mediumpurple; */
   flex: 0.5;
-  margin-top: 20px;
+  margin: 20px 0px 20px 0px;
   padding: 15px;
   flex-direction: row;
   justify-content: space-between;
