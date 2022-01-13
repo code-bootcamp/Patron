@@ -42,12 +42,29 @@ const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
   const [firedata, setFiredata] = useState({});
 
   useEffect(() => {
+    navigation.getParent()?.setOptions({ tabBarStyle: { display: 'none' } });
+    return () =>
+      navigation.getParent()?.setOptions({
+        tabBarStyle: {
+          height: 64,
+          paddingTop: 10,
+          paddingBottom: 10,
+          paddingLeft: 30,
+          paddingRight: 30,
+        },
+      });
+  }, [navigation]);
+
+  useEffect(() => {
     commuCollection
       .doc(boardId)
       .get()
       .then((doc) => setFiredata({ ...doc.data() }));
-    firedata.tags && setHashArr([...firedata.tags]);
-  }, []);
+  }, [isEdit]);
+
+  useEffect(() => {
+    setHashArr(firedata.tags);
+  }, [isEdit, firedata]);
 
   const onChangeTitle = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setTitle(event.nativeEvent.text);

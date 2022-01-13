@@ -36,7 +36,7 @@ export const ListBody = styled.View`
   flex: 10;
 `;
 
-export const BodyContent = styled.View`
+export const BodyContent = styled.Pressable`
   width: 33.3%;
   height: 130px;
   overflow: hidden;

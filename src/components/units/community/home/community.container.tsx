@@ -2,12 +2,12 @@ import CommunityUI from './community.presenter';
 import firestore from '@react-native-firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { FETCH_BOARDS_BEST, FETCH_BEST_ITEMS, FETCH_USER_LOGGED_IN } from './community.queries';
+import { FETCH_BEST_ITEMS, FETCH_USER_LOGGED_IN, FETCH_BOARDS } from './community.queries';
 import { IPropsNavigation } from './community.types';
 import { Query } from '../../../../commons/types/generated/types';
 
 const Community = ({ navigation }: IPropsNavigation) => {
-  const { data } = useQuery<Pick<Query, 'fetchBoardsOfTheBest'>>(FETCH_BOARDS_BEST);
+  const { data } = useQuery<Pick<Query, 'fetchBoards'>>(FETCH_BOARDS);
   const { data: bestData } = useQuery<Pick<Query, 'fetchUseditemsOfTheBest'>>(FETCH_BEST_ITEMS);
   const { data: loginData } = useQuery<Pick<Query, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN);
   const commuCollection = firestore().collection('community');
