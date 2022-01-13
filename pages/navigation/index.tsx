@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/home';
 import CommunityScreen from '../screens/community';
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from '../screens/signup';
 
 const DefaultScreen = () => {
   return (
@@ -97,7 +96,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="signup" component={LoginScreen}></Stack.Screen>
+        {/* <Stack.Screen name="signup" component={LoginScreen}></Stack.Screen> */}
         <Stack.Screen
           name="mainScreen"
           component={MainScreen}

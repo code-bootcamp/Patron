@@ -24,7 +24,7 @@ const CommunityWriteUI = (props: IPropsCommunityWriteUI) => {
         />
         <S.HashWrap>
           <R.View style={{ flexDirection: 'row' }}>
-            {props.hashArr.map((el: string, idx: number) => (
+            {props.hashArr?.map((el: string, idx: number) => (
               <WhiteTag key={idx} text={el} padding="4px 8px" onPress={props.deleteHash(idx)} />
             ))}
           </R.View>

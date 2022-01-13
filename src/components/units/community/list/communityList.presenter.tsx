@@ -15,6 +15,8 @@ import {
 import { useQuery } from '@apollo/client';
 import { Query, QueryFetchBoardsArgs } from '../../../../commons/types/generated/types';
 import { FETCH_BOARDS } from './communityList.queries';
+import GetDday from '../../../../commons/libraries/getDday';
+import { useNavigation } from '@react-navigation/core';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -22,13 +24,18 @@ function PopularScreen(props: IPropsPopularScreen) {
   const { data } = useQuery<Pick<Query, 'fetchBoards'>, QueryFetchBoardsArgs>(FETCH_BOARDS, {
     variables: { search: props.data?.fetchUseditem.name.split('/')[1] },
   });
+  const navigation = useNavigation();
+
+  const getDetail = (id: string) => () => {
+    navigation.navigate('community', { screen: 'detail', params: { boardId: id } });
+  };
 
   return (
     <>
       <R.ScrollView style={{ width: '100%' }}>
         <R.View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
           {data?.fetchBoards.map((el: any, idx: number) => (
-            <S.BodyContent key={idx}>
+            <S.BodyContent key={idx} onPress={getDetail(el._id)}>
               <R.Image style={{ width: '100%', height: '100%' }} source={{ uri: el.images[0] }} />
             </S.BodyContent>
           ))}
@@ -42,13 +49,18 @@ function LatestScreen(props: IPropsLatestScreen) {
   const { data } = useQuery<Pick<Query, 'fetchBoards'>, QueryFetchBoardsArgs>(FETCH_BOARDS, {
     variables: { search: props.data?.fetchUseditem.name.split('/')[1] },
   });
+  const navigation = useNavigation();
+
+  const getDetail = (id: string) => () => {
+    navigation.navigate('community', { screen: 'detail', params: { boardId: id } });
+  };
 
   return (
     <>
       <R.ScrollView style={{ width: '100%' }}>
         <R.View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
           {data?.fetchBoards.map((el: any, idx: number) => (
-            <S.BodyContent key={idx}>
+            <S.BodyContent key={idx} onPress={getDetail(el._id)}>
               <R.Image style={{ width: '100%', height: '100%' }} source={{ uri: el.images[0] }} />
             </S.BodyContent>
           ))}
@@ -74,7 +86,7 @@ const CommunityListUI = (props: IPropsCommunityListUI) => {
           />
           <S.HeaderInner>
             <S.HeaderTitle>{props.data?.fetchUseditem.name.split('/')[1]}</S.HeaderTitle>
-            <S.HeaderDday>D-3</S.HeaderDday>
+            <GetDday id={props.data?.fetchUseditem._id} />
           </S.HeaderInner>
         </S.ListHeader>
         <S.ListBody>

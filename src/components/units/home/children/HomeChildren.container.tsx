@@ -27,5 +27,4 @@ export default function HomeChildren({ navigation }: Props) {
   const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
 
   return <HomeChildrenUI data={data} dataForUser={dataForUser} navigation={navigation} />;
-
 }

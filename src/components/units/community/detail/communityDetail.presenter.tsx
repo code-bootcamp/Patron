@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import WhiteTag from '../../../commons/tags/whitetag';
 import { displayedAt } from '../../../../commons/libraries/utils';
 import { IPropsCommunityDetailUI } from './communityDetail.types';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import CommentWrite from '../comment/write/commentWrite.container';
 import CommentList from '../comment/list/commentList.container';
 
@@ -59,12 +59,17 @@ const CommunityDetailUI = (props: IPropsCommunityDetailUI) => {
             showsUserLocation={true}
             showsMyLocationButton={true}
             initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: 8.850428,
+              longitude: 38.971597,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             }}
-          />
+          >
+            <Marker
+              coordinate={{ latitude: 8.850428, longitude: 38.971597 }}
+              description="후원지역"
+            />
+          </MapView>
           <S.MapFooter>
             <S.MapFooterLeft>
               <R.Image source={require('../../../../../public/images/community/googleMap.png')} />
