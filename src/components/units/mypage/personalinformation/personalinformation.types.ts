@@ -11,9 +11,12 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList,
 
 export type IPropsPersonalinformation = {
   navigation: ProfileScreenNavigationProp;
+  onPressLogout: () => Promise<void>;
 };
 
 export interface IPropsPersonalinformationUI {
+  data: any;
   navigation: ProfileScreenNavigationProp;
   onPress: () => void;
+  onPressLogout: () => Promise<void>;
 }

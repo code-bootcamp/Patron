@@ -10,5 +10,12 @@ type RootStackParamList = {
 type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'mypage'>;
 
 export interface IPropsEditUI {
+  onChangeName: any;
+  data: any;
+  fetchUserLoggedIn: any;
   navigation: ProfileScreenNavigationProp;
+  name: string;
+  password: string;
+  onChangePassword: any;
+  onClickUpdate: () => Promise<void>;
 }

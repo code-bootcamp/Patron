@@ -2,22 +2,13 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
-import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Home from '../screens/home';
 import CommunityScreen from '../screens/community';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/signup';
-
-const DefaultScreen = () => {
-  return (
-    <>
-      <View>
-        <Text>hello world</Text>
-      </View>
-    </>
-  );
-};
+import MypageScreen from '../screens/mypage';
+import NewsScreen from '../screens/news';
 
 const MainScreen = () => {
   return (
@@ -62,7 +53,7 @@ const MainScreen = () => {
       ></Tab.Screen>
       <Tab.Screen
         name="News"
-        component={DefaultScreen}
+        component={NewsScreen}
         options={{
           tabBarLabel: '소식',
           tabBarIcon: ({ focused }) =>
@@ -74,8 +65,8 @@ const MainScreen = () => {
         }}
       ></Tab.Screen>
       <Tab.Screen
-        name="Mypage"
-        component={DefaultScreen}
+        name="mypage"
+        component={MypageScreen}
         options={{
           tabBarLabel: '내정보',
           tabBarIcon: ({ focused }) =>

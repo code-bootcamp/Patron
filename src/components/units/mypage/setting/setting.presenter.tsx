@@ -115,7 +115,9 @@ const SettingUI = (props: any) => {
           <S.InnerContents>1.1.3</S.InnerContents>
         </S.Version>
         <View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
-        <S.InnerContents onPress={() => props.navigation.navigate()}>탈퇴하기</S.InnerContents>
+        <S.InnerContents onPress={() => props.navigation.navigate('register')}>
+          탈퇴하기
+        </S.InnerContents>
         <View style={{ borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }} />
       </S.EtcWrapper>
     </S.WholeWrapper>
