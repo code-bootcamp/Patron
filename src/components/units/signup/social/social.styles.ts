@@ -6,6 +6,7 @@ export const Wrapper = styled.View`
   justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: #ffffff;
 `;
 
 export const Title_Wrapper = styled.View`
@@ -20,22 +21,19 @@ export const Title = styled.Text`
   font-weight: 700;
 `;
 
-export const Kakao_Wrapper = styled.View`
+export const Firebase_Wrapper = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 328px;
-  height: 48px;
-  padding: 10px;
+  align-items: center;
+  padding: 15px;
+  /* margin: 15px; */
 `;
 
 export const Google_Wrapper = styled.View`
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  width: 328px;
-  height: 48px;
-  padding: 10px;
+  align-items: center;
 `;
 
 export const Icon = styled.Image`

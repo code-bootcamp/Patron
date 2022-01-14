@@ -6,6 +6,7 @@ export const Wrapper = styled.View`
   align-items: center;
   width: 100%;
   height: 100%;
+  background-color: #ffffff;
 `;
 
 export const Image_Wrapper = styled.View`
@@ -43,6 +44,8 @@ export const Profile_Camera = styled.Image`
 export const Welcome_Wrapper = styled.View`
   flex: 1;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   width: 100%;
 `;
@@ -50,10 +53,21 @@ export const Welcome_Wrapper = styled.View`
 export const Welcome_Letter = styled.Text`
   font-size: 30px;
   font-weight: 700;
+  margin: 5px;
+  text-align: center;
+`;
+
+export const User = styled.Text`
+  color: black;
+  font-size: 30px;
+  font-weight: 900;
+  margin: 5px;
   text-align: center;
 `;
 
 export const Submit_Wrapper = styled.View`
-  flex: 0.2;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
 `;

@@ -7,6 +7,7 @@ export const Wrapper = styled.View`
   width: 100%;
   height: 100%;
   padding: 45px;
+  background-color: #ffffff;
 `;
 
 export const BackImage = styled.ImageBackground`
@@ -36,12 +37,13 @@ export const Profile_Camera = styled.Image`
 export const Email_Wrapper = styled.View`
   flex: 1;
   width: 100%;
+  margin-top: 10px;
 `;
 
 export const Email = styled.Text`
   font-size: 15px;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 export const Password_Wrapper = styled.View`
@@ -52,7 +54,7 @@ export const Password_Wrapper = styled.View`
 export const Password = styled.Text`
   font-size: 15px;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 export const PasswordConfirm_Wrapper = styled.View`
@@ -63,7 +65,7 @@ export const PasswordConfirm_Wrapper = styled.View`
 export const Password_Confirm = styled.Text`
   font-size: 15px;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 export const Name_Wrapper = styled.View`
@@ -71,11 +73,43 @@ export const Name_Wrapper = styled.View`
   width: 100%;
 `;
 
+export const Name = styled.Text`
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 5px;
+`;
+
+export const Email_Auth = styled.View`
+  flex: 1;
+  width: 100%;
+  margin-bottom: 10px;
+`;
+
+export const Email_Authentication = styled.Text`
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 5px;
+`;
+
+export const Auth = styled.View`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 15px;
+`;
+
 export const Submit_Wrapper = styled.View`
   flex: 1;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 `;
 
 export const GreenButton = styled.TextInput`
   text-align: center;
+`;
+
+export const Error_Text = styled.Text`
+  color: red;
 `;

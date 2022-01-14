@@ -1,6 +1,8 @@
 import React from 'react';
 import * as R from 'react-native';
 import * as S from './social.styles';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import ClearButton from '../../../commons/buttons/clearbutton';
 
 const SocialUI = (props) => {
   return (
@@ -8,14 +10,21 @@ const SocialUI = (props) => {
       <S.Title_Wrapper>
         <S.Title>가장 좋은 이웃 GoodNeighbors</S.Title>
       </S.Title_Wrapper>
-      <S.Kakao_Wrapper>
-        <S.Icon source={require('../../../../../public/images/kakao.png')} />
-        <R.Text>카카오로 시작하기</R.Text>
-      </S.Kakao_Wrapper>
       <S.Google_Wrapper>
-        <S.Icon source={require('../../../../../public/images/google.png')} />
-        <R.Text>구글로 시작하기</R.Text>
+        <GoogleSigninButton
+          onPress={props.onGoogleButtonPress}
+          style={{ width: 328, height: 48 }}
+          color={GoogleSigninButton.Color.Light}
+        />
       </S.Google_Wrapper>
+      <S.Firebase_Wrapper>
+        <ClearButton
+          text="이메일로 시작하기"
+          width="328px"
+          height="50px"
+          onPressBtn={() => props.navigation.navigate('firebaselogin')}
+        />
+      </S.Firebase_Wrapper>
       <S.Bottom_Wrapper>
         <R.View>
           <S.Login onPress={() => props.navigation.navigate('login')}>로그인</S.Login>
