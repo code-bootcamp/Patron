@@ -1,114 +1,73 @@
 import * as React from 'react';
-import styled from '@emotion/native';
-import { Image } from 'react-native';
-import { gql, useQuery } from '@apollo/client';
-import ColoredTag from '../../../../commons/tags/coloredtag';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { ScrollView } from 'react-native-gesture-handler';
+import { useQuery, useMutation } from '@apollo/client';
+import {
+  FETCH_USEDITEMS,
+  FETCH_USEDITEMS_I_PICKED,
+  TOGGLE_USEDITEM_PICK,
+} from './HomeChildrenList.queries';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import HomeChildrenListUI from './HomeChildrenList.presenter';
 
-const FETCH_USEDITEMS = gql`
-  query fetchUseditems($isSoldout: Boolean, $search: String, $page: Int) {
-    fetchUseditems(isSoldout: $isSoldout, search: $search, page: $page) {
-      _id
-      name
-      remarks
-      contents
-      tags
-      pickedCount
-      images
-    }
-  }
-`;
+type RootStackParamList = {
+  home: { screen: string };
+  community: { screen: string };
+  news: undefined;
+  mypage: undefined;
+};
 
-export const ChildrenList = styled.View`
-  flex-direction: row;
-  width: 100%;
-  padding: 25px 0px 25px 20px;
-  border-bottom-width: 1px;
-  border-color: #f0f0f0;
-  justify-content: space-between;
-  background-color: white;
-`;
+type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'home'>;
 
-export const ChildImgWrapper = styled.View`
-  justify-content: center;
-  align-items: center;
-`;
+type Props = {
+  navigation: ProfileScreenNavigationProp;
+};
 
-export const ChildDetails = styled.View`
-  /* background-color: lightcoral; */
-  flex-direction: row;
-  padding: 0px 0px 0px 15px;
-  /* justify-content: space-between; */
-  align-items: stretch;
-`;
-
-export const ChildAbout = styled.View`
-  width: 80%;
-  /* background-color: lightyellow; */
-  justify-content: space-between;
-`;
-
-export const ChildName = styled.Text`
-  color: #000;
-  font-weight: 700;
-  padding-bottom: 5px;
-`;
-
-export const ChildBio = styled.Text`
-  color: #000;
-`;
-
-export const ChildrenTags = styled.View`
-  flex-direction: row;
-  /* background-color: lightskyblue; */
-`;
-
-export const ChildBookmark = styled.View`
-  /* background-color: lightpink; */
-`;
-
-export default function HomeChildrenList() {
+export default function HomeChildrenList({ navigation }: Props) {
+  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
   const { data } = useQuery(FETCH_USEDITEMS, {
     variables: {
       search: '결연아동',
     },
   });
+  const { data: dataForPicked } = useQuery(FETCH_USEDITEMS_I_PICKED, {
+    variables: {
+      search: '',
+    },
+  });
+
+  const onPressPick = (el) => async () => {
+    try {
+      await toggleUseditemPick({
+        variables: {
+          useditemId: el._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEMS,
+            variables: {
+              search: '결연아동',
+            },
+          },
+          {
+            query: FETCH_USEDITEMS_I_PICKED,
+            variables: {
+              search: '',
+            },
+          },
+        ],
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <>
-      <ScrollView>
-        {data?.fetchUseditems.map((el) => (
-          <ChildrenList key={el._id}>
-            <ChildImgWrapper>
-              <Image
-                style={{ width: 86, height: 86, borderRadius: 50 }}
-                source={{
-                  uri: `https://${el.images[0]}`,
-                }}
-              />
-            </ChildImgWrapper>
-            <ChildDetails>
-              <ChildAbout>
-                <ChildName>{el.name.split('/')[1]}</ChildName>
-                <ChildBio>{el.remarks}</ChildBio>
-                <ChildrenTags key={el._id}>
-                  {el.tags?.map((el, index) => (
-                    <ColoredTag
-                      key={index}
-                      text={`#${el}`}
-                      fontSize={'9px'}
-                      padding={'2px 4px 2px 4px'}
-                    />
-                  ))}
-                </ChildrenTags>
-              </ChildAbout>
-              <ChildBookmark>
-                <Icon name="bookmark-outline" size={20} color={'rgba(0, 0, 0, 0.4)'} />
-              </ChildBookmark>
-            </ChildDetails>
-          </ChildrenList>
-        ))}
-      </ScrollView>
+      <HomeChildrenListUI
+        data={data}
+        dataForPicked={dataForPicked}
+        onPressPick={onPressPick}
+        navigation={navigation}
+      />
     </>
   );
 }

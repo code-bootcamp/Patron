@@ -51,12 +51,7 @@ export default function HomePatronUI(props) {
                             fontSize={'9px'}
                             padding={'2px 4px 2px 4px'}
                           />
-                          <ClearProgressBar
-                            height={'4px'}
-                            current={39}
-                            id={el._id}
-                            createdAt={el.createdAt}
-                          />
+                          <ClearProgressBar height={'4px'} id={el._id} createdAt={el.createdAt} />
                         </E.CardTag>
                       </E.ImgWrapper>
                       <E.CardDetails>
@@ -67,7 +62,23 @@ export default function HomePatronUI(props) {
                           </E.ContentRemark>
                         </E.DetailsContent>
                         <E.DetailsBookmark>
-                          <Icon name="bookmark-outline" size={20} color={'rgba(0, 0, 0, 0.4)'} />
+                          {!props.dataForPicked?.fetchUseditemsIPicked
+                            .map((pick) => pick._id)
+                            .includes(el._id) ? (
+                            <Icon
+                              name="bookmark-outline"
+                              size={20}
+                              color={'rgba(0, 0, 0, 0.4)'}
+                              onPress={props.onPressPick(el)}
+                            />
+                          ) : (
+                            <Icon
+                              name="bookmark"
+                              size={20}
+                              color={'#448800'}
+                              onPress={props.onPressPick(el)}
+                            />
+                          )}
                         </E.DetailsBookmark>
                       </E.CardDetails>
                     </E.Card>
@@ -110,18 +121,29 @@ export default function HomePatronUI(props) {
                           fontSize={'9px'}
                           padding={'2px 4px 2px 4px'}
                         />
-                        <ClearProgressBar
-                          height={'2px'}
-                          current={39}
-                          id={el._id}
-                          createdAt={el.createdAt}
-                        />
+                        <ClearProgressBar height={'2px'} id={el._id} createdAt={el.createdAt} />
                       </E.CardTag>
                     </E.RImageWrpper>
                     <E.RecommendCardDetails>
                       <E.RecommendCardTitle>{el.name.split('/')[1]}</E.RecommendCardTitle>
                       <E.RecommendBookmark>
-                        <Icon name="bookmark-outline" size={20} color={'rgba(0, 0, 0, 0.4)'} />
+                        {!props.dataForPicked?.fetchUseditemsIPicked
+                          .map((pick) => pick._id)
+                          .includes(el._id) ? (
+                          <Icon
+                            name="bookmark-outline"
+                            size={20}
+                            color={'rgba(0, 0, 0, 0.4)'}
+                            onPress={props.onPressPick(el)}
+                          />
+                        ) : (
+                          <Icon
+                            name="bookmark"
+                            size={20}
+                            color={'#448800'}
+                            onPress={props.onPressPick(el)}
+                          />
+                        )}
                       </E.RecommendBookmark>
                     </E.RecommendCardDetails>
                   </E.RecommendCard>

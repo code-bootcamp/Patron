@@ -58,13 +58,7 @@ export default function HomeCampaignUI(props) {
                             fontSize={'9px'}
                             padding={'2px 4px 2px 4px'}
                           />
-                          <ClearProgressBar
-                            current={50}
-                            dday={9}
-                            height={'4px'}
-                            id={el._id}
-                            createdAt={el.createdAt}
-                          />
+                          <ClearProgressBar height={'4px'} id={el._id} createdAt={el.createdAt} />
                         </E.CardTag>
                       </E.ImgWrapper>
                       <E.CardDetails>
@@ -75,7 +69,9 @@ export default function HomeCampaignUI(props) {
                           </E.ContentRemark>
                         </E.DetailsContent>
                         <E.DetailsBookmark>
-                          {!props.isPicked ? (
+                          {!props.dataForPicked?.fetchUseditemsIPicked
+                            .map((pick) => pick._id)
+                            .includes(el._id) ? (
                             <Icon
                               name="bookmark-outline"
                               size={20}
@@ -139,30 +135,27 @@ export default function HomeCampaignUI(props) {
                           fontSize={'9px'}
                           padding={'2px 4px 2px 4px'}
                         />
-                        <ClearProgressBar
-                          current={50}
-                          createdAt={el.createdAt}
-                          height={'2px'}
-                          id={el._id}
-                        />
+                        <ClearProgressBar createdAt={el.createdAt} height={'2px'} id={el._id} />
                       </E.CardTag>
                     </E.RImageWrpper>
                     <E.RecommendCardDetails>
                       <E.RecommendCardTitle>{el.name.split('/')[1]}</E.RecommendCardTitle>
                       <E.RecommendBookmark>
-                        {!props.isPicked ? (
+                        {!props.dataForPicked?.fetchUseditemsIPicked
+                          .map((pick) => pick._id)
+                          .includes(el._id) ? (
                           <Icon
                             name="bookmark-outline"
                             size={20}
                             color={'rgba(0, 0, 0, 0.4)'}
-                            // onPress={props.onPressPick}
+                            onPress={props.onPressPick(el)}
                           />
                         ) : (
                           <Icon
                             name="bookmark"
                             size={20}
                             color={'#448800'}
-                            // onPress={props.onPressPick}
+                            onPress={props.onPressPick(el)}
                           />
                         )}
                       </E.RecommendBookmark>

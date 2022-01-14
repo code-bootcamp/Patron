@@ -1,11 +1,11 @@
 import * as React from 'react';
-import * as E from './HomeCampaignList.styles';
-import { Image } from 'react-native';
+import * as E from './HomePatronList.styles';
 import ColoredTag from '../../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Image } from 'react-native';
 
-export default function HomeCampaignListUI(props) {
+export default function HomePatronListUI(props) {
   return (
     <>
       <ScrollView>

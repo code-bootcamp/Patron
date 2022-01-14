@@ -5,7 +5,7 @@ import HomeCampaignList from '../../../src/components/units/home/list/campaign/H
 import HomeDetails from '../../../src/components/units/home/details/HomeDetails.container';
 import HomeChildrenList from '../../../src/components/units/home/list/children/HomeChildrenList.container';
 import HomePatronList from '../../../src/components/units/home/list/patron/HomePatronList.container';
-
+import HomePayment from '../../../src/components/units/home/payment/HomePayment.container';
 const Stack = createStackNavigator();
 
 const HomeScreen = () => {
@@ -64,6 +64,17 @@ const HomeScreen = () => {
           headerShadowVisible: true,
           headerTransparent: true,
           headerTintColor: 'white',
+        })}
+      />
+      <Stack.Screen
+        name="homePayment"
+        component={HomePayment}
+        options={() => ({
+          headerTitle: '결제하기',
+          headerTitleStyle: { fontSize: 22, fontWeight: '700' },
+          headerShadowVisible: true,
+          headerTransparent: false,
+          headerTintColor: 'black',
         })}
       />
     </Stack.Navigator>
