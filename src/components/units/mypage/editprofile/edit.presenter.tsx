@@ -4,6 +4,7 @@ import GreenButton from '../../../commons/buttons/greenbutton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import InputBasic from '../../../commons/inputs/basic';
 import { IPropsEditUI } from './edit.types';
+import { View, Text } from 'react-native';
 
 const EditUI = (props: IPropsEditUI) => {
   return (
@@ -13,19 +14,19 @@ const EditUI = (props: IPropsEditUI) => {
       </E.EditWrapper>
       <E.ProfileWrapper>
         <Icon name="person-circle" size={100}></Icon>
-        <E.ProfileName>김이웃</E.ProfileName>
+        <E.ProfileName>{props.data?.fetchUserLoggedIn.name}</E.ProfileName>
       </E.ProfileWrapper>
       <E.InputWrapper>
-        <E.InputNickName>닉네임</E.InputNickName>
-        <InputBasic height="15%" />
-        <E.InputEmail>이메일</E.InputEmail>
-        <InputBasic height="15%" />
+        <View>
+          <Text>닉네임</Text>
+          <InputBasic height="50px" onChange={props.onChangeName} value={props.name} />
+        </View>
+        <View>
+          <Text>비밀번호</Text>
+          <InputBasic height="50px" onChange={props.onChangePassword} value={props.password} />
+        </View>
       </E.InputWrapper>
-      <GreenButton
-        height="8%"
-        text="수정완료"
-        onPressBtn={() => props.navigation.navigate('mypage', { screen: 'personalinformation' })}
-      />
+      <GreenButton height="8%" text="수정완료" onPressBtn={props.onClickUpdate} />
     </E.WholeWrapper>
   );
 };
