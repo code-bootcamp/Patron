@@ -2,6 +2,16 @@ import * as React from 'react';
 import styled from '@emotion/native';
 import firestore from '@react-native-firebase/firestore';
 
+interface IPropsColoredProgressBar {
+  current: number;
+  dday: number;
+  id: string;
+}
+
+interface IPropsWidth {
+  per: string;
+}
+
 const Wrapper = styled.View``;
 
 const ProgressInfo = styled.View`
@@ -27,7 +37,7 @@ const Bar = styled.View`
 `;
 
 const Progress = styled.View`
-  width: ${(props) => props.per};
+  width: ${(props: IPropsWidth) => props.per};
   border-radius: 8px;
   height: 100%;
   background-color: #448800;
@@ -46,12 +56,14 @@ const Goals = styled.Text`
   font-size: 11px;
 `;
 
-export default function ProgressBar(props) {
+export default function ProgressBar(props: IPropsColoredProgressBar) {
+  const [goalCount, setGoalCount] = React.useState(0);
   const HomeCollection = firestore().collection('home');
   const docRef = HomeCollection.doc(props.id);
-  const [goalCount, setGoalCount] = React.useState(0);
 
-  docRef.get().then((doc) => setGoalCount(doc.data()?.goal));
+  React.useEffect(() => {
+    docRef.get().then((doc) => setGoalCount(doc.data()?.goal));
+  }, [docRef]);
 
   const current = props.current;
   const per = Math.floor((current / goalCount) * 100);

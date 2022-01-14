@@ -24,7 +24,7 @@ export function displayDate(value: string) {
   return `${month}.${date}`;
 }
 
-export function displayDDay(start: string, end: string) {
+export function displayDDay(start: Date, end: Date) {
   const endDate = new Date(end);
 
   const startDate = new Date(start);

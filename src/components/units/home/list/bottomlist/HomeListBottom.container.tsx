@@ -1,32 +1,17 @@
+import HomeListBottomUI from './HomeListBottom.presenter';
 import * as React from 'react';
-import HomeCampaignUI from './HomeCampaign.presenter';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMutation, useQuery } from '@apollo/client';
 import {
   FETCH_USEDITEMS,
-  FETCH_USER_LOGGED_IN,
   TOGGLE_USEDITEM_PICK,
   FETCH_USEDITEMS_I_PICKED,
-} from './HomeCampaign.queries';
+} from './HomeListBottom.queries';
 
-type RootStackParamList = {
-  home: { screen: string };
-  community: { screen: string };
-  news: undefined;
-  mypage: undefined;
-};
-
-type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'home'>;
-
-type Props = {
-  navigation: ProfileScreenNavigationProp;
-};
-
-export default function HomeCampaign({ navigation }: Props) {
+export default function HomeListBottom(props) {
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
   const { data } = useQuery(FETCH_USEDITEMS, {
     variables: {
-      search: '캠페인',
+      search: props.category,
     },
   });
 
@@ -35,8 +20,6 @@ export default function HomeCampaign({ navigation }: Props) {
       search: '',
     },
   });
-
-  const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
 
   const onPressPick = (el) => async () => {
     try {
@@ -48,7 +31,7 @@ export default function HomeCampaign({ navigation }: Props) {
           {
             query: FETCH_USEDITEMS,
             variables: {
-              search: '캠페인',
+              search: props.category,
             },
           },
           {
@@ -65,12 +48,11 @@ export default function HomeCampaign({ navigation }: Props) {
   };
 
   return (
-    <HomeCampaignUI
+    <HomeListBottomUI
       data={data}
-      dataForUser={dataForUser}
-      onPressPick={onPressPick}
-      navigation={navigation}
       dataForPicked={dataForPicked}
+      onPressPick={onPressPick}
+      category={props.category}
     />
   );
 }

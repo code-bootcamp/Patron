@@ -1,11 +1,11 @@
-import * as React from 'react';
-import * as E from './HomeCampaignList.styles';
-import { Image } from 'react-native';
+import * as E from './HomeChildrenList.styles';
 import ColoredTag from '../../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import * as React from 'react';
 
-export default function HomeCampaignListUI(props) {
+export default function HomeChildrenListUI(props) {
   return (
     <>
       <ScrollView>
@@ -15,7 +15,7 @@ export default function HomeCampaignListUI(props) {
               onPress={() => props.navigation.navigate('homeDetails', { useditemId: el._id })}
             >
               <Image
-                style={{ width: 86, height: 86, borderRadius: 8 }}
+                style={{ width: 86, height: 86, borderRadius: 50 }}
                 source={{
                   uri: `https://${el.images[0]}`,
                 }}

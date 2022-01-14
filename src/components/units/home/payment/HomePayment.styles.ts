@@ -1,5 +1,7 @@
 import styled from '@emotion/native';
 
+export const Wrapper = styled.View``;
+
 export const ChildrenList = styled.View`
   flex-direction: row;
   width: 100%;
@@ -26,7 +28,7 @@ export const ChildDetails = styled.View`
 export const ChildAbout = styled.Pressable`
   width: 80%;
   /* background-color: lightyellow; */
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const ChildName = styled.Text`
@@ -39,11 +41,39 @@ export const ChildBio = styled.Text`
   color: #000;
 `;
 
-export const ChildrenTags = styled.View`
-  flex-direction: row;
-  /* background-color: lightskyblue; */
+export const InputWrapper = styled.View`
+  background-color: white;
+  padding: 0px 20px 25px 20px;
 `;
 
-export const ChildBookmark = styled.View`
-  /* background-color: lightpink; */
+export const BottomColor = styled.View`
+  border-bottom-width: 2px;
+  border-bottom-color: #448800;
+`;
+export const EnterPrice = styled.TextInput``;
+
+export const TotalWrapper = styled.View`
+  background-color: white;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 25px 20px 25px 20px;
+`;
+
+export const TotalTitle = styled.Text`
+  color: #000;
+  font-weight: 700;
+  font-size: 16px;
+`;
+
+export const TotalPrice = styled.Text`
+  color: #000;
+  font-weight: 700;
+  font-size: 22px;
+`;
+
+export const Agree = styled.Text`
+  padding: 25px 20px 25px 20px;
+  text-align: center;
 `;

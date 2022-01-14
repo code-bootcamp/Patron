@@ -22,3 +22,18 @@ export const FETCH_USER_LOGGED_IN = gql`
     }
   }
 `;
+
+export const TOGGLE_USEDITEM_PICK = gql`
+  mutation toggleUseditemPick($useditemId: ID!) {
+    toggleUseditemPick(useditemId: $useditemId)
+  }
+`;
+
+export const FETCH_USEDITEMS_I_PICKED = gql`
+  query fetchUseditemsIPicked($search: String) {
+    fetchUseditemsIPicked(search: $search) {
+      _id
+      name
+    }
+  }
+`;
