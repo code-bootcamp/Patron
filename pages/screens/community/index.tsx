@@ -1,6 +1,6 @@
 import Community from '../../../src/components/units/community/home/community.container';
 import React from 'react';
-import { View } from 'react-native';
+import { Share, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import CommunityWrite from '../../../src/components/units/community/write/communityWrite.container';
 import CommunityList from '../../../src/components/units/community/list/communityList.container';
@@ -27,6 +27,13 @@ const CommunityScreen = ({ navigation, route }) => {
     await deleteBoard({ variables: { boardId: route.params.params.boardId } });
     navigation.navigate('home');
   };
+
+  const share = () => {
+    Share.share({
+      message: 'Share this posting with your friends!',
+    });
+  };
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -74,7 +81,13 @@ const CommunityScreen = ({ navigation, route }) => {
           headerTintColor: 'white',
           headerRight: () => (
             <View style={{ flexDirection: 'row' }}>
-              <Icon name="share-outline" color="white" size={20} style={{ padding: 15 }} />
+              <Icon
+                name="share-outline"
+                color="white"
+                size={20}
+                style={{ padding: 15 }}
+                onPress={() => share()}
+              />
               <Menu>
                 <MenuTrigger>
                   <Icon

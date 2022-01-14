@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
@@ -27,9 +27,12 @@ const GetDday = ({ id }: { id: string }) => {
   const homeRef = firestore().collection('home').doc(id);
   const [endat, setEndat] = useState('');
 
-  homeRef.get().then((doc) => setEndat(doc.data()?.EndAt));
+  useEffect(() => {
+    homeRef.get().then((doc) => setEndat(doc.data()?.EndAt));
+  }, [homeRef]);
+
   const start = data?.fetchUseditem.createdAt;
-  const end = new Date(endat._seconds * 1000);
+  const end = endat ? new Date(endat._seconds * 1000) : '';
   const endDate = new Date(end);
   const startDate = new Date(start);
   const distance = endDate.getTime() - startDate.getTime();

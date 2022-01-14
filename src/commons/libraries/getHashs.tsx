@@ -17,12 +17,12 @@ export const Tag = styled.Text`
 
 const GetHashs = ({ id }: { id: string }) => {
   const [hashs, setHashs] = useState<any[]>([]);
+  const commuCollection = firestore().collection('community');
+  const docRef = commuCollection.doc(id);
 
   useEffect(() => {
-    const commuCollection = firestore().collection('community');
-    const docRef = commuCollection.doc(id);
     docRef.get().then((doc) => setHashs([...doc.data().tags]));
-  }, []);
+  }, [docRef]);
 
   return hashs.map((el: string, idx: number) => <Tag key={idx}>#{el}</Tag>);
 };

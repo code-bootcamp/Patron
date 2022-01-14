@@ -5,11 +5,13 @@ import * as S from './community.styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ColoredTag from '../../../commons/tags/coloredtag';
 import WhiteTag from '../../../commons/tags/whitetag';
+import GreenTag from '../../../commons/tags/greentag';
 import { IPropsCommunityUI } from './community.types';
 import { displayedAt } from '../../../../commons/libraries/utils';
 import CommentsCount from '../../../../commons/libraries/commentsCount';
 import GetHashs from '../../../../commons/libraries/getHashs';
 import GetDday from '../../../../commons/libraries/getDday';
+import LinearGradient from 'react-native-linear-gradient';
 
 const CommunityUI = (props: IPropsCommunityUI) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -41,9 +43,19 @@ const CommunityUI = (props: IPropsCommunityUI) => {
                 {props.bestData?.fetchUseditemsOfTheBest.map((el: any, idx: number) => (
                   <S.Card key={idx} onPress={props.getList(el._id)}>
                     <S.CardBackground
-                      style={{ width: '100%', height: '100%', padding: 12 }}
+                      style={{ width: '100%', height: '100%', padding: 12, position: 'relative' }}
                       source={{ uri: `https://${el.images[0]}` }}
                     >
+                      <LinearGradient
+                        colors={['rgba(0, 0, 0, 0.42)', 'rgba(255,255,255,0)']}
+                        style={{
+                          width: 123,
+                          height: 132,
+                          position: 'absolute',
+                        }}
+                        start={{ x: 0, y: 1 }}
+                        end={{ x: 0, y: 0 }}
+                      ></LinearGradient>
                       <ColoredTag text={el.name.split('/')[0]} padding="4px 8px" fontSize="10px" />
                       <S.CardTitle>{el.name.split('/')[1]}</S.CardTitle>
                       <GetDday id={el._id} />
@@ -127,9 +139,13 @@ const CommunityUI = (props: IPropsCommunityUI) => {
                   </S.ModalHeader>
                   <S.ModalBody>
                     <S.ModalTagWrap>
-                      {hashArr.map((el, idx) => (
-                        <WhiteTag key={idx} text={el} padding="8px 12px" />
-                      ))}
+                      {hashArr.map((el, idx) =>
+                        props.userHash.includes(el) ? (
+                          <GreenTag key={idx} text={el} padding="8px 12px" />
+                        ) : (
+                          <WhiteTag key={idx} text={el} padding="8px 12px" />
+                        ),
+                      )}
                     </S.ModalTagWrap>
                     <S.SubmitBtn>
                       <S.SubmitText>확인</S.SubmitText>
