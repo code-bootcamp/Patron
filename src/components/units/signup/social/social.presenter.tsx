@@ -13,6 +13,7 @@ const SocialUI = (props) => {
       <S.Google_Wrapper>
         <GoogleSigninButton
           onPress={props.onGoogleButtonPress}
+          // onPress={() => props.navigation.navigate('MypageScreen')}
           style={{ width: 328, height: 48 }}
           color={GoogleSigninButton.Color.Light}
         />
