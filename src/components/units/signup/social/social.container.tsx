@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import SocialUI from './social.presenter';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+import { Alert } from 'react-native';
 
 const Social = ({ navigation }) => {
   useEffect(() => {
@@ -26,6 +27,8 @@ const Social = ({ navigation }) => {
         if (error instanceof Error) console.log(error.message);
       }
     }
+    Alert.alert('로그인 되셨습니다. 환영합니다!');
+    navigation.navigate('mainScreen');
   }
 
   return <SocialUI navigation={navigation} onGoogleButtonPress={onGoogleButtonPress} />;
