@@ -31,6 +31,7 @@ const ClearButton = (props: IClearButton) => {
       onPress={props.onPressBtn}
       width={props.width}
       height={props.height}
+      z
       borderRadius={props.borderRadius}
     >
       <SubmitText fontSize={props.fontSize}>{props.text}</SubmitText>

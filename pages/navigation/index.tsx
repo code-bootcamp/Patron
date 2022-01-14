@@ -97,7 +97,13 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="signup" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen
+          name="signup"
+          component={LoginScreen}
+          options={() => ({
+            headerShown: false,
+          })}
+        ></Stack.Screen>
         <Stack.Screen
           name="mainScreen"
           component={MainScreen}

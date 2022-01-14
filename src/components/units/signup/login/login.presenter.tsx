@@ -11,7 +11,12 @@ const LoginUI = (props) => {
         <S.Title>가장 좋은 이웃 GoodNeighbors</S.Title>
       </S.Title_Wrapper>
       <S.Email_Wrapper>
-        <InputBasic placeholder="이메일" value={props.email} onChange={props.onChangeEmail} />
+        <InputBasic
+          placeholder="이메일"
+          value={props.email}
+          onChange={props.onChangeEmail}
+          height="60px"
+        />
       </S.Email_Wrapper>
       <S.Password_Wrapper>
         <InputBasic
@@ -19,13 +24,14 @@ const LoginUI = (props) => {
           value={props.password}
           secureTextEntry={true}
           onChange={props.onChangePassword}
+          height="60px"
         />
       </S.Password_Wrapper>
       <S.Button_Wrapper>
         <GreenButton
           text={'로그인'}
           width={'100%'}
-          height={'48px'}
+          height={'50px'}
           borderRadius={15}
           fontSize={'20px'}
           onPressBtn={props.onPressLogin}

@@ -7,6 +7,7 @@ export const Wrapper = styled.View`
   width: 100%;
   height: 100%;
   padding: 35px;
+  background-color: #ffffff;
 `;
 
 export const Title_Wrapper = styled.View`
