@@ -14,11 +14,25 @@ const CommunityList = ({ navigation, route }: IPropsRoute) => {
   const [firedata, setFiredata] = useState({});
 
   useEffect(() => {
+    navigation.getParent()?.setOptions({ tabBarStyle: { display: 'none' } });
+    return () =>
+      navigation.getParent()?.setOptions({
+        tabBarStyle: {
+          height: 64,
+          paddingTop: 10,
+          paddingBottom: 10,
+          paddingLeft: 30,
+          paddingRight: 30,
+        },
+      });
+  }, [navigation]);
+
+  useEffect(() => {
     homeCollection
       .doc(route.params?.useditemId)
       .get()
       .then((doc) => setFiredata({ ...doc.data() }));
-  }, []);
+  }, [homeCollection]);
 
   const getListDetail = () => {
     navigation.navigate('Home', {

@@ -52,12 +52,6 @@ export const CardTitle = styled.Text`
   border-bottom-width: 0.5px;
 `;
 
-export const DDay = styled.Text`
-  color: #ffffff;
-  font-size: 8px;
-  padding-top: 6px;
-`;
-
 export const HashSection = styled.View`
   display: flex;
   flex-direction: row;

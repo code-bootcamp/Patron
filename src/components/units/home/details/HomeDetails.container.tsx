@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import HomeDetailsUI from './HomeDetails.presenter';
+
 import { useQuery } from '@apollo/client';
 import { FETCH_USEDITEM } from './HomeDetails.queries';
 
@@ -10,7 +11,7 @@ export default function HomeDetails({ route, navigation }) {
       useditemId: route.params.useditemId,
     },
   });
-
+  
   const [firedata, setFiredata] = useState({});
   const [homeData, setHomeData] = useState({});
   const [planTitle, setPlanTitle] = useState('');

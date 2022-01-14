@@ -9,6 +9,7 @@ import { IPropsCommunityUI } from './community.types';
 import { displayedAt } from '../../../../commons/libraries/utils';
 import CommentsCount from '../../../../commons/libraries/commentsCount';
 import GetHashs from '../../../../commons/libraries/getHashs';
+import GetDday from '../../../../commons/libraries/getDday';
 
 const CommunityUI = (props: IPropsCommunityUI) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -45,7 +46,7 @@ const CommunityUI = (props: IPropsCommunityUI) => {
                     >
                       <ColoredTag text={el.name.split('/')[0]} padding="4px 8px" fontSize="10px" />
                       <S.CardTitle>{el.name.split('/')[1]}</S.CardTitle>
-                      <S.DDay>D-3</S.DDay>
+                      <GetDday id={el._id} />
                     </S.CardBackground>
                   </S.Card>
                 ))}
@@ -63,7 +64,7 @@ const CommunityUI = (props: IPropsCommunityUI) => {
               </S.TBD>
             </S.HashSection>
             <S.BoardContainer>
-              {props.data?.fetchBoardsOfTheBest.map((el: any, idx: number) => (
+              {props.data?.fetchBoards.map((el: any, idx: number) => (
                 <S.Board key={idx} onPress={props.getDetail(el._id)}>
                   <S.BoardHeader>
                     <S.BoardWrap>
