@@ -47,7 +47,23 @@ export default function HomeChildrenUI(props) {
                           </E.ContentRemark>
                         </E.DetailsContent>
                         <E.DetailsBookmark>
-                          <Icon name="bookmark-outline" size={20} color={'rgba(0, 0, 0, 0.4)'} />
+                          {!props.dataForPicked?.fetchUseditemsIPicked
+                            .map((pick) => pick._id)
+                            .includes(el._id) ? (
+                            <Icon
+                              name="bookmark-outline"
+                              size={20}
+                              color={'rgba(0, 0, 0, 0.4)'}
+                              onPress={props.onPressPickChild(el)}
+                            />
+                          ) : (
+                            <Icon
+                              name="bookmark"
+                              size={20}
+                              color={'#448800'}
+                              onPress={props.onPressPickChild(el)}
+                            />
+                          )}
                         </E.DetailsBookmark>
                       </E.CardDetails>
                     </E.Card>
@@ -96,7 +112,23 @@ export default function HomeChildrenUI(props) {
                       </E.ChildrenTags>
                     </E.ChildAbout>
                     <E.ChildBookmark>
-                      <Icon name="bookmark-outline" size={20} color={'rgba(0, 0, 0, 0.4)'} />
+                      {!props.dataForPicked?.fetchUseditemsIPicked
+                        .map((pick) => pick._id)
+                        .includes(el._id) ? (
+                        <Icon
+                          name="bookmark-outline"
+                          size={20}
+                          color={'rgba(0, 0, 0, 0.4)'}
+                          onPress={props.onPressPickChild(el)}
+                        />
+                      ) : (
+                        <Icon
+                          name="bookmark"
+                          size={20}
+                          color={'#448800'}
+                          onPress={props.onPressPickChild(el)}
+                        />
+                      )}
                     </E.ChildBookmark>
                   </E.ChildDetails>
                 </E.ChildrenList>

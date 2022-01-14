@@ -14,14 +14,6 @@ export const FETCH_USEDITEMS = gql`
   }
 `;
 
-export const FETCH_USER_LOGGED_IN = gql`
-  query fetchUserLoggedIn {
-    fetchUserLoggedIn {
-      name
-    }
-  }
-`;
-
 export const TOGGLE_USEDITEM_PICK = gql`
   mutation toggleUseditemPick($useditemId: ID!) {
     toggleUseditemPick(useditemId: $useditemId)

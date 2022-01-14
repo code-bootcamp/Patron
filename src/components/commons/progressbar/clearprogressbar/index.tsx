@@ -3,6 +3,20 @@ import styled from '@emotion/native';
 import firestore from '@react-native-firebase/firestore';
 import { displayDDay } from '../../../../commons/libraries/utils';
 
+interface IPropsClearProgressBar {
+  createdAt: Date;
+  id: string;
+  height: string;
+}
+
+interface IPropsBar {
+  height: string;
+}
+
+interface IPropsProgress {
+  per: string;
+}
+
 const Wrapper = styled.View``;
 
 const ProgressInfo = styled.View`
@@ -23,20 +37,21 @@ const Percentage = styled.Text`
 `;
 
 const Bar = styled.View`
-  height: ${(props) => props.height};
+  height: ${(props: IPropsBar) => props.height};
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   margin: 3px 0px 3px 0px;
 `;
 
 const Progress = styled.View`
-  width: ${(props) => props.per};
+  width: ${(props: IPropsProgress) => props.per};
   border-radius: 8px;
   height: 100%;
   background-color: #fff;
 `;
 
-export default function ClearProgressBar(props) {
+export default function ClearProgressBar(props: IPropsClearProgressBar) {
+  const [people, setPeople] = React.useState(0);
   const [goalCount, setGoalCount] = React.useState(0);
   const [getEnd, setGetEnd] = React.useState({});
   const HomeCollection = firestore().collection('home');
@@ -45,9 +60,10 @@ export default function ClearProgressBar(props) {
   React.useEffect(() => {
     docRef.get().then((doc) => setGoalCount(doc.data()?.goal));
     docRef.get().then((doc) => setGetEnd({ ...doc.data()?.EndAt }));
+
   }, [docRef]);
 
-  const current = props.current;
+  const current = people;
 
   const per = Math.floor((current / goalCount) * 100);
 
