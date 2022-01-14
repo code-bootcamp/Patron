@@ -60,9 +60,11 @@ export default function ClearProgressBar(props: IPropsClearProgressBar) {
   React.useEffect(() => {
     docRef.get().then((doc) => setGoalCount(doc.data()?.goal));
     docRef.get().then((doc) => setGetEnd({ ...doc.data()?.EndAt }));
-
+    docRef.get().then((doc) => setPeople(doc.data()?.suppoters));
   }, [docRef]);
 
+  // console.log(getEnd);
+  // sujeong
   const current = people;
 
   const per = Math.floor((current / goalCount) * 100);
