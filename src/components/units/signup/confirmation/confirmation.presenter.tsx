@@ -17,17 +17,17 @@ const ConfirmationUI = (props) => {
           </S.BackImage>
         </S.Image_Wrapper>
         <S.Welcome_Wrapper>
-          <S.Welcome_Letter>축하합니다!</S.Welcome_Letter>
-          <S.Welcome_Letter>{props.data?.fetchUserLoggedIn.name}</S.Welcome_Letter>
-          <S.Welcome_Letter>님의 계정이 생성되었어요!</S.Welcome_Letter>
+          <S.Welcome_Letter>어서오세요</S.Welcome_Letter>
+          <S.User>{props.data?.fetchUserLoggedIn.name}</S.User>
+          <S.Welcome_Letter>님!</S.Welcome_Letter>
         </S.Welcome_Wrapper>
         <S.Submit_Wrapper>
           <GreenButton
-            text="완료"
+            text="홈으로"
             width="100%"
             fontSize="20px"
             height="50px"
-            onPressBtn={() => props.navigation.navigate('home')}
+            onPressBtn={() => props.navigation.navigate('mainScreen')}
           />
         </S.Submit_Wrapper>
       </S.Wrapper>

@@ -3,7 +3,7 @@ import 'react-native-gesture-handler';
 import { ApolloProvider, ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createUploadLink } from 'apollo-upload-client';
-// import { getAccessToken } from './src/components/commons/library/getAccessToken';
+// import { getAccessToken } from './src/commons/libraries/getAccessToken';
 // import { onError } from '@apollo/client/link/error';
 import { firebase } from '@react-native-firebase/firestore';
 import { MenuProvider } from 'react-native-popup-menu';
@@ -64,12 +64,16 @@ const App = () => {
   });
 
   // useEffect(() => {
-  //   AsyncStorage.getItem('refreshToken', (_, result) => {
-  //     console.log('refreshToken', result);
-  //     if (result) {
-  //       setMyAccessToken(result);
-  //     }
-  //   });
+  //   async function accessToken() {
+  //     const result = await AsyncStorage.getItem('refreshToken', (_, result) => {
+  //       console.log('refreshToken', result);
+  //       if (result) {
+  //         setMyAccessToken(result);
+  //       }
+  //     });
+  //     console.log(result);
+  //   }
+  //   accessToken();
   // }, []);
 
   return (

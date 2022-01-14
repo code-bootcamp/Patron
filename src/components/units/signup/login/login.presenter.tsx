@@ -31,7 +31,7 @@ const LoginUI = (props) => {
         <GreenButton
           text={'로그인'}
           width={'100%'}
-          height={'48px'}
+          height={'50px'}
           borderRadius={15}
           fontSize={'20px'}
           onPressBtn={props.onPressLogin}

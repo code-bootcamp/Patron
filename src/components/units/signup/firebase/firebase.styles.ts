@@ -4,17 +4,18 @@ export const Wrapper = styled.View`
   flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  padding: 35px;
   background-color: #ffffff;
 `;
 
 export const Title_Wrapper = styled.View`
-  flex: 5;
+  flex: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 export const Title = styled.Text`
@@ -24,34 +25,24 @@ export const Title = styled.Text`
 
 export const Email_Wrapper = styled.View`
   flex: 1;
-  weight: 100%;
-  margin: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 `;
 
 export const Password_Wrapper = styled.View`
   flex: 1;
-  weight: 100%;
-  margin: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 15px;
 `;
 
-export const Button_Wrapper = styled.View`
-  flex: 1;
-  weight: 100%;
-  margin: 10px;
-`;
-
-export const Bottom_Wrapper = styled.View`
+export const Submit_Wrapper = styled.View`
   flex: 1;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const Search_Email = styled.Text`
-  margin-right: 10px;
-`;
-
-export const Search_Password = styled.Text`
-  margin-left: 10px;
+  justify-content: flex-end;
+  width: 100%;
 `;
