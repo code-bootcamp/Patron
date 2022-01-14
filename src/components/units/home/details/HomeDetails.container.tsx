@@ -11,7 +11,7 @@ export default function HomeDetails({ route, navigation }) {
       useditemId: route.params.useditemId,
     },
   });
-  
+
   const [firedata, setFiredata] = useState({});
   const [homeData, setHomeData] = useState({});
   const [planTitle, setPlanTitle] = useState('');
