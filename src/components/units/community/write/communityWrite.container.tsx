@@ -63,7 +63,7 @@ const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
   }, [isEdit]);
 
   useEffect(() => {
-    setHashArr(firedata.tags);
+    isEdit ? setHashArr(firedata.tags) : setHashArr([]);
   }, [isEdit, firedata]);
 
   const onChangeTitle = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
@@ -90,7 +90,6 @@ const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
 
   const onKeyUp = (event: any) => {
     const textArr = event.nativeEvent.text.split('');
-    // console.log(textArr[textArr.length - 1]);
     if (textArr[textArr.length - 1] === ' ' && event.nativeEvent.text !== ' ') {
       setHashArr([...hashArr, event.nativeEvent.text]);
     }
@@ -110,6 +109,7 @@ const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
         variables: {
           createBoardInput: {
             writer: userdata?.fetchUserLoggedIn.name,
+            // writer: '강이웃8693',
             password: '123',
             title,
             contents,

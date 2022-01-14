@@ -7,11 +7,19 @@ import { IPropsNavigation } from './community.types';
 import { Query } from '../../../../commons/types/generated/types';
 
 const Community = ({ navigation }: IPropsNavigation) => {
-  const { data } = useQuery<Pick<Query, 'fetchBoards'>>(FETCH_BOARDS);
+  const { data, refetch } = useQuery<Pick<Query, 'fetchBoards'>>(FETCH_BOARDS);
   const { data: bestData } = useQuery<Pick<Query, 'fetchUseditemsOfTheBest'>>(FETCH_BEST_ITEMS);
   const { data: loginData } = useQuery<Pick<Query, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN);
   const commuCollection = firestore().collection('community');
   const [firedata, setFiredata] = useState({});
+  const [userHash] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      refetch();
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   useEffect(() => {
     commuCollection.get().then((ducumentSnapshot) =>
@@ -20,6 +28,10 @@ const Community = ({ navigation }: IPropsNavigation) => {
       }),
     );
   }, []);
+
+  // const setHash=()=>{
+
+  // }
 
   const getDetail = (id: string) => () => {
     navigation.navigate('community', {
@@ -44,6 +56,7 @@ const Community = ({ navigation }: IPropsNavigation) => {
       bestData={bestData}
       getList={getList}
       loginData={loginData}
+      userHash={userHash}
     />
   );
 };

@@ -15,7 +15,6 @@ import {
 import { useQuery } from '@apollo/client';
 import { Query, QueryFetchBoardsArgs } from '../../../../commons/types/generated/types';
 import { FETCH_BOARDS } from './communityList.queries';
-import GetDday from '../../../../commons/libraries/getDday';
 import { useNavigation } from '@react-navigation/core';
 
 const Tab = createMaterialTopTabNavigator();
@@ -86,7 +85,7 @@ const CommunityListUI = (props: IPropsCommunityListUI) => {
           />
           <S.HeaderInner>
             <S.HeaderTitle>{props.data?.fetchUseditem.name.split('/')[1]}</S.HeaderTitle>
-            <GetDday id={props.data?.fetchUseditem._id} />
+            {/* <GetDday id={props.data?.fetchUseditem._id} /> */}
           </S.HeaderInner>
         </S.ListHeader>
         <S.ListBody>

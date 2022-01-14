@@ -44,9 +44,8 @@ export default function ClearProgressBar(props) {
 
   React.useEffect(() => {
     docRef.get().then((doc) => setGoalCount(doc.data()?.goal));
-  }, []);
-
-  docRef.get().then((doc) => setGetEnd({ ...doc.data()?.EndAt }));
+    docRef.get().then((doc) => setGetEnd({ ...doc.data()?.EndAt }));
+  }, [docRef]);
 
   const current = props.current;
 
