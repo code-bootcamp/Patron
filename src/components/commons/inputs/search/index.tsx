@@ -7,7 +7,7 @@ interface IPropsSearchWrapper {
   height?: string;
 }
 
-const Wrapper = styled.View`
+const Wrapper = styled.Pressable`
   border-radius: 8px;
   flex-direction: row;
   align-items: center;

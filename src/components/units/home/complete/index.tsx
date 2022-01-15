@@ -1,14 +1,15 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import styled from '@emotion/native';
 
 function PaymentResult({ route, navigation }) {
   const imp_success = route.params?.imp_success;
   const success = route.params?.success;
-  const imp_uid = route.params?.imp_uid;
-  const merchant_uid = route.params?.merchant_uid;
-  const error_msg = route.params?.error_msg;
+  // const imp_uid = route.params?.imp_uid;
+  // const merchant_uid = route.params?.merchant_uid;
+  // const error_msg = route.params?.error_msg;
+
+  console.log(route);
 
   // [WARNING: 이해를 돕기 위한 것일 뿐, imp_success 또는 success 파라미터로 결제 성공 여부를 장담할 수 없습니다.]
   // 아임포트 서버로 결제내역 조회(GET /payments/${imp_uid})를 통해 그 응답(status)에 따라 결제 성공 여부를 판단하세요.
@@ -19,45 +20,51 @@ function PaymentResult({ route, navigation }) {
     success === false
   );
 
+  const Wrapper = styled.Pressable`
+    align-items: center;
+    justify-content: center;
+  `;
+
+  const ImgWrapper = styled.View`
+    height: 88px;
+    width: 88px;
+    border-radius: 100px;
+    background-color: #e9eaec; ;
+  `;
+
+  const TextWrapper = styled.View`
+    padding-top: 10px;
+    flex-direction: row;
+  `;
+  const KeywordColor = styled.Text`
+    color: #448800;
+    font-size: 22px;
+    font-weight: 700;
+  `;
+  const CompleteInfo = styled.Text`
+    font-size: 22px;
+    font-weight: 700;
+    color: #000;
+  `;
+
   return (
     <SafeAreaView
       style={{
         flex: 1,
         justifyContent: 'center',
-        margin: 10,
-        backgroundColor: '#ebbebe',
+        backgroundColor: '#fff',
         alignItems: 'center',
       }}
     >
-      {isSuccess ? (
-        <Icon name={'check-circle'} size={20} color={'#52c41a'} />
-      ) : (
-        <Icon name={'warning'} size={20} color={'#f5222d'} />
+      {isSuccess && (
+        <Wrapper onPress={() => navigation.navigate('home')}>
+          <ImgWrapper />
+          <TextWrapper>
+            <KeywordColor>번째 </KeywordColor>
+            <CompleteInfo>후원자에요!</CompleteInfo>
+          </TextWrapper>
+        </Wrapper>
       )}
-      <Text>{`결제에 ${isSuccess ? '성공' : '실패'}하였습니다`}</Text>
-      <View>
-        <View>
-          <Text>아임포트 번호</Text>
-          <Text>{imp_uid}</Text>
-        </View>
-        {isSuccess ? (
-          <View>
-            <Text>주문번호</Text>
-            <Text>{merchant_uid}</Text>
-          </View>
-        ) : (
-          <View>
-            <Text>에러메시지</Text>
-            <Text>{error_msg}</Text>
-          </View>
-        )}
-      </View>
-      <Pressable
-        /* @ts-ignore */
-        onPress={() => navigation.navigate('Home')}
-      >
-        <Text>돌아가기</Text>
-      </Pressable>
     </SafeAreaView>
   );
 }

@@ -8,6 +8,7 @@ import HomePatronList from '../../../src/components/units/home/list/patron/HomeP
 import HomePayment from '../../../src/components/units/home/homePayment/HomePayment.container';
 import Payment from '../../../src/components/units/home/Payment/index';
 import PaymentResult from '../../../src/components/units/home/complete/index';
+import HomeSearch from '../../../src/components/units/home/search/HomeSearch.container';
 const Stack = createStackNavigator();
 
 const HomeScreen = () => {
@@ -22,6 +23,17 @@ const HomeScreen = () => {
           headerTransparent: true,
           headerTintColor: 'transparent',
           headerTitleStyle: { fontSize: 22, fontWeight: '700' },
+        })}
+      />
+      <Stack.Screen
+        name="homeSearch"
+        component={HomeSearch}
+        options={() => ({
+          headerTitle: '',
+          headerTitleStyle: { fontSize: 22, fontWeight: '700' },
+          headerShadowVisible: true,
+          headerTransparent: true,
+          headerTintColor: 'black',
         })}
       />
       <Stack.Screen

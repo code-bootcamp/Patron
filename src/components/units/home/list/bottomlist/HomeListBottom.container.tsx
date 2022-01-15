@@ -53,6 +53,7 @@ export default function HomeListBottom(props) {
       dataForPicked={dataForPicked}
       onPressPick={onPressPick}
       category={props.category}
+      navigation={props.navigation}
     />
   );
 }

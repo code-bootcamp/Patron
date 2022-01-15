@@ -65,3 +65,7 @@ export const getUserCode = (pg: string, tierCode?: string, type = 'payment') => 
       return 'imp19424728';
   }
 };
+
+export function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
