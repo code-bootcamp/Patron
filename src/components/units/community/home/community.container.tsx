@@ -12,7 +12,7 @@ const Community = ({ navigation }: IPropsNavigation) => {
   const { data: loginData } = useQuery<Pick<Query, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN);
   const commuCollection = firestore().collection('community');
   const [firedata, setFiredata] = useState({});
-  const [userHash] = useState([]);
+  const [userHash, setUserhash] = useState(['캠페인']);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -29,9 +29,14 @@ const Community = ({ navigation }: IPropsNavigation) => {
     );
   }, []);
 
-  // const setHash=()=>{
-
-  // }
+  const setHash = (el: string) => () => {
+    if (userHash.includes(el)) {
+      userHash.splice(userHash.indexOf(el), 1);
+      setUserhash([...userHash]);
+    } else {
+      setUserhash([...userHash, el]);
+    }
+  };
 
   const getDetail = (id: string) => () => {
     navigation.navigate('community', {
@@ -57,6 +62,7 @@ const Community = ({ navigation }: IPropsNavigation) => {
       getList={getList}
       loginData={loginData}
       userHash={userHash}
+      setHash={setHash}
     />
   );
 };

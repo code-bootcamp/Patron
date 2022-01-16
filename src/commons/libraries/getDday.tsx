@@ -29,7 +29,8 @@ const GetDday = ({ id }: { id: string }) => {
 
   useEffect(() => {
     homeRef.get().then((doc) => setEndat(doc.data()?.EndAt));
-  }, [homeRef]);
+    return () => console.log(endat);
+  }, []);
 
   const start = data?.fetchUseditem.createdAt;
   const end = endat ? new Date(endat._seconds * 1000) : '';

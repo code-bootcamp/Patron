@@ -28,9 +28,9 @@ const IconWrapper = styled.View`
 export default function SearchInput(props) {
   return (
     <Wrapper width={props.width} height={props.height}>
-      <Input onChange={props.onChange} />
+      <Input onChange={props.onChange} placeholder={props.placeholder} />
       <IconWrapper>
-        <Icon name="search" size={20} color="rgba(143, 148, 156, 1)" />
+        <Icon name="search" size={20} color="rgba(143, 148, 156, 1)" onPress={props.onPress} />
       </IconWrapper>
     </Wrapper>
   );

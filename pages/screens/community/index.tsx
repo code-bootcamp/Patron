@@ -1,6 +1,6 @@
 import Community from '../../../src/components/units/community/home/community.container';
-import React from 'react';
-import { Share, View } from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, Share, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import CommunityWrite from '../../../src/components/units/community/write/communityWrite.container';
 import CommunityList from '../../../src/components/units/community/list/communityList.container';
@@ -9,6 +9,8 @@ import CommunityDetail from '../../../src/components/units/community/detail/comm
 import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 import { gql, useMutation } from '@apollo/client';
 import { Mutation, MutationDeleteBoardArgs } from '../../../src/commons/types/generated/types';
+import CommunitySearch from '../../../src/components/units/community/search/communitySearch.container';
+import SearchInput from '../../../src/components/commons/inputs/search';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +24,7 @@ const CommunityScreen = ({ navigation, route }) => {
   const [deleteBoard] = useMutation<Pick<Mutation, 'deleteBoard'>, MutationDeleteBoardArgs>(
     DELETE_BOARD,
   );
+  const [search, setSearch] = useState('');
 
   const onSelectDelete = async () => {
     await deleteBoard({ variables: { boardId: route.params.params.boardId } });
@@ -34,6 +37,10 @@ const CommunityScreen = ({ navigation, route }) => {
     });
   };
 
+  const onChangeSearch = (event) => {
+    setSearch(event.nativeEvent.text);
+  };
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -43,9 +50,12 @@ const CommunityScreen = ({ navigation, route }) => {
           headerTitle: '커뮤니티',
           headerTitleStyle: { fontSize: 22, fontWeight: '700' },
           headerRight: () => (
-            <View style={{ flexDirection: 'row' }}>
+            <Pressable
+              style={{ flexDirection: 'row' }}
+              onPress={() => navigation.navigate('search')}
+            >
               <Icon name="search" color="black" size={20} style={{ padding: 15 }} />
-            </View>
+            </Pressable>
           ),
         })}
       />
@@ -112,6 +122,21 @@ const CommunityScreen = ({ navigation, route }) => {
                 </MenuOptions>
               </Menu>
             </View>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="search"
+        component={CommunitySearch}
+        options={() => ({
+          headerTitle: '',
+          headerRight: () => (
+            <SearchInput
+              height={'100px'}
+              onPress={() => navigation.navigate('search', { search: search })}
+              onChange={onChangeSearch}
+              placeholder={'검색어를 입력해주세요'}
+            />
           ),
         })}
       />

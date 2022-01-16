@@ -141,13 +141,23 @@ const CommunityUI = (props: IPropsCommunityUI) => {
                     <S.ModalTagWrap>
                       {hashArr.map((el, idx) =>
                         props.userHash.includes(el) ? (
-                          <GreenTag key={idx} text={el} padding="8px 12px" />
+                          <GreenTag
+                            key={idx}
+                            text={el}
+                            padding="8px 12px"
+                            onPress={props.setHash(el)}
+                          />
                         ) : (
-                          <WhiteTag key={idx} text={el} padding="8px 12px" />
+                          <WhiteTag
+                            key={idx}
+                            text={el}
+                            padding="8px 12px"
+                            onPress={props.setHash(el)}
+                          />
                         ),
                       )}
                     </S.ModalTagWrap>
-                    <S.SubmitBtn>
+                    <S.SubmitBtn onPress={() => setModalVisible(!modalVisible)}>
                       <S.SubmitText>확인</S.SubmitText>
                     </S.SubmitBtn>
                   </S.ModalBody>
