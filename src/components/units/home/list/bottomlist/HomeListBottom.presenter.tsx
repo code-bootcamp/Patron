@@ -53,7 +53,9 @@ export default function HomeListBottomUI(props) {
                         fontSize={'9px'}
                         padding={'2px 4px 2px 4px'}
                       />
-                      <ClearProgressBar createdAt={el.createdAt} height={'2px'} id={el._id} />
+                      {props.category !== '결연아동' && (
+                        <ClearProgressBar createdAt={el.createdAt} height={'2px'} id={el._id} />
+                      )}
                     </E.CardTag>
                   </E.RImageWrpper>
                   <E.RecommendCardDetails>

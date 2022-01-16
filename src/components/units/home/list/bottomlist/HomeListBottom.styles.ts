@@ -23,11 +23,9 @@ export const UserName = styled.Text`
 export const RecommendList = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
-  /* background-color: yellow; */
 `;
 
 export const RecommendCard = styled.View`
-  /* background-color: yellowgreen; */
   padding-right: 20px;
 `;
 

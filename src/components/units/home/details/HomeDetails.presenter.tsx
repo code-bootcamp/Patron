@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Share, Text } from 'react-native';
 import * as E from './HomeDetails.styles';
 import WhiteButton from '../../../commons/buttons/whitebutton/';
 import AvatarGroup from '../../../commons/avatargroup/index';
@@ -19,9 +19,14 @@ const HomeDetailsUI = (props) => {
   const start = props.data?.fetchUseditem.createdAt;
   const end = props.getDate;
   const children = props.data?.fetchUseditem.name.split('/')[0] === '결연아동';
-
   const category = props.data?.fetchUseditem.name.split('/')[0];
+  const el = props.data?.fetchUseditem;
 
+  async function onShare() {
+    await Share.share({
+      message: '굿네이버스',
+    });
+  }
   return (
     <>
       <E.Wrapper>
@@ -41,8 +46,25 @@ const HomeDetailsUI = (props) => {
           >
             <E.TopOverWrapper>
               <E.IconBtns>
-                {/* <Text>버튼</Text>
-                <Text>버튼</Text> */}
+                {!props.dataForPicked?.fetchUseditemsIPicked
+                  .map((pick) => pick._id)
+                  .includes(props.data?.fetchUseditem._id) ? (
+                  <Icon
+                    name="bookmark-outline"
+                    size={20}
+                    color={'#fff'}
+                    onPress={props.onPressPick(el)}
+                  />
+                ) : (
+                  <Icon name="bookmark" size={20} color={'#fff'} onPress={props.onPressPick(el)} />
+                )}
+                <Icon
+                  name="share-outline"
+                  size={20}
+                  color={'#fff'}
+                  style={{ margin: 5 }}
+                  onPress={() => onShare()}
+                />
               </E.IconBtns>
               <E.Info>
                 <E.InfoDetails>
@@ -138,7 +160,7 @@ const HomeDetailsUI = (props) => {
               <HomeLetterWrite route={props.route} />
             )}
             <E.BottomRecommendWrapper>
-              <HomeListBottom category={category} />
+              <HomeListBottom category={category} navigation={props.navigation} />
             </E.BottomRecommendWrapper>
           </ScrollView>
         </E.Bottom>

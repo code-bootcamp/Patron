@@ -4,6 +4,8 @@ import { Image } from 'react-native';
 import GreenButton from '../../../commons/buttons/greenbutton';
 
 export default function HomePaymentUI(props) {
+  const category = props.data?.fetchUseditem.name.split('/')[0];
+  console.log(category);
   return (
     <>
       <E.Wrapper>
@@ -25,7 +27,12 @@ export default function HomePaymentUI(props) {
         </E.ChildrenList>
         <E.InputWrapper>
           <E.BottomColor>
-            <E.EnterPrice onChange={props.onChangePrice} keyboardType={'number-pad'} />
+            <E.EnterPrice
+              onChange={props.onChangePrice}
+              keyboardType={'number-pad'}
+              value={props.price}
+              defaultValue={props.price}
+            />
           </E.BottomColor>
           <E.OptionsWrapper>
             {props.option.map((el) => (

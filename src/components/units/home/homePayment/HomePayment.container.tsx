@@ -5,15 +5,13 @@ import { FETCH_USEDITEM } from './HomePayment.queries';
 import { IMPConst } from 'iamport-react-native';
 
 export default function HomePayment({ route, navigation }) {
-  // const [createPointTransactionOfLoading] = useMutation(CREATE_POINT_TRANSACTION_OF_LOADING);
-
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: {
       useditemId: route.params.useditemId,
     },
   });
 
-  const option = [5000, 10000, 20000, 50000, 100000];
+  const option = [5000, 10000, 50000, 100000];
   const [price, setPrice] = React.useState('' || 0);
 
   const onPressOption = (el) => () => {

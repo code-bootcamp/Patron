@@ -90,6 +90,7 @@ export default function HomeCampaignUI(props) {
                       </E.CardDetails>
                     </E.Card>
                   ))
+                  .reverse()
                   .splice(0, 3)}
               </ScrollView>
             </E.SelectionList>
@@ -162,6 +163,7 @@ export default function HomeCampaignUI(props) {
                     </E.RecommendCardDetails>
                   </E.RecommendCard>
                 ))
+                .sort(() => Math.random() - 0.5)
                 .splice(0, 4)}
             </E.RecommendList>
           </E.RecommendWrapper>
