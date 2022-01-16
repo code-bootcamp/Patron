@@ -32,7 +32,7 @@ const CommunityList = ({ navigation, route }: IPropsRoute) => {
       .doc(route.params?.useditemId)
       .get()
       .then((doc) => setFiredata({ ...doc.data() }));
-  }, [homeCollection]);
+  }, []);
 
   const getListDetail = () => {
     navigation.navigate('Home', {

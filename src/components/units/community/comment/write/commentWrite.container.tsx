@@ -18,7 +18,7 @@ import {
 import { IPropsCommentWrite } from './commentWrite.types';
 
 const CommentWrite = (props: IPropsCommentWrite) => {
-  const boardId = props.isEdit ? props.boardId : props.route.params.boardId;
+  const boardId = props.isEdit ? props.boardId : props.route?.params.boardId;
   const { refetch } = useQuery<Pick<Query, 'fetchBoardComments'>, QueryFetchBoardCommentsArgs>(
     FETCH_BOARD_COMMENTS,
     { variables: { boardId } },

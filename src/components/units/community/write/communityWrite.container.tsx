@@ -109,7 +109,6 @@ const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
         variables: {
           createBoardInput: {
             writer: userdata?.fetchUserLoggedIn.name,
-            // writer: '강이웃8693',
             password: '123',
             title,
             contents,
@@ -163,7 +162,10 @@ const CommunityWrite = ({ navigation, route }: IPropsNavigation) => {
         },
       });
       navigation.navigate('community', { screen: 'home' });
-      console.log(result);
+      const community = firestore().collection('community');
+      community.doc(result.data?.updateBoard._id).update({
+        tags: hashArr,
+      });
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }

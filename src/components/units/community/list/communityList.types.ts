@@ -16,4 +16,6 @@ export type IPropsRoute = {
 
 export interface IPropsCommunityListUI {
   data?: Pick<Query, 'fetchUseditem'>;
+  getListDetail: () => void;
+  firedata: any;
 }

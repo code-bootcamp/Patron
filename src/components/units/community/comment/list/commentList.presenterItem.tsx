@@ -13,8 +13,9 @@ import {
   QueryFetchBoardCommentsArgs,
 } from '../../../../../commons/types/generated/types';
 import { DELETE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from './commentList.queries';
+import { IPropsCommentListUIItem } from './commentList.types';
 
-const CommentListUIItem = (props) => {
+const CommentListUIItem = (props: IPropsCommentListUIItem) => {
   const { refetch } = useQuery<Pick<Query, 'fetchBoardComments'>, QueryFetchBoardCommentsArgs>(
     FETCH_BOARD_COMMENTS,
   );
@@ -36,7 +37,7 @@ const CommentListUIItem = (props) => {
       console.log(result);
       refetch({ boardId: props.boardId });
     } catch (error) {
-      console.log(error.message);
+      if (error instanceof Error) console.log(error.message);
     }
   };
 

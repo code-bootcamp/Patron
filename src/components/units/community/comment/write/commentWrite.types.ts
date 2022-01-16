@@ -21,9 +21,9 @@ type RootStackParamList = {
 type CommunityListScreenRouteProp = RouteProp<RootStackParamList, 'community'>;
 
 export interface IPropsCommentWrite {
-  route: CommunityListScreenRouteProp;
-  isEdit: boolean;
-  boardId: string;
-  el: any;
-  setIsEdit: any;
+  route?: CommunityListScreenRouteProp;
+  isEdit?: boolean;
+  boardId?: string;
+  el?: any;
+  setIsEdit?: any;
 }
