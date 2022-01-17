@@ -37,20 +37,3 @@ export const FETCH_USER_LOGGED_IN = gql`
     }
   }
 `;
-
-export const FETCH_BOARDS_BEST = gql`
-  query fetchBoardsOfTheBest {
-    fetchBoardsOfTheBest {
-      _id
-      writer
-      title
-      contents
-      likeCount
-      images
-      boardAddress {
-        address
-      }
-      createdAt
-    }
-  }
-`;

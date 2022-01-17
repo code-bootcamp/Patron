@@ -44,7 +44,7 @@ const CommunityDetail = ({ route, navigation }: IPropsRoute) => {
       .doc(route.params?.boardId)
       .get()
       .then((doc) => setFiredata({ ...doc.data() }));
-  }, [commuCollection]);
+  }, [route]);
 
   useEffect(() => {
     docRef.update({ views: firedata?.views + 1 });

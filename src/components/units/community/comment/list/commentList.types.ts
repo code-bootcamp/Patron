@@ -18,3 +18,8 @@ export interface IPropsCommentListUI {
   data?: Pick<Query, 'fetchBoardComments'>;
   boardId: string;
 }
+
+export interface IPropsCommentListUIItem {
+  el?: any;
+  boardId: string;
+}

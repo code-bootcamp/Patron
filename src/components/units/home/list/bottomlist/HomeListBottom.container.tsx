@@ -6,22 +6,40 @@ import {
   TOGGLE_USEDITEM_PICK,
   FETCH_USEDITEMS_I_PICKED,
 } from './HomeListBottom.queries';
+import { IPropsHomeListBottom } from './HomeListBottom.types';
+import {
+  Mutation,
+  MutationToggleUseditemPickArgs,
+  Query,
+  QueryFetchUseditemsArgs,
+  QueryFetchUseditemsIPickedArgs,
+} from '../../../../../commons/types/generated/types';
 
-export default function HomeListBottom(props) {
-  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
-  const { data } = useQuery(FETCH_USEDITEMS, {
-    variables: {
-      search: props.category,
+export default function HomeListBottom(props: IPropsHomeListBottom) {
+  const [toggleUseditemPick] = useMutation<
+    Pick<Mutation, 'toggleUseditemPick'>,
+    MutationToggleUseditemPickArgs
+  >(TOGGLE_USEDITEM_PICK);
+
+  const { data } = useQuery<Pick<Query, 'fetchUseditems'>, QueryFetchUseditemsArgs>(
+    FETCH_USEDITEMS,
+    {
+      variables: {
+        search: props.category,
+      },
     },
-  });
+  );
 
-  const { data: dataForPicked } = useQuery(FETCH_USEDITEMS_I_PICKED, {
+  const { data: dataForPicked } = useQuery<
+    Pick<Query, 'fetchUseditemsIPicked'>,
+    QueryFetchUseditemsIPickedArgs
+  >(FETCH_USEDITEMS_I_PICKED, {
     variables: {
       search: '',
     },
   });
 
-  const onPressPick = (el) => async () => {
+  const onPressPick = (el: any) => async () => {
     try {
       await toggleUseditemPick({
         variables: {
@@ -53,6 +71,7 @@ export default function HomeListBottom(props) {
       dataForPicked={dataForPicked}
       onPressPick={onPressPick}
       category={props.category}
+      navigation={props.navigation}
     />
   );
 }

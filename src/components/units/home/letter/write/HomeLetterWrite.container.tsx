@@ -6,11 +6,32 @@ import {
   UPDATE_USEDITEM_QUESTION,
 } from './HomeLetterWrite.queries';
 import InputComment from '../../../../commons/inputs/comment/index';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import {
+  Mutation,
+  MutationCreateUseditemQuestionArgs,
+  MutationUpdateUseditemQuestionArgs,
+} from '../../../../../commons/types/generated/types';
 
-export default function HomeLetterWrite(props) {
-  const [letter, setLetter] = React.useState('');
-  const [createUseditemQuestion] = useMutation(CREATE_USEDITEM_QUESTION);
-  const [updateUseditemQuestion] = useMutation(UPDATE_USEDITEM_QUESTION);
+interface IPropsHomeLetterWrite {
+  isEdit: boolean;
+  route?: any;
+  usedQId: string;
+  useditemId?: string;
+  setIsEdit: any;
+}
+
+export default function HomeLetterWrite(props: IPropsHomeLetterWrite) {
+  const [letter, setLetter] = React.useState<string>('');
+  const [createUseditemQuestion] = useMutation<
+    Pick<Mutation, 'createUseditemQuestion'>,
+    MutationCreateUseditemQuestionArgs
+  >(CREATE_USEDITEM_QUESTION);
+
+  const [updateUseditemQuestion] = useMutation<
+    Pick<Mutation, 'updateUseditemQuestion'>,
+    MutationUpdateUseditemQuestionArgs
+  >(UPDATE_USEDITEM_QUESTION);
 
   async function onPressSubmit() {
     try {
@@ -59,7 +80,7 @@ export default function HomeLetterWrite(props) {
     }
   }
 
-  function onChangeLetter(event) {
+  function onChangeLetter(event: NativeSyntheticEvent<TextInputChangeEventData>) {
     setLetter(event.nativeEvent.text);
   }
 
@@ -70,6 +91,7 @@ export default function HomeLetterWrite(props) {
         onChange={onChangeLetter}
         onPress={props.isEdit ? onPressEdit : onPressSubmit}
         text={props.isEdit ? '수정' : '등록'}
+        defaultValue={letter}
       />
     </>
   );

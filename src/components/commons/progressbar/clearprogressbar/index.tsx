@@ -63,8 +63,6 @@ export default function ClearProgressBar(props: IPropsClearProgressBar) {
     docRef.get().then((doc) => setPeople(doc.data()?.suppoters));
   }, [docRef]);
 
-  // console.log(getEnd);
-  // sujeong
   const current = people;
 
   const per = Math.floor((current / goalCount) * 100);

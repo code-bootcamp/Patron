@@ -6,10 +6,18 @@ import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-m
 import { DELETE_USEDITEM_QUESTION, FETCH_USEDITEM_QUESTIONS } from './HomeLetter.queries';
 import { useMutation } from '@apollo/client';
 import HomeLetterWrite from '../write/HomeLetterWrite.container';
+import { IPropsHomeLetterUIItem } from './HomeLetter.types';
+import {
+  Mutation,
+  MutationDeleteUseditemQuestionArgs,
+} from '../../../../../commons/types/generated/types';
 
-export default function HomeLetterUIItem(props) {
-  const [deleteUseditemQuestion] = useMutation(DELETE_USEDITEM_QUESTION);
-  const [isEdit, setIsEdit] = React.useState(false);
+export default function HomeLetterUIItem(props: IPropsHomeLetterUIItem) {
+  const [deleteUseditemQuestion] = useMutation<
+    Pick<Mutation, 'deleteUseditemQuestion'>,
+    MutationDeleteUseditemQuestionArgs
+  >(DELETE_USEDITEM_QUESTION);
+  const [isEdit, setIsEdit] = React.useState<boolean>(false);
 
   async function onSelectDelete() {
     try {

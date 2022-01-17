@@ -1,6 +1,6 @@
 import * as React from 'react';
-import HomeCompleteUI from './HomeComplete.presenter';
+import PaymentResult from './HomeComplete.presenter';
 
 export default function HomeComplete() {
-  return <HomeCompleteUI />;
+  return <PaymentResult />;
 }

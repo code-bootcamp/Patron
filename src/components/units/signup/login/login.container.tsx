@@ -10,9 +10,11 @@ import { Mutation, MutationLoginUserArgs } from '../../../../commons/types/gener
 
 const Login = ({ navigation }: IPropsNavigation) => {
   const { setAccessToken }: any = useContext(GlobalContext);
-
   const [loginUser] = useMutation<Pick<Mutation, 'loginUser'>, MutationLoginUserArgs>(LOGIN_USER);
 
+const Login = ({ navigation }) => {
+  const { setAccessToken }: any = useContext(GlobalContext);
+  const [loginUser] = useMutation(LOGIN_USER);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Share, Text } from 'react-native';
 import * as E from './HomeDetails.styles';
 import WhiteButton from '../../../commons/buttons/whitebutton/';
 import AvatarGroup from '../../../commons/avatargroup/index';
@@ -14,14 +14,20 @@ import HomeLetter from '../letter/list/HomeLetter.container';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Tooltip from 'rn-tooltip';
 import HomeListBottom from '../list/bottomlist/HomeListBottom.container';
+import { IPropsHomeDetailsUI } from './HomeDetails.types';
 
-const HomeDetailsUI = (props) => {
+const HomeDetailsUI = (props: IPropsHomeDetailsUI) => {
   const start = props.data?.fetchUseditem.createdAt;
   const end = props.getDate;
   const children = props.data?.fetchUseditem.name.split('/')[0] === '결연아동';
-
   const category = props.data?.fetchUseditem.name.split('/')[0];
+  const el = props.data?.fetchUseditem;
 
+  async function onShare() {
+    await Share.share({
+      message: '굿네이버스',
+    });
+  }
   return (
     <>
       <E.Wrapper>
@@ -41,8 +47,25 @@ const HomeDetailsUI = (props) => {
           >
             <E.TopOverWrapper>
               <E.IconBtns>
-                {/* <Text>버튼</Text>
-                <Text>버튼</Text> */}
+                {!props.dataForPicked?.fetchUseditemsIPicked
+                  .map((pick) => pick._id)
+                  .includes(props.data?.fetchUseditem._id) ? (
+                  <Icon
+                    name="bookmark-outline"
+                    size={20}
+                    color={'#fff'}
+                    onPress={props.onPressPick(el)}
+                  />
+                ) : (
+                  <Icon name="bookmark" size={20} color={'#fff'} onPress={props.onPressPick(el)} />
+                )}
+                <Icon
+                  name="share-outline"
+                  size={20}
+                  color={'#fff'}
+                  style={{ margin: 5 }}
+                  onPress={() => onShare()}
+                />
               </E.IconBtns>
               <E.Info>
                 <E.InfoDetails>
@@ -92,7 +115,7 @@ const HomeDetailsUI = (props) => {
               )}
               <E.SummaryContent>{props.data?.fetchUseditem.contents}</E.SummaryContent>
               <E.Tags>
-                {props.data?.fetchUseditem.tags.map((el, index) => (
+                {props.data?.fetchUseditem.tags?.map((el, index) => (
                   <WhiteTag key={index} text={el} fontSize={'10px'} padding={'4px 6px 4px 6px'} />
                 ))}
               </E.Tags>
@@ -138,7 +161,7 @@ const HomeDetailsUI = (props) => {
               <HomeLetterWrite route={props.route} />
             )}
             <E.BottomRecommendWrapper>
-              <HomeListBottom category={category} />
+              <HomeListBottom category={category} navigation={props.navigation} />
             </E.BottomRecommendWrapper>
           </ScrollView>
         </E.Bottom>
@@ -148,7 +171,7 @@ const HomeDetailsUI = (props) => {
   );
 };
 
-const _renderTruncatedFooter = (handlePress) => {
+const _renderTruncatedFooter = (handlePress: any) => {
   return (
     <>
       <LinearGradient
@@ -162,7 +185,7 @@ const _renderTruncatedFooter = (handlePress) => {
   );
 };
 
-const _renderRevealedFooter = (handlePress) => {
+const _renderRevealedFooter = (handlePress: any) => {
   return (
     <Text style={{ textAlign: 'center' }} onPress={handlePress}>
       접기

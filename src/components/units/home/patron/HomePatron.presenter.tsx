@@ -6,8 +6,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
 import ClearProgressBar from '../../../commons/progressbar/clearprogressbar';
+import { IPropsHomePatronUI } from './HomePatron.types';
 
-export default function HomePatronUI(props) {
+export default function HomePatronUI(props: IPropsHomePatronUI) {
   return (
     <>
       <ScrollView>
@@ -83,6 +84,8 @@ export default function HomePatronUI(props) {
                       </E.CardDetails>
                     </E.Card>
                   ))
+                  .sort(() => Math.random() - 0.5)
+                  .reverse()
                   .slice(0, 3)}
               </ScrollView>
             </E.SelectionList>

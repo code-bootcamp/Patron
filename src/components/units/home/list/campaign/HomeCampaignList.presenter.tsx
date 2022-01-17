@@ -4,8 +4,9 @@ import { Image } from 'react-native';
 import ColoredTag from '../../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
+import { IPropsHomeCampaignListUI } from './HomeCampaignList.types';
 
-export default function HomeCampaignListUI(props) {
+export default function HomeCampaignListUI(props: IPropsHomeCampaignListUI) {
   return (
     <>
       <ScrollView>

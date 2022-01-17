@@ -9,6 +9,8 @@ import CommunityScreen from '../screens/community';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/signup/index';
 import NewsScreen from '../screens/news/index';
+import MypageScreen from '../screens/mypage';
+
 
 const DefaultScreen = () => {
   return (
@@ -63,6 +65,7 @@ const MainScreen = () => {
       ></Tab.Screen>
       <Tab.Screen
         name="News"
+
         component={NewsScreen}
         options={{
           tabBarLabel: '소식',
@@ -75,8 +78,8 @@ const MainScreen = () => {
         }}
       ></Tab.Screen>
       <Tab.Screen
-        name="Mypage"
-        component={DefaultScreen}
+        name="mypage"
+        component={MypageScreen}
         options={{
           tabBarLabel: '내정보',
           tabBarIcon: ({ focused }) =>

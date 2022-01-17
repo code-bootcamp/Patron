@@ -4,8 +4,9 @@ import * as E from './HomeChildren.styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ColoredTag from '../../../commons/tags/coloredtag/index';
 import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
+import { IPropsHomeChildrenUI } from './HomeChildren.types';
 
-export default function HomeChildrenUI(props) {
+export default function HomeChildrenUI(props: IPropsHomeChildrenUI) {
   return (
     <>
       <ScrollView>
@@ -68,6 +69,7 @@ export default function HomeChildrenUI(props) {
                       </E.CardDetails>
                     </E.Card>
                   ))
+                  .reverse()
                   .slice(0, 3)}
               </E.SelectionList>
             </ScrollView>
@@ -133,6 +135,7 @@ export default function HomeChildrenUI(props) {
                   </E.ChildDetails>
                 </E.ChildrenList>
               ))
+              .sort(() => Math.random() - 0.5)
               .slice(0, 4)}
           </E.RecommendWrapper>
         </E.Wrapper>
