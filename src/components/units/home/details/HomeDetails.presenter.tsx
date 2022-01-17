@@ -14,8 +14,9 @@ import HomeLetter from '../letter/list/HomeLetter.container';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Tooltip from 'rn-tooltip';
 import HomeListBottom from '../list/bottomlist/HomeListBottom.container';
+import { IPropsHomeDetailsUI } from './HomeDetails.types';
 
-const HomeDetailsUI = (props) => {
+const HomeDetailsUI = (props: IPropsHomeDetailsUI) => {
   const start = props.data?.fetchUseditem.createdAt;
   const end = props.getDate;
   const children = props.data?.fetchUseditem.name.split('/')[0] === '결연아동';
@@ -114,7 +115,7 @@ const HomeDetailsUI = (props) => {
               )}
               <E.SummaryContent>{props.data?.fetchUseditem.contents}</E.SummaryContent>
               <E.Tags>
-                {props.data?.fetchUseditem.tags.map((el, index) => (
+                {props.data?.fetchUseditem.tags?.map((el, index) => (
                   <WhiteTag key={index} text={el} fontSize={'10px'} padding={'4px 6px 4px 6px'} />
                 ))}
               </E.Tags>
@@ -170,7 +171,7 @@ const HomeDetailsUI = (props) => {
   );
 };
 
-const _renderTruncatedFooter = (handlePress) => {
+const _renderTruncatedFooter = (handlePress: any) => {
   return (
     <>
       <LinearGradient
@@ -184,7 +185,7 @@ const _renderTruncatedFooter = (handlePress) => {
   );
 };
 
-const _renderRevealedFooter = (handlePress) => {
+const _renderRevealedFooter = (handlePress: any) => {
   return (
     <Text style={{ textAlign: 'center' }} onPress={handlePress}>
       접기

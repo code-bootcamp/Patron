@@ -17,7 +17,7 @@ export function displayedAt(value: string) {
   return `${Math.floor(betweenTimeDay / 365)}년 전`;
 }
 
-export function displayDate(value: string) {
+export function displayDate(value: Date) {
   const getDate = new Date(value);
   const month = getDate.getMonth() + 1;
   const date = getDate.getDate();
@@ -66,6 +66,6 @@ export const getUserCode = (pg: string, tierCode?: string, type = 'payment') => 
   }
 };
 
-export function shuffle(array) {
+export function shuffle(array: any) {
   array.sort(() => Math.random() - 0.5);
 }

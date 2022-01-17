@@ -3,6 +3,7 @@ import HomePaymentUI from './HomePayment.presenter';
 import { useQuery } from '@apollo/client';
 import { FETCH_USEDITEM } from './HomePayment.queries';
 import { IMPConst } from 'iamport-react-native';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 
 export default function HomePayment({ route, navigation }) {
   const { data } = useQuery(FETCH_USEDITEM, {
@@ -18,7 +19,7 @@ export default function HomePayment({ route, navigation }) {
     setPrice((prev) => prev + el);
   };
 
-  function onChangePrice(event) {
+  function onChangePrice(event: NativeSyntheticEvent<TextInputChangeEventData>) {
     setPrice(Number(event.nativeEvent.text));
   }
   const merchantUid = `mid_${new Date().getTime()}`;

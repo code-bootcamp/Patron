@@ -56,7 +56,7 @@ export default function HomeDetails({ route, navigation }) {
     navigation.navigate('homePayment', { useditemId: route.params.useditemId });
   };
 
-  const onPressPick = (el) => async () => {
+  const onPressPick = (el: any) => async () => {
     try {
       await toggleUseditemPick({
         variables: {
