@@ -1,4 +1,4 @@
-import React, { createContext, useState, Dispatch, SetStateAction } from 'react';
+import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
 import 'react-native-gesture-handler';
 import { ApolloProvider, ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,6 +9,7 @@ import { firebase } from '@react-native-firebase/firestore';
 import { MenuProvider } from 'react-native-popup-menu';
 import Navigation from './pages/navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SplashScreen from 'react-native-splash-screen';
 
 interface IGlobalContext {
   setAccessToken?: Dispatch<SetStateAction<string>>;
@@ -31,6 +32,17 @@ export const firebaseStorage = !firebase.apps.length
 
 const App = () => {
   const [accessToken, setMyAccessToken] = useState('');
+
+  useEffect(() => {
+    try {
+      setTimeout(() => {
+        SplashScreen.hide();
+      }, 2500);
+    } catch (error) {
+      console.warn('에러발생');
+      console.warn(error);
+    }
+  });
 
   const value = {
     setAccessToken: setMyAccessToken,
