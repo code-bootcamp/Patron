@@ -3,8 +3,9 @@ import * as E from './HomeSearch.styles';
 import { ScrollView, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ColoredTag from '../../../commons/tags/coloredtag/index';
+import { IPropsHomeSearchUI } from './HomeSearch.types';
 
-export default function HomeSearchUI(props) {
+export default function HomeSearchUI(props: IPropsHomeSearchUI) {
   return (
     <>
       <E.Wrapper>
@@ -82,3 +83,4 @@ export default function HomeSearchUI(props) {
     </>
   );
 }
+

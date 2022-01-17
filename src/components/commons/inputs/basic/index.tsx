@@ -8,6 +8,14 @@ interface IPropsContainer {
   height?: string;
 }
 
+interface IPropsInputBasic {
+  width?: string;
+  height?: string;
+  placeholder?: string;
+  secureTextEntry: boolean;
+  onChange: () => void;
+}
+
 const Container = styled.View`
   width: ${(props: IPropsContainer) => props.width};
   height: ${(props: IPropsContainer) => props.height};
@@ -26,7 +34,7 @@ const Input = styled.TextInput`
   width: 95%;
 `;
 
-export default function InputBasic(props) {
+export default function InputBasic(props: IPropsInputBasic) {
   const [isFocus, setIsFocus] = useState(false);
 
   function onFocusInput() {

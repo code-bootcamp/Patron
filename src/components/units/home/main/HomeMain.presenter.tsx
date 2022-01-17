@@ -7,7 +7,12 @@ import HomePatron from '../patron/HomePatron.container';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createMaterialTopTabNavigator();
-export default function HomeMainUI(props) {
+
+interface IPropsHomeMainUI {
+  navigation: any;
+}
+
+export default function HomeMainUI(props: IPropsHomeMainUI) {
   return (
     <>
       <E.SearchWrapper>

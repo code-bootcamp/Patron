@@ -50,13 +50,11 @@ export const CardTag = styled.View`
 export const CardDetails = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  /* background-color: aqua; */
   width: 277px;
   padding: 10px 10px 10px 0px;
 `;
 
 export const DetailsContent = styled.View`
-  /* background-color: beige; */
   width: 95%;
 `;
 
@@ -95,12 +93,9 @@ export const RecommendList = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  /* background-color: darkcyan; */
 `;
 
-export const RecommendCard = styled.View`
-  /* background-color: coral; */
-`;
+export const RecommendCard = styled.View``;
 
 export const RImageWrpper = styled.Pressable``;
 

@@ -2,6 +2,14 @@ import React from 'react';
 import styled from '@emotion/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+interface IPropsSearchInput {
+  width?: string;
+  height?: string;
+  placeholder?: string;
+  onChange: () => void;
+  onPress: () => void;
+}
+
 interface IPropsSearchWrapper {
   width?: string;
   height?: string;
@@ -25,7 +33,7 @@ const IconWrapper = styled.View`
   align-items: center;
 `;
 
-export default function SearchInput(props) {
+export default function SearchInput(props: IPropsSearchInput) {
   return (
     <Wrapper width={props.width} height={props.height}>
       <Input onChange={props.onChange} placeholder={props.placeholder} />

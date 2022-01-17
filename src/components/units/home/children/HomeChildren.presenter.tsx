@@ -4,8 +4,9 @@ import * as E from './HomeChildren.styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ColoredTag from '../../../commons/tags/coloredtag/index';
 import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
+import { IPropsHomeChildrenUI } from './HomeChildren.types';
 
-export default function HomeChildrenUI(props) {
+export default function HomeChildrenUI(props: IPropsHomeChildrenUI) {
   return (
     <>
       <ScrollView>

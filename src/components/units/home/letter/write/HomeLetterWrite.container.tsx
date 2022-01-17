@@ -6,8 +6,11 @@ import {
   UPDATE_USEDITEM_QUESTION,
 } from './HomeLetterWrite.queries';
 import InputComment from '../../../../commons/inputs/comment/index';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 
-export default function HomeLetterWrite(props) {
+interface IPropsHomeLetterWrite {}
+
+export default function HomeLetterWrite(props: IPropsHomeLetterWrite) {
   const [letter, setLetter] = React.useState('');
   const [createUseditemQuestion] = useMutation(CREATE_USEDITEM_QUESTION);
   const [updateUseditemQuestion] = useMutation(UPDATE_USEDITEM_QUESTION);
@@ -59,7 +62,7 @@ export default function HomeLetterWrite(props) {
     }
   }
 
-  function onChangeLetter(event) {
+  function onChangeLetter(event: NativeSyntheticEvent<TextInputChangeEventData>) {
     setLetter(event.nativeEvent.text);
   }
 
@@ -70,6 +73,7 @@ export default function HomeLetterWrite(props) {
         onChange={onChangeLetter}
         onPress={props.isEdit ? onPressEdit : onPressSubmit}
         text={props.isEdit ? '수정' : '등록'}
+        defaultValue={letter}
       />
     </>
   );

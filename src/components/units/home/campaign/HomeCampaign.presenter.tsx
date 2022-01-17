@@ -6,8 +6,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
 import ClearProgressBar from '../../../commons/progressbar/clearprogressbar';
+import { IPropsHomeCampaignUI } from './HomeCampaign.types';
 
-export default function HomeCampaignUI(props) {
+export default function HomeCampaignUI(props: IPropsHomeCampaignUI) {
   return (
     <>
       <ScrollView>

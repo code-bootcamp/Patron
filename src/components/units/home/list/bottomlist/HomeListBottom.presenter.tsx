@@ -5,8 +5,9 @@ import ClearProgressBar from '../../../../commons/progressbar/clearprogressbar';
 import ColoredTag from '../../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
+import { IPropsHomeListBottomUI } from './HomeListBottom.types';
 
-export default function HomeListBottomUI(props) {
+export default function HomeListBottomUI(props: IPropsHomeListBottomUI) {
   return (
     <>
       <E.RecommendWrapper>

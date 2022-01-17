@@ -5,7 +5,7 @@ import firestore from '@react-native-firebase/firestore';
 interface IPropsColoredProgressBar {
   current: number;
   dday: number;
-  id: string;
+  id: string | undefined;
 }
 
 interface IPropsWidth {
