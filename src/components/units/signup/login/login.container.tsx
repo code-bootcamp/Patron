@@ -4,20 +4,23 @@ import { GlobalContext } from '../../../../../App';
 import LoginUI from './login.presenter';
 import { LOGIN_USER } from './login.queries';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { IPropsNavigation } from './login.types';
+import { Mutation, MutationLoginUserArgs } from '../../../../commons/types/generated/types';
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation }: IPropsNavigation) => {
   const { setAccessToken }: any = useContext(GlobalContext);
 
-  const [loginUser] = useMutation(LOGIN_USER);
+  const [loginUser] = useMutation<Pick<Mutation, 'loginUser'>, MutationLoginUserArgs>(LOGIN_USER);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const onChangeEmail = (event) => {
+  const onChangeEmail = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setEmail(event.nativeEvent.text);
   };
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setPassword(event.nativeEvent.text);
   };
 

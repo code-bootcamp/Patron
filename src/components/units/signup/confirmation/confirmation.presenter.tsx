@@ -2,8 +2,9 @@ import React from 'react';
 // import * as R from 'react-native';
 import * as S from './confirmation.styles';
 import GreenButton from '../../../commons/buttons/greenbutton/index';
+import { IPropsConfirmationUI } from './confirmation.types';
 
-const ConfirmationUI = (props) => {
+const ConfirmationUI = (props: IPropsConfirmationUI) => {
   return (
     <>
       <S.Wrapper>
