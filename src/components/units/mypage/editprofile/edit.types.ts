@@ -5,7 +5,6 @@ import {
   TextInputChangeEventData,
   GestureResponderEvent,
 } from 'react-native';
-
 type RootStackParamList = {
   home: undefined;
   community: undefined;
