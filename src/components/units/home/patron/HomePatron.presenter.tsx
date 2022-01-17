@@ -84,7 +84,6 @@ export default function HomePatronUI(props: IPropsHomePatronUI) {
                       </E.CardDetails>
                     </E.Card>
                   ))
-                  .sort(() => Math.random() - 0.5)
                   .reverse()
                   .slice(0, 3)}
               </ScrollView>
@@ -100,9 +99,6 @@ export default function HomePatronUI(props: IPropsHomePatronUI) {
             </E.RecommendTitle>
 
             <E.RecommendList>
-              {/* <FlatList
-              data={recommendListItems}
-              renderItem={(items) => ( */}
               {props.data?.fetchUseditems
                 .map((el) => (
                   <E.RecommendCard key={el._id}>
