@@ -30,17 +30,17 @@ export const ProfileName = styled.Text`
 
 export const InputWrapper = styled.View`
   flex: 8;
-  padding: 20px;
+  padding: 35px;
 `;
 
 export const InputNickName = styled.Text`
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 400;
   padding-bottom: 5px;
 `;
 
-export const InputEmail = styled.Text`
-  font-size: 12px;
+export const InputCommon = styled.Text`
+  font-size: 15px;
   font-weight: 400;
   padding-bottom: 5px;
   padding-top: 7px;
