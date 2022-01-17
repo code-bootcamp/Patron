@@ -14,6 +14,7 @@ export type IPropsPersonalinformation = {
 };
 
 export interface IPropsPersonalinformationUI {
+  data: any;
   navigation: ProfileScreenNavigationProp;
   onPress: () => void;
 }

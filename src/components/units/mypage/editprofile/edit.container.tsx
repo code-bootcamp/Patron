@@ -7,7 +7,6 @@ import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 
 const Edit = ({ navigation }: IPropsEditUI) => {
   const [name, setName] = useState('');
-  const [picture, setPicture] = useState('');
   const [password, setPassword] = useState('');
 
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
@@ -19,10 +18,6 @@ const Edit = ({ navigation }: IPropsEditUI) => {
     setName(event.nativeEvent.text);
   };
 
-  const onChangePicture = (event: any) => {
-    setPicture(event.nativeEvent.text);
-  };
-
   const onChangePassword = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setPassword(event.nativeEvent.text);
   };
@@ -32,7 +27,6 @@ const Edit = ({ navigation }: IPropsEditUI) => {
       variables: {
         updateUserInput: {
           name,
-          picture,
         },
       },
     });
@@ -54,7 +48,6 @@ const Edit = ({ navigation }: IPropsEditUI) => {
       name={name}
       onChangeName={onChangeName}
       onClickUpdate={onClickUpdate}
-      onChangePicture={onChangePicture}
       onChangePassword={onChangePassword}
     />
   );
