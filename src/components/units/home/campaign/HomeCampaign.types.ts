@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Query } from '../../../../commons/types/generated/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -6,8 +7,8 @@ export interface IPropsHomeCampaignUI {
   tags?: string[];
   dataForPicked?: Pick<Query, 'fetchUseditemsIPicked'>;
   dataForUser?: Pick<Query, 'fetchUserLoggedIn'>;
-  onPressPick: any;
-  navigation: any;
+  onPressPick: (el: any) => () => Promise<void>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'home'>;
 }
 
 type RootStackParamList = {

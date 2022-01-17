@@ -1,11 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { Query } from '../../../../../commons/types/generated/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export interface IPropsHomePatronListUI {
   data?: Pick<Query, 'fetchUseditems'>;
   dataForPicked?: Pick<Query, 'fetchUseditemsIPicked'>;
-  onPressPick: () => void;
-  navigation: any;
+  onPressPick: (el: any) => () => Promise<void>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'home'>;
 }
 
 type RootStackParamList = {
@@ -20,3 +21,4 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList,
 export type IPropsNavigation = {
   navigation: ProfileScreenNavigationProp;
 };
+
