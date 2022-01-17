@@ -18,4 +18,6 @@ export interface IPropsHomeChildrenUI {
   dataForPicked?: Pick<Query, 'fetchUseditemsIPicked'>;
   dataForUser?: Pick<Query, 'fetchUserLoggedIn'>;
   onPressPickChild: any;
+  navigation: any;
+  tags?: string[];
 }

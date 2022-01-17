@@ -5,36 +5,40 @@ import {
   FETCH_USEDITEMS_I_PICKED,
   TOGGLE_USEDITEM_PICK,
 } from './HomeChildrenList.queries';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { IPropsNavigation } from './HomeChildrenList.types';
 import HomeChildrenListUI from './HomeChildrenList.presenter';
+import {
+  Mutation,
+  MutationToggleUseditemPickArgs,
+  Query,
+  QueryFetchUseditemsArgs,
+  QueryFetchUseditemsIPickedArgs,
+} from '../../../../../commons/types/generated/types';
 
-type RootStackParamList = {
-  home: { screen: string };
-  community: { screen: string };
-  news: undefined;
-  mypage: undefined;
-};
+export default function HomeChildrenList({ navigation }: IPropsNavigation) {
+  const [toggleUseditemPick] = useMutation<
+    Pick<Mutation, 'toggleUseditemPick'>,
+    MutationToggleUseditemPickArgs
+  >(TOGGLE_USEDITEM_PICK);
 
-type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'home'>;
-
-type Props = {
-  navigation: ProfileScreenNavigationProp;
-};
-
-export default function HomeChildrenList({ navigation }: Props) {
-  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
-  const { data } = useQuery(FETCH_USEDITEMS, {
-    variables: {
-      search: '결연아동',
+  const { data } = useQuery<Pick<Query, 'fetchUseditems'>, QueryFetchUseditemsArgs>(
+    FETCH_USEDITEMS,
+    {
+      variables: {
+        search: '결연아동',
+      },
     },
-  });
-  const { data: dataForPicked } = useQuery(FETCH_USEDITEMS_I_PICKED, {
+  );
+  const { data: dataForPicked } = useQuery<
+    Pick<Query, 'fetchUseditemsIPicked'>,
+    QueryFetchUseditemsIPickedArgs
+  >(FETCH_USEDITEMS_I_PICKED, {
     variables: {
       search: '',
     },
   });
 
-  const onPressPick = (el) => async () => {
+  const onPressPick = (el: any) => async () => {
     try {
       await toggleUseditemPick({
         variables: {

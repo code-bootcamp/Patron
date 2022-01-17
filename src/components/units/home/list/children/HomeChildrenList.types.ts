@@ -1,6 +1,5 @@
-import { Query } from '../../../../commons/types/generated/types';
+import { Query } from '../../../../../commons/types/generated/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
 type RootStackParamList = {
   home: { screen: string };
   community: { screen: string };
@@ -10,18 +9,12 @@ type RootStackParamList = {
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'home'>;
 
-export type IPropNavigation = {
+export type IPropsNavigation = {
   navigation: ProfileScreenNavigationProp;
 };
 
-export interface IPropsHomeDetailsUI {
-  data?: Pick<Query, 'fetchUseditem'>;
+export interface IPropsHomeChildrenListUI {
+  data?: Pick<Query, 'fetchUseditems'>;
   dataForPicked?: Pick<Query, 'fetchUseditemsIPicked'>;
-  planTitle?: string;
-  people?: number;
-  route: any;
-  onPressSupport: () => void;
-  getDate: Date;
-  onPressPick: any;
-  navigation: any;
+  onPressPick: () => void;
 }

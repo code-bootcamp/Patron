@@ -4,8 +4,9 @@ import { useQuery } from '@apollo/client';
 import { FETCH_USEDITEM } from './HomePayment.queries';
 import { IMPConst } from 'iamport-react-native';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { IPropNavigation } from './HomePayment.types';
 
-export default function HomePayment({ route, navigation }) {
+export default function HomePayment({ route, navigation }: IPropNavigation) {
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: {
       useditemId: route.params.useditemId,
@@ -13,9 +14,9 @@ export default function HomePayment({ route, navigation }) {
   });
 
   const option = [5000, 10000, 50000, 100000];
-  const [price, setPrice] = React.useState('' || 0);
+  const [price, setPrice] = React.useState<number>(0);
 
-  const onPressOption = (el) => () => {
+  const onPressOption = (el: number) => () => {
     setPrice((prev) => prev + el);
   };
 
