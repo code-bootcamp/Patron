@@ -67,8 +67,8 @@ export const StampWrapper = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 50px;
+  /* align-items: center; */
+  padding: 8px 10px;
 `;
 
 export const ListWrapper = styled.View`
@@ -76,4 +76,16 @@ export const ListWrapper = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const StampListWrapper = styled.View`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+`;
+
+export const StampName = styled.Text`
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
 `;
