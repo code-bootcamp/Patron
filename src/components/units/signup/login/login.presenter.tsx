@@ -3,11 +3,13 @@ import * as R from 'react-native';
 import * as S from './login.styles';
 import InputBasic from '../../../commons/inputs/basic/index';
 import GreenButton from '../../../commons/buttons/greenbutton/index';
+import { IPropsLoginUI } from './login.types';
 
-const LoginUI = (props) => {
+const LoginUI = (props: IPropsLoginUI) => {
   return (
     <S.Wrapper>
       <S.Title_Wrapper>
+        <S.Logo_Image source={require('../../../../../public/images/logo.png')} />
         <S.Title>가장 좋은 이웃 GoodNeighbors</S.Title>
       </S.Title_Wrapper>
       <S.Email_Wrapper>

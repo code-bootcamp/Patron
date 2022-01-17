@@ -1,4 +1,5 @@
-import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
+
+import React, { createContext, useState, Dispatch, SetStateAction } from 'react';
 import 'react-native-gesture-handler';
 import { ApolloProvider, ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,6 +11,7 @@ import { MenuProvider } from 'react-native-popup-menu';
 import Navigation from './pages/navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
+
 
 interface IGlobalContext {
   setAccessToken?: Dispatch<SetStateAction<string>>;

@@ -208,6 +208,7 @@ dependencies {
     implementation project(':react-native-vector-icons')
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
     implementation 'com.google.firebase:firebase-messaging:23.0.0'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
     }

@@ -1,10 +1,10 @@
 import React from 'react';
-// import * as R from 'react-native';
 import GreenButton from '../../../commons/buttons/greenbutton';
 import InputBasic from '../../../commons/inputs/basic';
 import * as S from './firebase.styles';
+import { IPropsFirebaseUI } from './firebase.types';
 
-const FirebaseUI = (props) => {
+const FirebaseUI = (props: IPropsFirebaseUI) => {
   return (
     <>
       <S.Wrapper>
@@ -26,8 +26,8 @@ const FirebaseUI = (props) => {
             height="58px"
             placeholder="비밀번호"
             onChange={props.onChangePassword}
+            secureTextEntry={true}
           />
-          {/* <R.TextInput placeholder="비밀번호" onChange={props.onChangePassword} /> */}
         </S.Password_Wrapper>
         <S.Submit_Wrapper>
           <GreenButton

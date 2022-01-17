@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import FirebaseUI from './firebase.presenter';
 import auth from '@react-native-firebase/auth';
-import { Alert } from 'react-native';
+import { Alert, NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { IPropsNavigation } from './firebase.types';
 
-const Firebase = ({ navigation }) => {
+const Firebase = ({ navigation }: IPropsNavigation) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPasswrd] = useState<string>('');
 
-  const onChangeEmail = (event) => {
+  const onChangeEmail = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setEmail(event.nativeEvent.text);
   };
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setPasswrd(event.nativeEvent.text);
   };
 
@@ -25,6 +26,7 @@ const Firebase = ({ navigation }) => {
     } catch (error) {
       if (error instanceof Error) Alert.alert(error.message);
     }
+    Alert.alert('로그인되셨습니다!');
     navigation.navigate('mainScreen');
   };
   return (
