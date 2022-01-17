@@ -6,8 +6,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import ViewMoreButton from '../../../commons/buttons/viewmorebutton';
 import ClearProgressBar from '../../../commons/progressbar/clearprogressbar';
+import { IPropsHomeCampaignUI } from './HomeCampaign.types';
 
-export default function HomeCampaignUI(props) {
+export default function HomeCampaignUI(props: IPropsHomeCampaignUI) {
   return (
     <>
       <ScrollView>
@@ -90,6 +91,7 @@ export default function HomeCampaignUI(props) {
                       </E.CardDetails>
                     </E.Card>
                   ))
+                  .reverse()
                   .splice(0, 3)}
               </ScrollView>
             </E.SelectionList>
@@ -162,6 +164,7 @@ export default function HomeCampaignUI(props) {
                     </E.RecommendCardDetails>
                   </E.RecommendCard>
                 ))
+                .sort(() => Math.random() - 0.5)
                 .splice(0, 4)}
             </E.RecommendList>
           </E.RecommendWrapper>

@@ -5,7 +5,10 @@ import HomeCampaignList from '../../../src/components/units/home/list/campaign/H
 import HomeDetails from '../../../src/components/units/home/details/HomeDetails.container';
 import HomeChildrenList from '../../../src/components/units/home/list/children/HomeChildrenList.container';
 import HomePatronList from '../../../src/components/units/home/list/patron/HomePatronList.container';
-import HomePayment from '../../../src/components/units/home/payment/HomePayment.container';
+import HomePayment from '../../../src/components/units/home/homePayment/HomePayment.container';
+import Payment from '../../../src/components/units/home/Payment/index';
+import PaymentResult from '../../../src/components/units/home/complete/index';
+import HomeSearch from '../../../src/components/units/home/search/HomeSearch.container';
 const Stack = createStackNavigator();
 
 const HomeScreen = () => {
@@ -20,6 +23,17 @@ const HomeScreen = () => {
           headerTransparent: true,
           headerTintColor: 'transparent',
           headerTitleStyle: { fontSize: 22, fontWeight: '700' },
+        })}
+      />
+      <Stack.Screen
+        name="homeSearch"
+        component={HomeSearch}
+        options={() => ({
+          headerTitle: '',
+          headerTitleStyle: { fontSize: 22, fontWeight: '700' },
+          headerShadowVisible: true,
+          headerTransparent: true,
+          headerTintColor: 'black',
         })}
       />
       <Stack.Screen
@@ -69,6 +83,28 @@ const HomeScreen = () => {
       <Stack.Screen
         name="homePayment"
         component={HomePayment}
+        options={() => ({
+          headerTitle: '결제하기',
+          headerTitleStyle: { fontSize: 22, fontWeight: '700' },
+          headerShadowVisible: true,
+          headerTransparent: false,
+          headerTintColor: 'black',
+        })}
+      />
+      <Stack.Screen
+        name="Payment"
+        component={Payment}
+        options={() => ({
+          headerTitle: '결제하기',
+          headerTitleStyle: { fontSize: 22, fontWeight: '700' },
+          headerShadowVisible: true,
+          headerTransparent: false,
+          headerTintColor: 'black',
+        })}
+      />
+      <Stack.Screen
+        name="PaymentResult"
+        component={PaymentResult}
         options={() => ({
           headerTitle: '결제하기',
           headerTitleStyle: { fontSize: 22, fontWeight: '700' },

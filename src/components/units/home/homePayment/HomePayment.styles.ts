@@ -43,14 +43,16 @@ export const ChildBio = styled.Text`
 
 export const InputWrapper = styled.View`
   background-color: white;
-  padding: 0px 20px 25px 20px;
+  padding: 25px 20px 25px 20px;
 `;
 
 export const BottomColor = styled.View`
   border-bottom-width: 2px;
   border-bottom-color: #448800;
 `;
-export const EnterPrice = styled.TextInput``;
+export const EnterPrice = styled.TextInput`
+  font-size: 16px;
+`;
 
 export const TotalWrapper = styled.View`
   background-color: white;
@@ -76,4 +78,19 @@ export const TotalPrice = styled.Text`
 export const Agree = styled.Text`
   padding: 25px 20px 25px 20px;
   text-align: center;
+`;
+
+export const OptionsWrapper = styled.View`
+  flex-direction: row;
+  padding-top: 20px;
+`;
+export const OptionsContainer = styled.Pressable`
+  padding: 8px 12px 8px 12px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  margin-right: 5px;
+`;
+
+export const OptionsPrice = styled.Text`
+  font-size: 10px;
 `;

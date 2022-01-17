@@ -30,6 +30,8 @@ export const TopOverWrapper = styled.View`
 
 export const IconBtns = styled.View`
   flex-direction: row-reverse;
+  align-items: center;
+  /* background-color: lightgreen; */
 `;
 
 export const Info = styled.View`
@@ -126,7 +128,7 @@ export const BottomSupporters = styled.View`
   width: 100%;
   /* background-color: mediumpurple; */
   flex: 0.5;
-  margin: 20px 0px 20px 0px;
+  margin: 20px 0px 0px 0px;
   padding: 15px;
   flex-direction: row;
   justify-content: space-between;
@@ -143,14 +145,13 @@ export const SupportersNums = styled.Text`
   color: #000;
 `;
 export const BottomRecommendWrapper = styled.View`
-  background-color: mintcream;
   flex: 1;
 `;
 
 export const RecommendWrapper = styled.View`
   flex: 1;
   background-color: #fff;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding: 30px 20px 30px 20px;
 `;
 

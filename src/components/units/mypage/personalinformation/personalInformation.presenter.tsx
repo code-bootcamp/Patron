@@ -14,7 +14,6 @@ const PersonalInformationUI = (props: IPropsPersonalinformationUI) => {
         <C.HeaderWrapper>
           <C.Header>내정보</C.Header>
           <C.IconWrapper>
-            <Icon name="search-outline" size={25} style={{ paddingRight: 10 }} />
             <Icon
               name="settings-outline"
               size={25}
@@ -33,7 +32,7 @@ const PersonalInformationUI = (props: IPropsPersonalinformationUI) => {
               onPress={() => props.navigation.navigate('mypage', { screen: 'editprofile' })}
             />
           </C.EditIcon>
-          <C.Name>김이웃</C.Name>
+          <C.Name>{props.data?.fetchUserLoggedIn.name}</C.Name>
         </C.ProfileWrapper>
         <C.TabWrapper></C.TabWrapper>
         <C.ActivityWrapper>
@@ -77,7 +76,12 @@ const PersonalInformationUI = (props: IPropsPersonalinformationUI) => {
             <GreenButton text="자주 묻는 질문" width="48%" height="105%" borderRadius={4} />
             <GreenButton text="1:1문의" width="48%" borderRadius={4} />
           </C.TopButtons>
-          <WhiteButton text="로그아웃" borderRadius={4} height="80%" />
+          <WhiteButton
+            text="로그아웃"
+            borderRadius={4}
+            height="80%"
+            onPressBtn={() => props.navigation.navigate('login')}
+          />
         </C.ButtonWrapper>
       </C.WholeWrapper>
     </ScrollView>

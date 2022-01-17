@@ -22,7 +22,8 @@ const GetHashs = ({ id }: { id: string }) => {
 
   useEffect(() => {
     docRef.get().then((doc) => setHashs([...doc.data().tags]));
-  }, [docRef]);
+    return () => console.log('useEffect!');
+  }, []);
 
   return hashs.map((el: string, idx: number) => <Tag key={idx}>#{el}</Tag>);
 };

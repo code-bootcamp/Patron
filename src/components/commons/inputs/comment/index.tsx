@@ -2,6 +2,14 @@ import React, { forwardRef } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import styled from '@emotion/native';
 
+interface IPropsInputComment {
+  placeholder: string;
+  onChange: () => void;
+  defaultValue: string;
+  onPress: () => void;
+  text: string;
+}
+
 const Wrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -18,7 +26,7 @@ const SubmitTxt = styled.Text`
   color: #448800;
 `;
 
-const InputComment = forwardRef((props, ref) => {
+const InputComment = forwardRef((props: IPropsInputComment, ref: any) => {
   return (
     <Wrapper>
       <TextInput

@@ -6,8 +6,9 @@ import {
   TOGGLE_USEDITEM_PICK,
   FETCH_USEDITEMS_I_PICKED,
 } from './HomeListBottom.queries';
+import { IPropsHomeListBottom } from './HomeListBottom.types';
 
-export default function HomeListBottom(props) {
+export default function HomeListBottom(props: IPropsHomeListBottom) {
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
   const { data } = useQuery(FETCH_USEDITEMS, {
     variables: {
@@ -21,7 +22,7 @@ export default function HomeListBottom(props) {
     },
   });
 
-  const onPressPick = (el) => async () => {
+  const onPressPick = (el: any) => async () => {
     try {
       await toggleUseditemPick({
         variables: {
@@ -53,6 +54,7 @@ export default function HomeListBottom(props) {
       dataForPicked={dataForPicked}
       onPressPick={onPressPick}
       category={props.category}
+      navigation={props.navigation}
     />
   );
 }
