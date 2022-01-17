@@ -4,8 +4,9 @@ import * as S from './register.style';
 import { ScrollView } from 'react-native-gesture-handler';
 import InputBasic from '../../../commons/inputs/basic/index';
 import GreenButton from '../../../commons/buttons/greenbutton/index';
+import { IPropsRegisterUI } from './register.types';
 
-const RegisterUI = (props) => {
+const RegisterUI = (props: IPropsRegisterUI) => {
   return (
     <>
       <ScrollView>

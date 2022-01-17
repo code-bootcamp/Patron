@@ -17,6 +17,10 @@ export const Title_Wrapper = styled.View`
   align-items: center;
 `;
 
+export const Logo_Image = styled.Image`
+  margin: 0px 0px 10px 0px;
+`;
+
 export const Title = styled.Text`
   font-size: 40px;
   font-weight: 700;

@@ -1,15 +1,20 @@
 import React from 'react';
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-// import { NavigationContainer } from '@react-navigation/native';
-import { Text } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import NewsMain from '../../../src/components/units/news/newsmain/newsmain.container';
 
-// const Tab = createMaterialTopTabNavigator();
+const Stack = createStackNavigator();
 
 const NewsScreen = () => {
   return (
-    <>
-      <Text>Hello World</Text>
-    </>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="News"
+        component={NewsMain}
+        options={() => ({
+          headerTitle: '소식',
+        })}
+      />
+    </Stack.Navigator>
   );
 };
 export default NewsScreen;

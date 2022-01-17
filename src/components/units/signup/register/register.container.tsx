@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import RegisterUI from './register.presenter';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from './register.query';
-import {
-  Alert,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
-  TextInputTextInputEventData,
-} from 'react-native';
+import { Alert, NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { IPropsNavigation } from './register.types';
+import { Mutation, MutationCreateUserArgs } from '../../../../commons/types/generated/types';
 
-const Register = ({ navigation }) => {
-  const [createUser] = useMutation(CREATE_USER);
+const Register = ({ navigation }: IPropsNavigation) => {
+  const [createUser] = useMutation<Pick<Mutation, 'createUser'>, MutationCreateUserArgs>(
+    CREATE_USER,
+  );
 
   const [email, setEmail] = useState<string>('');
   const [emailConfirm, setEmailConfirm] = useState<string>('');
@@ -48,15 +47,15 @@ const Register = ({ navigation }) => {
     }
   };
 
-  const onChangePassConfirm = (event: NativeSyntheticEvent<TextInputTextInputEventData>) => {
+  const onChangePassConfirm = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setPasswordConfirm(event.nativeEvent.text);
   };
 
-  const onChangeEmailConfirm = (event: NativeSyntheticEvent<TextInputTextInputEventData>) => {
+  const onChangeEmailConfirm = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setEmailConfirm(event.nativeEvent.text);
   };
 
-  const onChangeTempNumber = (event: NativeSyntheticEvent<TextInputTextInputEventData>) => {
+  const onChangeTempNumber = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setAuthNumber(event.nativeEvent.text);
   };
 

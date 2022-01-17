@@ -10,10 +10,14 @@ export const Wrapper = styled.View`
 `;
 
 export const Title_Wrapper = styled.View`
-  flex: 1;
+  flex: 2;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+`;
+
+export const Logo_Image = styled.Image`
+  margin: 20px 0px 15px 0px;
 `;
 
 export const Title = styled.Text`
@@ -27,13 +31,13 @@ export const Firebase_Wrapper = styled.View`
   justify-content: center;
   align-items: center;
   padding: 15px;
-  /* margin: 15px; */
 `;
 
 export const Google_Wrapper = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 `;
 
 export const Icon = styled.Image`

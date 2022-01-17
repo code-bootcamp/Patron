@@ -3,18 +3,20 @@ import * as R from 'react-native';
 import * as S from './social.styles';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import ClearButton from '../../../commons/buttons/clearbutton';
+import { IPropsSocialUI } from './social.types';
 
-const SocialUI = (props) => {
+const SocialUI = (props: IPropsSocialUI) => {
   return (
     <S.Wrapper>
       <S.Title_Wrapper>
+        <S.Logo_Image source={require('../../../../../public/images/logo.png')} />
         <S.Title>가장 좋은 이웃 GoodNeighbors</S.Title>
       </S.Title_Wrapper>
       <S.Google_Wrapper>
         <GoogleSigninButton
           onPress={props.onGoogleButtonPress}
-          // onPress={() => props.navigation.navigate('MypageScreen')}
           style={{ width: 328, height: 48 }}
+          size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Light}
         />
       </S.Google_Wrapper>
