@@ -84,7 +84,6 @@ export default function HomePatronUI(props: IPropsHomePatronUI) {
                       </E.CardDetails>
                     </E.Card>
                   ))
-                  .sort(() => Math.random() - 0.5)
                   .reverse()
                   .slice(0, 3)}
               </ScrollView>
