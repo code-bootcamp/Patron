@@ -17,14 +17,14 @@ export const Title = styled.Text`
 
 export const ContentWrapper = styled.View`
   flex: 10;
-  /* background-color: blue; */
+  width: 80%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PostWrapper = styled.View`
-  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 20px;
 `;
 
@@ -33,6 +33,7 @@ export const Image = styled.Image`
   height: 73px;
   background-color: gray;
   border-radius: 10px;
+  margin-top: 20px;
 `;
 
 export const InnerWrapper = styled.View`
@@ -49,14 +50,18 @@ export const TagWrapper = styled.View`
   padding-left: 10px;
 `;
 
-export const Content = styled.Text`
-  padding-top: 5px;
-`;
+export const Content = styled.Text``;
 
 export const CountWrapper = styled.View`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding-top: 5px;
-  width: 40%;
+`;
+
+export const LikeCount = styled.Text`
+  color: black;
+  font-size: 10px;
+  margin-left: 5px;
+  padding-top: 3px;
 `;

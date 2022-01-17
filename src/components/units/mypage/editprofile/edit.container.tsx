@@ -1,13 +1,13 @@
 import EditUI from './edit.presenter';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { IPropsEditUI } from './edit.types';
 import { useMutation, useQuery } from '@apollo/client';
 import { FETCH_USER_LOGGED_IN, RESET_USER_PASSWORD, UPDATE_USER } from './edit.queries';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 
-const Edit = ({ navigation }: IPropsEditUI) => {
+const Edit = ({ navigation, uri, onPress }: IPropsEditUI) => {
   const [name, setName] = useState('');
-  const [picture, setPicture] = useState('');
   const [password, setPassword] = useState('');
 
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
@@ -15,12 +15,17 @@ const Edit = ({ navigation }: IPropsEditUI) => {
   const [updateUser] = useMutation(UPDATE_USER);
   const [resetUserPassword] = useMutation(RESET_USER_PASSWORD);
 
+  const onImageLibraryPress = useCallback(() => {
+    const result = launchImageLibrary({
+      selectionLimit: 1,
+      mediaType: 'photo',
+      includeBase64: true,
+    });
+    console.log(result);
+  }, []);
+
   const onChangeName = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setName(event.nativeEvent.text);
-  };
-
-  const onChangePicture = (event: any) => {
-    setPicture(event.nativeEvent.text);
   };
 
   const onChangePassword = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
@@ -32,7 +37,6 @@ const Edit = ({ navigation }: IPropsEditUI) => {
       variables: {
         updateUserInput: {
           name,
-          picture,
         },
       },
     });
@@ -49,13 +53,16 @@ const Edit = ({ navigation }: IPropsEditUI) => {
 
   return (
     <EditUI
+      uri={uri}
+      onPress={onPress}
       navigation={navigation}
       data={data}
       name={name}
       onChangeName={onChangeName}
       onClickUpdate={onClickUpdate}
-      onChangePicture={onChangePicture}
       onChangePassword={onChangePassword}
+      password={password}
+      onImageLibraryPress={onImageLibraryPress}
     />
   );
 };
