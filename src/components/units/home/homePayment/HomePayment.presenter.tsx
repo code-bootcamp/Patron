@@ -46,4 +46,3 @@ export default function HomePaymentUI(props: IPropsHomePaymentUI) {
     </>
   );
 }
-

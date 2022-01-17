@@ -21,4 +21,3 @@ export interface IPropsHomePaymentUI {
   price: number;
   onPressPay: () => void;
 }
-
