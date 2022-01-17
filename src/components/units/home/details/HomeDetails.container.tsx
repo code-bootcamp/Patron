@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import HomeDetailsUI from './HomeDetails.presenter';
-
+import { IPropNavigation } from './HomeDetails.types';
 import { useQuery, useMutation } from '@apollo/client';
 import {
   FETCH_USEDITEM,
@@ -10,7 +10,7 @@ import {
   FETCH_USEDITEMS,
 } from './HomeDetails.queries';
 
-export default function HomeDetails({ route, navigation }) {
+export default function HomeDetails({ route, navigation }: IPropNavigation) {
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: {
@@ -45,10 +45,6 @@ export default function HomeDetails({ route, navigation }) {
       .get()
       .then((doc) => setFiredata({ ...doc.data() }));
   }, []);
-
-  // useEffect(() => {
-  //   suppoterRef.update({ suppoters: firedata?.suppoters + 1 });
-  // }, [firedata]);
 
   const onPressSupport = () => {
     suppoterRef.update({ suppoters: firedata?.suppoters + 1 });

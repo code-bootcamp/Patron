@@ -4,8 +4,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as React from 'react';
+import { IPropsHomeChildrenListUI } from './HomeChildrenList.types';
 
-export default function HomeChildrenListUI(props) {
+export default function HomeChildrenListUI(props: IPropsHomeChildrenListUI) {
   return (
     <>
       <ScrollView>

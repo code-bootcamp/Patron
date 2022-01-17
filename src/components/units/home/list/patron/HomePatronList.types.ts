@@ -1,12 +1,10 @@
-import { Query } from '../../../../commons/types/generated/types';
+import { Query } from '../../../../../commons/types/generated/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-export interface IPropsHomeCampaignUI {
+export interface IPropsHomePatronListUI {
   data?: Pick<Query, 'fetchUseditems'>;
-  tags?: string[];
   dataForPicked?: Pick<Query, 'fetchUseditemsIPicked'>;
-  dataForUser?: Pick<Query, 'fetchUserLoggedIn'>;
-  onPressPick: any;
+  onPressPick: () => void;
   navigation: any;
 }
 
@@ -19,6 +17,6 @@ type RootStackParamList = {
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'home'>;
 
-export type IPropNavigation = {
+export type IPropsNavigation = {
   navigation: ProfileScreenNavigationProp;
 };

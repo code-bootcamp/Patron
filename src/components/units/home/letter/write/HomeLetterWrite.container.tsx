@@ -7,13 +7,31 @@ import {
 } from './HomeLetterWrite.queries';
 import InputComment from '../../../../commons/inputs/comment/index';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import {
+  Mutation,
+  MutationCreateUseditemQuestionArgs,
+  MutationUpdateUseditemQuestionArgs,
+} from '../../../../../commons/types/generated/types';
 
-interface IPropsHomeLetterWrite {}
+interface IPropsHomeLetterWrite {
+  isEdit: boolean;
+  route?: any;
+  usedQId: string;
+  useditemId?: string;
+  setIsEdit: any;
+}
 
 export default function HomeLetterWrite(props: IPropsHomeLetterWrite) {
-  const [letter, setLetter] = React.useState('');
-  const [createUseditemQuestion] = useMutation(CREATE_USEDITEM_QUESTION);
-  const [updateUseditemQuestion] = useMutation(UPDATE_USEDITEM_QUESTION);
+  const [letter, setLetter] = React.useState<string>('');
+  const [createUseditemQuestion] = useMutation<
+    Pick<Mutation, 'createUseditemQuestion'>,
+    MutationCreateUseditemQuestionArgs
+  >(CREATE_USEDITEM_QUESTION);
+
+  const [updateUseditemQuestion] = useMutation<
+    Pick<Mutation, 'updateUseditemQuestion'>,
+    MutationUpdateUseditemQuestionArgs
+  >(UPDATE_USEDITEM_QUESTION);
 
   async function onPressSubmit() {
     try {

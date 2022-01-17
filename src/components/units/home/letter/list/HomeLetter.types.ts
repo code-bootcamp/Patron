@@ -5,10 +5,11 @@ export interface IPropsHomeLetterUI {
   useditemId: string;
 }
 
-export interface IPropsHomeLetter {}
+export interface IPropsHomeLetter {
+  route: any;
+}
 
 export interface IPropsHomeLetterUIItem {
-  isEdit: boolean;
   el: any;
   useditemId?: string;
 }

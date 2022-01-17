@@ -1,6 +1,8 @@
 import { useQuery, useMutation } from '@apollo/client';
 import * as React from 'react';
 import {
+  Mutation,
+  MutationToggleUseditemPickArgs,
   Query,
   QueryFetchUseditemsArgs,
   QueryFetchUseditemsIPickedArgs,
@@ -15,7 +17,11 @@ import {
 import { IPropsNavigation } from './HomePatron.types';
 
 export default function HomePatron({ navigation }: IPropsNavigation) {
-  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
+  const [toggleUseditemPick] = useMutation<
+    Pick<Mutation, 'toggleUseditemPick'>,
+    MutationToggleUseditemPickArgs
+  >(TOGGLE_USEDITEM_PICK);
+
   const { data } = useQuery<Pick<Query, 'fetchUseditems'>, QueryFetchUseditemsArgs>(
     FETCH_USEDITEMS,
     {
