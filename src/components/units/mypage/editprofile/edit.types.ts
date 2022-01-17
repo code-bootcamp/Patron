@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 
 type RootStackParamList = {
   home: undefined;
@@ -11,4 +13,10 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList,
 
 export interface IPropsEditUI {
   navigation: ProfileScreenNavigationProp;
+  data: any;
+  name: string;
+  onClickUpdate: () => Promise<void>;
+  password: string;
+  onChangeName: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  onChangePassword: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
 }

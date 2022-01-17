@@ -49,6 +49,7 @@ const Edit = ({ navigation }: IPropsEditUI) => {
       onChangeName={onChangeName}
       onClickUpdate={onClickUpdate}
       onChangePassword={onChangePassword}
+      password={password}
     />
   );
 };

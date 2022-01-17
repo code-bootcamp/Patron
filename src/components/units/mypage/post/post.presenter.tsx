@@ -3,8 +3,9 @@ import * as P from './post.styles';
 import React from 'react';
 import ColoredTag from '../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { IPropsPostUI } from './post.types';
 
-const MypagePostUI = (props) => {
+const MypagePostUI = (props: IPropsPostUI) => {
   return (
     <P.Wrapper>
       <ScrollView>

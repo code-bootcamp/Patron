@@ -17,4 +17,5 @@ export interface IPropsPersonalinformationUI {
   data: any;
   navigation: ProfileScreenNavigationProp;
   onPress: () => void;
+  onPressLogout: () => Promise<void>;
 }
