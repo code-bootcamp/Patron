@@ -1,6 +1,5 @@
 import * as React from 'react';
 import HomeCampaignUI from './HomeCampaign.presenter';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMutation, useQuery } from '@apollo/client';
 import {
   FETCH_USEDITEMS,
@@ -8,29 +7,28 @@ import {
   TOGGLE_USEDITEM_PICK,
   FETCH_USEDITEMS_I_PICKED,
 } from './HomeCampaign.queries';
+import {
+  Query,
+  QueryFetchUseditemsArgs,
+  QueryFetchUseditemsIPickedArgs,
+} from '../../../../commons/types/generated/types';
+import { IPropNavigation } from './HomeCampaign.types';
 
-type RootStackParamList = {
-  home: { screen: string };
-  community: { screen: string };
-  news: undefined;
-  mypage: undefined;
-};
-
-type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'home'>;
-
-type Props = {
-  navigation: ProfileScreenNavigationProp;
-};
-
-export default function HomeCampaign({ navigation }: Props) {
+export default function HomeCampaign({ navigation }: IPropNavigation) {
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
-  const { data } = useQuery(FETCH_USEDITEMS, {
-    variables: {
-      search: '캠페인',
+  const { data } = useQuery<Pick<Query, 'fetchUseditems'>, QueryFetchUseditemsArgs>(
+    FETCH_USEDITEMS,
+    {
+      variables: {
+        search: '캠페인',
+      },
     },
-  });
+  );
 
-  const { data: dataForPicked } = useQuery(FETCH_USEDITEMS_I_PICKED, {
+  const { data: dataForPicked } = useQuery<
+    Pick<Query, 'fetchUseditemsIPicked'>,
+    QueryFetchUseditemsIPickedArgs
+  >(FETCH_USEDITEMS_I_PICKED, {
     variables: {
       search: '',
     },
@@ -38,7 +36,7 @@ export default function HomeCampaign({ navigation }: Props) {
 
   const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
 
-  const onPressPick = (el) => async () => {
+  const onPressPick = (el: any) => async () => {
     try {
       await toggleUseditemPick({
         variables: {

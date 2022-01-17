@@ -17,7 +17,6 @@ export const PhotoWrapper = styled.View`
 
 export const CommentWrapper = styled.View`
   width: 85%;
-  /* background-color: yellowgreen; */
   padding-left: 10px;
 `;
 
@@ -46,5 +45,4 @@ export const Contents = styled.Text`
 
 export const EandDWrapper = styled.View`
   align-items: center;
-  /* background-color: yellow; */
 `;

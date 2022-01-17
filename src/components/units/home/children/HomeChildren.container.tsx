@@ -7,31 +7,29 @@ import {
   FETCH_USEDITEMS_I_PICKED,
 } from './HomeChildren.queries';
 import { useMutation, useQuery } from '@apollo/client';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { IPropsNavigation } from './HomeChildren.types';
+import {
+  Query,
+  QueryFetchUseditemsArgs,
+  QueryFetchUseditemsIPickedArgs,
+} from '../../../../commons/types/generated/types';
 
-type RootStackParamList = {
-  home: { screen: string };
-  community: { screen: string };
-  news: undefined;
-  mypage: undefined;
-};
-
-type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'home'>;
-
-type Props = {
-  navigation: ProfileScreenNavigationProp;
-};
-
-export default function HomeChildren({ navigation }: Props) {
+export default function HomeChildren({ navigation }: IPropsNavigation) {
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
 
-  const { data } = useQuery(FETCH_USEDITEMS, {
-    variables: {
-      search: '결연아동',
+  const { data } = useQuery<Pick<Query, 'fetchUseditems'>, QueryFetchUseditemsArgs>(
+    FETCH_USEDITEMS,
+    {
+      variables: {
+        search: '결연아동',
+      },
     },
-  });
+  );
 
-  const { data: dataForPicked } = useQuery(FETCH_USEDITEMS_I_PICKED, {
+  const { data: dataForPicked } = useQuery<
+    Pick<Query, 'fetchUseditemsIPicked'>,
+    QueryFetchUseditemsIPickedArgs
+  >(FETCH_USEDITEMS_I_PICKED, {
     variables: {
       search: '',
     },

@@ -7,8 +7,10 @@ import {
   FETCH_USEDITEMS_I_PICKED,
 } from './HomeSearch.queries';
 import _ from 'lodash';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { IPropsNavigation } from './HomeSearch.types';
 
-export default function HomeSearch({ navigation }) {
+export default function HomeSearch({ navigation }: IPropsNavigation) {
   const [keyword, setKeyword] = React.useState('');
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
   const getDebounce = _.debounce((data) => {
@@ -29,12 +31,12 @@ export default function HomeSearch({ navigation }) {
     },
   });
 
-  function onChangeSearchBar(event) {
+  function onChangeSearchBar(event: NativeSyntheticEvent<TextInputChangeEventData>) {
     setKeyword(event.nativeEvent.text);
     getDebounce(event.nativeEvent.text);
   }
 
-  const onPressPick = (el) => async () => {
+  const onPressPick = (el: any) => async () => {
     try {
       await toggleUseditemPick({
         variables: {

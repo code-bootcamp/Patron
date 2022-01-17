@@ -2,8 +2,9 @@ import * as React from 'react';
 import * as E from './HomePayment.styles';
 import { Image } from 'react-native';
 import GreenButton from '../../../commons/buttons/greenbutton';
+import { IPropsHomePaymentUI } from './HomePayment.types';
 
-export default function HomePaymentUI(props) {
+export default function HomePaymentUI(props: IPropsHomePaymentUI) {
   const category = props.data?.fetchUseditem.name.split('/')[0];
   console.log(category);
   return (
@@ -30,12 +31,12 @@ export default function HomePaymentUI(props) {
             <E.EnterPrice
               onChange={props.onChangePrice}
               keyboardType={'number-pad'}
-              value={props.price}
-              defaultValue={props.price}
+              value={String(props.price)}
+              defaultValue={String(props.price)}
             />
           </E.BottomColor>
           <E.OptionsWrapper>
-            {props.option.map((el) => (
+            {props.option.map((el: number) => (
               <E.OptionsContainer key={el} onPress={props.onPressOption(el)}>
                 <E.OptionsPrice>+ {el.toLocaleString()} 원</E.OptionsPrice>
               </E.OptionsContainer>
