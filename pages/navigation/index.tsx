@@ -8,7 +8,9 @@ import HomeScreen from '../screens/home';
 import CommunityScreen from '../screens/community';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/signup/index';
+import NewsScreen from '../screens/news/index';
 import MypageScreen from '../screens/mypage';
+
 
 const DefaultScreen = () => {
   return (
@@ -63,7 +65,8 @@ const MainScreen = () => {
       ></Tab.Screen>
       <Tab.Screen
         name="News"
-        component={DefaultScreen}
+
+        component={NewsScreen}
         options={{
           tabBarLabel: '소식',
           tabBarIcon: ({ focused }) =>
