@@ -16,6 +16,7 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList,
 
 type Props = {
   navigation: ProfileScreenNavigationProp;
+  route: any;
 };
 
 function Payment({ route, navigation }: Props) {

@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { Query } from '../../../../commons/types/generated/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 
 type RootStackParamList = {
   home: { screen: string };
@@ -12,13 +14,14 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList,
 
 export type IPropNavigation = {
   navigation: ProfileScreenNavigationProp;
+  route: any;
 };
 
 export interface IPropsHomePaymentUI {
   data?: Pick<Query, 'fetchUseditem'>;
   option: number[];
-  onChangePrice: () => void;
+  onChangePrice: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   price: number;
   onPressPay: () => void;
+  onPressOption: (el: number) => () => void;
 }
-
