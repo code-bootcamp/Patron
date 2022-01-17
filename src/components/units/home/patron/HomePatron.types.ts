@@ -7,6 +7,7 @@ export interface IPropsHomePatronUI {
   dataForPicked?: Pick<Query, 'fetchUseditemsIPicked'>;
   dataForUser?: Pick<Query, 'fetchUserLoggedIn'>;
   onPressPick: any;
+  navigation: any;
 }
 
 type RootStackParamList = {
@@ -21,3 +22,4 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList,
 export type IPropsNavigation = {
   navigation: ProfileScreenNavigationProp;
 };
+

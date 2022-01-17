@@ -5,8 +5,6 @@ import GreenButton from '../../../commons/buttons/greenbutton';
 import { IPropsHomePaymentUI } from './HomePayment.types';
 
 export default function HomePaymentUI(props: IPropsHomePaymentUI) {
-  const category = props.data?.fetchUseditem.name.split('/')[0];
-  console.log(category);
   return (
     <>
       <E.Wrapper>
@@ -28,12 +26,7 @@ export default function HomePaymentUI(props: IPropsHomePaymentUI) {
         </E.ChildrenList>
         <E.InputWrapper>
           <E.BottomColor>
-            <E.EnterPrice
-              onChange={props.onChangePrice}
-              keyboardType={'number-pad'}
-              value={String(props.price)}
-              defaultValue={String(props.price)}
-            />
+            <E.EnterPrice onChange={props.onChangePrice} keyboardType={'number-pad'} />
           </E.BottomColor>
           <E.OptionsWrapper>
             {props.option.map((el: number) => (
@@ -45,7 +38,7 @@ export default function HomePaymentUI(props: IPropsHomePaymentUI) {
         </E.InputWrapper>
         <E.TotalWrapper>
           <E.TotalTitle>총 후원금액</E.TotalTitle>
-          <E.TotalPrice>{Number(props.price).toLocaleString()} 원</E.TotalPrice>
+          <E.TotalPrice>{props.price.toLocaleString()} 원</E.TotalPrice>
         </E.TotalWrapper>
         <E.Agree>위 내용을 확인하였으며 후원에 동의합니다.</E.Agree>
         <GreenButton text={'후원하기'} height={'52px'} onPressBtn={props.onPressPay} />
@@ -53,3 +46,4 @@ export default function HomePaymentUI(props: IPropsHomePaymentUI) {
     </>
   );
 }
+

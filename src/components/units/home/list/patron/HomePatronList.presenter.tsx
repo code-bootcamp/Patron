@@ -4,8 +4,9 @@ import ColoredTag from '../../../../commons/tags/coloredtag';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Image } from 'react-native';
+import { IPropsHomePatronListUI } from './HomePatronList.types';
 
-export default function HomePatronListUI(props) {
+export default function HomePatronListUI(props: IPropsHomePatronListUI) {
   return (
     <>
       <ScrollView>

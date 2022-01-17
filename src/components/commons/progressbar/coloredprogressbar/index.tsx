@@ -3,7 +3,7 @@ import styled from '@emotion/native';
 import firestore from '@react-native-firebase/firestore';
 
 interface IPropsColoredProgressBar {
-  current: number;
+  current: number | undefined;
   dday: number;
   id: string | undefined;
 }

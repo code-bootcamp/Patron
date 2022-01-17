@@ -9,13 +9,18 @@ import {
 import { useMutation, useQuery } from '@apollo/client';
 import { IPropsNavigation } from './HomeChildren.types';
 import {
+  Mutation,
+  MutationToggleUseditemPickArgs,
   Query,
   QueryFetchUseditemsArgs,
   QueryFetchUseditemsIPickedArgs,
 } from '../../../../commons/types/generated/types';
 
 export default function HomeChildren({ navigation }: IPropsNavigation) {
-  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
+  const [toggleUseditemPick] = useMutation<
+    Pick<Mutation, 'toggleUseditemPick'>,
+    MutationToggleUseditemPickArgs
+  >(TOGGLE_USEDITEM_PICK);
 
   const { data } = useQuery<Pick<Query, 'fetchUseditems'>, QueryFetchUseditemsArgs>(
     FETCH_USEDITEMS,
@@ -37,7 +42,7 @@ export default function HomeChildren({ navigation }: IPropsNavigation) {
 
   const { data: dataForUser } = useQuery(FETCH_USER_LOGGED_IN);
 
-  const onPressPickChild = (el) => async () => {
+  const onPressPickChild = (el: any) => async () => {
     try {
       await toggleUseditemPick({
         variables: {

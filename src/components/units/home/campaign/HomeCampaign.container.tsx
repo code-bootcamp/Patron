@@ -8,6 +8,8 @@ import {
   FETCH_USEDITEMS_I_PICKED,
 } from './HomeCampaign.queries';
 import {
+  Mutation,
+  MutationToggleUseditemPickArgs,
   Query,
   QueryFetchUseditemsArgs,
   QueryFetchUseditemsIPickedArgs,
@@ -15,7 +17,10 @@ import {
 import { IPropNavigation } from './HomeCampaign.types';
 
 export default function HomeCampaign({ navigation }: IPropNavigation) {
-  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
+  const [toggleUseditemPick] = useMutation<
+    Pick<Mutation, 'toggleUseditemPick'>,
+    MutationToggleUseditemPickArgs
+  >(TOGGLE_USEDITEM_PICK);
   const { data } = useQuery<Pick<Query, 'fetchUseditems'>, QueryFetchUseditemsArgs>(
     FETCH_USEDITEMS,
     {

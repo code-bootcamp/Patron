@@ -16,16 +16,13 @@ export const ChildImgWrapper = styled.Pressable`
 `;
 
 export const ChildDetails = styled.View`
-  /* background-color: lightcoral; */
   flex-direction: row;
   padding: 0px 0px 0px 15px;
-  /* justify-content: space-between; */
   align-items: stretch;
 `;
 
 export const ChildAbout = styled.Pressable`
   width: 80%;
-  /* background-color: lightyellow; */
   justify-content: space-between;
 `;
 
@@ -41,9 +38,6 @@ export const ChildBio = styled.Text`
 
 export const ChildrenTags = styled.View`
   flex-direction: row;
-  /* background-color: lightskyblue; */
 `;
 
-export const ChildBookmark = styled.View`
-  /* background-color: lightpink; */
-`;
+export const ChildBookmark = styled.View``;

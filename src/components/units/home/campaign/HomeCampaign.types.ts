@@ -7,6 +7,7 @@ export interface IPropsHomeCampaignUI {
   dataForPicked?: Pick<Query, 'fetchUseditemsIPicked'>;
   dataForUser?: Pick<Query, 'fetchUserLoggedIn'>;
   onPressPick: any;
+  navigation: any;
 }
 
 type RootStackParamList = {

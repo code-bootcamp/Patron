@@ -9,23 +9,39 @@ import {
 import _ from 'lodash';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 import { IPropsNavigation } from './HomeSearch.types';
+import {
+  MutationToggleUseditemPickArgs,
+  Mutation,
+  QueryFetchUseditemsArgs,
+  Query,
+  QueryFetchUseditemsIPickedArgs,
+} from '../../../../commons/types/generated/types';
 
 export default function HomeSearch({ navigation }: IPropsNavigation) {
-  const [keyword, setKeyword] = React.useState('');
-  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
+  const [keyword, setKeyword] = React.useState<string>('');
+  const [toggleUseditemPick] = useMutation<
+    Pick<Mutation, 'toggleUseditemPick'>,
+    MutationToggleUseditemPickArgs
+  >(TOGGLE_USEDITEM_PICK);
   const getDebounce = _.debounce((data) => {
     if (data) {
       refetch({ search: data });
     }
   }, 200);
 
-  const { data, refetch } = useQuery(FETCH_USEDITEMS, {
-    variables: {
-      search: '@',
+  const { data, refetch } = useQuery<Pick<Query, 'fetchUseditems'>, QueryFetchUseditemsArgs>(
+    FETCH_USEDITEMS,
+    {
+      variables: {
+        search: '@',
+      },
     },
-  });
+  );
 
-  const { data: dataForPicked } = useQuery(FETCH_USEDITEMS_I_PICKED, {
+  const { data: dataForPicked } = useQuery<
+    Pick<Query, 'fetchUseditemsIPicked'>,
+    QueryFetchUseditemsIPickedArgs
+  >(FETCH_USEDITEMS_I_PICKED, {
     variables: {
       search: '',
     },
@@ -73,3 +89,4 @@ export default function HomeSearch({ navigation }: IPropsNavigation) {
     />
   );
 }
+
