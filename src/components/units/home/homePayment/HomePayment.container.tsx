@@ -55,3 +55,4 @@ export default function HomePayment({ route, navigation }: IPropNavigation) {
     />
   );
 }
+

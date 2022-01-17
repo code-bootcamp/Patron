@@ -12,3 +12,4 @@ export interface IPropsHomeListBottomUI {
   onPressPick: any;
   navigation: any;
 }
+
