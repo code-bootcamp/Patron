@@ -5,6 +5,7 @@ import {
   TextInputChangeEventData,
   GestureResponderEvent,
 } from 'react-native';
+
 type RootStackParamList = {
   home: undefined;
   community: undefined;
@@ -24,8 +25,5 @@ export interface IPropsEditUI {
   onChangeName: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   onChangePassword: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   uri: any;
-  selectionLimit: number;
-  mediaType: string;
-  includeBase64: boolean;
   onImageLibraryPress: () => void;
 }
