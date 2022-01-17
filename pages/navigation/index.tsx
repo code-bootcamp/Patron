@@ -2,7 +2,6 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
-import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/home';
 import CommunityScreen from '../screens/community';
@@ -10,17 +9,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/signup/index';
 import NewsScreen from '../screens/news/index';
 import MypageScreen from '../screens/mypage';
-
-
-const DefaultScreen = () => {
-  return (
-    <>
-      <View>
-        <Text>hello world</Text>
-      </View>
-    </>
-  );
-};
 
 const MainScreen = () => {
   return (
@@ -65,7 +53,6 @@ const MainScreen = () => {
       ></Tab.Screen>
       <Tab.Screen
         name="News"
-
         component={NewsScreen}
         options={{
           tabBarLabel: '소식',

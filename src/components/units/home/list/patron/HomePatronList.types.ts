@@ -21,3 +21,4 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList,
 export type IPropsNavigation = {
   navigation: ProfileScreenNavigationProp;
 };
+

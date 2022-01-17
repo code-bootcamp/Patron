@@ -21,3 +21,4 @@ export interface IPropsHomeCampaignListUI {
   onPressPick: (el: any) => () => Promise<void>;
   navigation: NativeStackNavigationProp<RootStackParamList, 'home'>;
 }
+
