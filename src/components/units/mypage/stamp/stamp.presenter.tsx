@@ -1,17 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Image } from 'react-native';
 import * as S from './stamp.styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ProgressBar } from 'react-native-paper';
-
-const Donation = [{ name: '첫 기부' }];
+import { ScrollView } from 'react-native-gesture-handler';
 
 const StampUI = () => {
   return (
     <S.Wrapper>
       <S.StampProfile>
         <Icon name="person-circle-outline" size={80}></Icon>
-        <S.Level>레벨 3</S.Level>
+        <S.Level>레벨 1</S.Level>
       </S.StampProfile>
       <S.ProgressWrapper>
         <S.InnerTitle>나의 현황</S.InnerTitle>
@@ -25,22 +24,47 @@ const StampUI = () => {
       <S.StampList>
         <S.InnerTitle>나의 스탬프</S.InnerTitle>
         <View style={{ borderBottomWidth: 3, marginTop: 5, marginBottom: 10 }} />
-        {Donation.map((el, index) => (
-          <S.StampWrapper key={index}>
-            <S.ListWrapper>
-              <Icon name="lock-closed-outline" size={30} style={{ marginBottom: 5 }}></Icon>
-              <Text>{el.name}</Text>
-            </S.ListWrapper>
-            <S.ListWrapper>
-              <Icon name="lock-closed-outline" size={30} style={{ marginBottom: 5 }}></Icon>
-              <Text>{el.name}</Text>
-            </S.ListWrapper>
-            <S.ListWrapper>
-              <Icon name="lock-closed-outline" size={30} style={{ marginBottom: 5 }}></Icon>
-              <Text>{el.name}</Text>
-            </S.ListWrapper>
-          </S.StampWrapper>
-        ))}
+        <ScrollView>
+          <S.StampListWrapper>
+            <S.StampWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/newfamily.png')} />
+                <S.StampName>새로운 가족</S.StampName>
+              </S.ListWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/start.png')} />
+                <S.StampName>가치 여행의 시작</S.StampName>
+              </S.ListWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/step.png')} />
+              </S.ListWrapper>
+            </S.StampWrapper>
+            <S.StampWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/letter.png')} />
+                <S.StampName>특별한 소통</S.StampName>
+              </S.ListWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/child.png')} />
+                <S.StampName>취향 존중</S.StampName>
+              </S.ListWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/happy.png')} />
+              </S.ListWrapper>
+            </S.StampWrapper>
+            <S.StampWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/warm.png')} />
+              </S.ListWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/commu.png')} />
+              </S.ListWrapper>
+              <S.ListWrapper>
+                <Image source={require('../../../../../public/images/stamp/heart.png')} />
+              </S.ListWrapper>
+            </S.StampWrapper>
+          </S.StampListWrapper>
+        </ScrollView>
       </S.StampList>
     </S.Wrapper>
   );
