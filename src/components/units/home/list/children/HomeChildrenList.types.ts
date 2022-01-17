@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Query } from '../../../../../commons/types/generated/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 type RootStackParamList = {
@@ -16,5 +17,6 @@ export type IPropsNavigation = {
 export interface IPropsHomeChildrenListUI {
   data?: Pick<Query, 'fetchUseditems'>;
   dataForPicked?: Pick<Query, 'fetchUseditemsIPicked'>;
-  onPressPick: () => void;
+  onPressPick: (el: any) => () => Promise<void>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'home'>;
 }

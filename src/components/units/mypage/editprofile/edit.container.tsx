@@ -34,15 +34,6 @@ const Edit = ({ navigation, uri, onPress }: IPropsEditUI) => {
     console.log(result);
   }, []);
 
-  const onImageLibraryPress = useCallback(() => {
-    const result = launchImageLibrary({
-      selectionLimit: 1,
-      mediaType: 'photo',
-      includeBase64: true,
-    });
-    console.log(result);
-  }, []);
-
   const onChangeName = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setName(event.nativeEvent.text);
   };

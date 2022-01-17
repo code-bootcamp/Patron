@@ -100,9 +100,6 @@ export default function HomePatronUI(props: IPropsHomePatronUI) {
             </E.RecommendTitle>
 
             <E.RecommendList>
-              {/* <FlatList
-              data={recommendListItems}
-              renderItem={(items) => ( */}
               {props.data?.fetchUseditems
                 .map((el) => (
                   <E.RecommendCard key={el._id}>

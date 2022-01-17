@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Query } from '../../../../commons/types/generated/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -12,6 +13,7 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList,
 
 export type IPropNavigation = {
   navigation: ProfileScreenNavigationProp;
+  route: any;
 };
 
 export interface IPropsHomeDetailsUI {
@@ -22,6 +24,6 @@ export interface IPropsHomeDetailsUI {
   route: any;
   onPressSupport: () => void;
   getDate: Date;
-  onPressPick: any;
-  navigation: any;
+  onPressPick: (el: any) => () => Promise<void>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'home'>;
 }
