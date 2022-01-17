@@ -15,7 +15,7 @@ const EditUI = (props: IPropsEditUI) => {
           <E.Header>내 정보 수정</E.Header>
         </E.EditWrapper>
         <E.ProfileWrapper>
-          <Icon name="person-circle" size={100}></Icon>
+          <Icon name="person-circle" size={100} onPress={props.onImageLibraryPress} />
           <E.ProfileName>{props.data?.fetchUserLoggedIn.name}</E.ProfileName>
         </E.ProfileWrapper>
         <E.InputWrapper>

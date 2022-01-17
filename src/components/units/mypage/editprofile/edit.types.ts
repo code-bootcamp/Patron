@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
-
+import {
+  NativeSyntheticEvent,
+  TextInputChangeEventData,
+  GestureResponderEvent,
+} from 'react-native';
 type RootStackParamList = {
   home: undefined;
   community: undefined;
@@ -12,6 +15,7 @@ type RootStackParamList = {
 type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'mypage'>;
 
 export interface IPropsEditUI {
+  onPress: ((event: GestureResponderEvent) => void) | undefined;
   navigation: ProfileScreenNavigationProp;
   data: any;
   name: string;
@@ -19,4 +23,9 @@ export interface IPropsEditUI {
   password: string;
   onChangeName: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   onChangePassword: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  uri: any;
+  selectionLimit: number;
+  mediaType: string;
+  includeBase64: boolean;
+  onImageLibraryPress: () => void;
 }
