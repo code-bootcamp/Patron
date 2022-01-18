@@ -49,5 +49,3 @@
 <img width="1000" src="./public/images/readme/slide9.jpeg">
 <img width="1000" src="./public/images/readme/slide10.jpeg">
 </p>
-
-## Screens
