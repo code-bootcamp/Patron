@@ -2,36 +2,50 @@
 
 ## 팀소개
 
-<img width="1000" src="./public/images/readme/슬라이드2.jpeg">
+<p align="center">
+<img width="1000" src="./public/images/readme/slide1.jpeg">
+</p>
 
 ## GoodNeighbors 소개
 
-<img width="1000" src="./public/images/readme/슬라이드4.jpeg">
+<p align="center">
+<img width="1000" src="./public/images/readme/slide2.jpeg">
+</p>
 
 ## 프로젝트 일정
 
-<img width="1000" src="./public/images/readme/슬라이드5.jpeg">
+<p align="center">
+<img width="1000" src="./public/images/readme/slide3.jpeg">
+</p>
 
 ## 사용 스택
 
-<img width="1000" src="./public/images/readme/슬라이드6.jpeg">
+<p align="center">
+<img width="1000" src="./public/images/readme/slide4.jpeg">
+</p>
 
 ## 폴더 구조
 
-<img width="1000" src="./public/images/readme/슬라이드7.jpeg">
+<p align="center">
+<img width="1000" src="./public/images/readme/slide5.jpeg">
+</p>
 
 ## 플로우 차트
 
-<img width="1000" src="./public/images/readme/슬라이드8.jpeg">
+<p align="center">
+<img width="1000" src="./public/images/readme/slide6.jpeg">
+</p>
 
 ## 와이어 프레임
 
-<img width="1000" src="./public/images/readme/슬라이드9.jpeg">
-<img width="1000" src="./public/images/readme/슬라이드10.jpeg">
+<p align="center">
+<img width="1000" src="./public/images/readme/slide7.jpeg">
+<img width="1000" src="./public/images/readme/slide8.jpeg">
+</p>
 
 ## UI Design
 
-<img width="1000" src="./public/images/readme/슬라이드11.jpeg">
-<img width="1000" src="./public/images/readme/슬라이드12.jpeg">
-
-## Screens
+<p align="center">
+<img width="1000" src="./public/images/readme/slide9.jpeg">
+<img width="1000" src="./public/images/readme/slide10.jpeg">
+</p>
