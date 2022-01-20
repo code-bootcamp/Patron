@@ -3,7 +3,7 @@
 ## 팀소개
 
 <p align="center">
-<img width="1000" src="./public/images/readme/slide1.jpeg">
+<img width="1000" src="./public/images/readme/new.slide1.jpeg">
 </p>
 
 ## GoodNeighbors 소개
