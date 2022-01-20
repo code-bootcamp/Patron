@@ -23,4 +23,3 @@ export interface IPropsHomeChildrenUI {
   navigation: NativeStackNavigationProp<RootStackParamList, 'home'>;
   tags?: string[];
 }
-
