@@ -28,14 +28,18 @@
 ## 주요기능
 
 1. 로그인
-   **Splash Screen**
-   **graphQL Login**
-   **Google social Login**
-   <p align="center">
-    <img width="1000" src="./public/images/readme/splashScreen.gif">
-    <img width="1000" src="./public/images/readme/graphQLLogin.gif">
-    <img width="1000" src="./public/images/readme/GoogleSocialLogin.gif">
-    </p>
+
+**Splash Screen**
+
+**graphQL Login**
+
+**Google social Login**
+
+<p align="center">
+    <img width="350" src="./public/images/readme/splashScreen.gif">
+    <img width="350" src="./public/images/readme/graphQLLogin.gif">
+    <img width="350" src="./public/images/readme/GoogleSocialLogin.gif">
+</p>
 
 2. 홈
 
