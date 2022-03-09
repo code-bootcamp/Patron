@@ -94,9 +94,9 @@ image-picker 사용하여 이미지 업로드, 해시태그 작성, 게시글 �
 **News Screen** / **Mypage Edit** / **Mypage List**
 
 <p align="center">
-    <img width="200" src="./public/images/readme/NewsScreen.gif">
-    <img width="200" src="./public/images/readme/MypageEdit.gif">
-    <img width="200" src="./public/images/readme/MypageList.gif">
+    <img width="250" src="./public/images/readme/NewsScreen.gif">
+    <img width="250" src="./public/images/readme/MypageEdit.gif">
+    <img width="250" src="./public/images/readme/MypageList.gif">
 </p>
 
 후원 혹은 참여한 아이템에 대한 새로운 소식 업데이트하여 제공함
@@ -106,9 +106,9 @@ image-picker 사용하여 이미지 업로드, 해시태그 작성, 게시글 �
 **Mypage Stamp** / **Mypage Settings** / **Mypage Logout**
 
 <p align="center">
-    <img width="200" src="./public/images/readme/MypageStamp.gif">
-    <img width="200" src="./public/images/readme/MypageSettings.gif">
-    <img width="200" src="./public/images/readme/MypageLogout.gif">
+    <img width="250" src="./public/images/readme/MypageStamp.gif">
+    <img width="250" src="./public/images/readme/MypageSettings.gif">
+    <img width="250" src="./public/images/readme/MypageLogout.gif">
 </p>
 
 캠페인 혹은 후원 참여 후 받은 스탬프 리스트와 레벨
