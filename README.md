@@ -70,7 +70,7 @@ progress bar 제작 - 각 캠페인/정기후원의 목표달성 정도를 보�
 
 <p align="center">
     <img width="250" src="./public/images/readme/communitySuggest.gif">
-    <img width="250" src="./public/images/readme/communityTags.gif">
+    <img width="250" src="./public/images/readme/communityTag.gif">
     <img width="250" src="./public/images/readme/communityDetail.gif">
 </p>
 
@@ -114,7 +114,3 @@ image-picker 사용하여 이미지 업로드, 해시태그 작성, 게시글 �
 캠페인 혹은 후원 참여 후 받은 스탬프 리스트와 레벨
 
 기타 설정 / 로그아웃
-
-## 발표 영상
-
-<video width="800" height="auto" src="https://youtu.be/uaxv2SyW7bE"></video>
