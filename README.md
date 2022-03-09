@@ -31,9 +31,9 @@
 **Splash Screen** / **graphQL Login** / **Google social Login**
 
 <p align="center">
-    <img width="350" src="./public/images/readme/splashScreen.gif">
-    <img width="350" src="./public/images/readme/graphQLLogin.gif">
-    <img width="350" src="./public/images/readme/GoogleSocialLogin.gif">
+    <img width="250" src="./public/images/readme/splashScreen.gif">
+    <img width="250" src="./public/images/readme/graphQLLogin.gif">
+    <img width="250" src="./public/images/readme/GoogleSocialLogin.gif">
 </p>
 
 2. 홈
